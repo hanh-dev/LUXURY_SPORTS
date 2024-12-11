@@ -62,7 +62,7 @@
                 <div class="form_email">
                     <div class="form-content">
                         <div class="content">
-                            Enter your email address
+                            <input type="text" placeholder="Enter your email address">
                         </div>
                         <i class="fa-solid fa-arrow-right"></i>
                     </div>
