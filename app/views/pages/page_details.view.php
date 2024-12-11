@@ -11,11 +11,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<link rel="stylesheet" href="/MVC_PROJECT/LUXURY_SPORTS/public/css/Details.css">
-	
+
 </head>
 <body>
 <main class="app-main">
 		<div class="container">
+			<!-- Kết nối dữ liệu -->
+			 <?php
+			 	$product = $data['Product'];
+			 ?>
 			<div class="bread-product">
 				<ul class="nav justify-content-center justify-content-lg-start">
 					<li>
@@ -25,7 +29,7 @@
 						<a href="/">Shop</a>
 					</li>
 					<li>
-						<span> Women’s Stewie Basketball All Over Print Jacket</span>
+						<span><?php echo $product['Name']?> </span>
 					</li>
 				</ul> 
 			</div>
@@ -36,21 +40,19 @@
 				</div>
 				<div class="col bg-warning">
 					<div class="product-img-lg">
-						<img src="https://victeam.co/wp-content/uploads/2022/02/A38-tim-e1645301425232.jpg" alt="áo thể thao">
+						<img src="<?php echo $product['Image']?>" alt="<?php echo $product['Name']?>">
 					</div>
 				</div>
 				<div class="col bg-success">
 					<div class="product-detail">
-						<h2 class="heading-title">Women’s Stewie Basketball All Over Print Shirt</h2>
+						<h2 class="heading-title"><?php echo $product['Name']?></h2>
 						<div class="product-price">
 							<span class="old-price">$99.99</span>
 							<span class="new-price">$88.99</span>
 						</div>
 						<div class="heading-description">
-							<p class="text">Elevate your athletic performance with our cutting-edge sports accessories. From high-performance compression sleeves to ergonomic 
-								water bottles and durable sports towels, our collection is designed to enhance your comfort, style, and functionality. Whether you’re hitting the gym, 
-								the track, or the field, our sports accessories are crafted for peak performance, providing the perfect blend of quality and style to fuel your passion 
-								for sports.
+							<p class="text">
+								<?php echo $product['Description']?>
 							</p>
 						</div>
 						<div class="btn-update">
@@ -164,11 +166,6 @@
 					<button class="arrow right" id="scrollRight"><i class="fa-solid fa-arrow-right"></i></button>
 					
 				</div>
-				<!-- <div class="navigation-left-right">
-					<button class="arrow left" id="scrollLeft">&lt;</button>
-					<button class="arrow right" id="scrollRight">&gt;</button>
-
-				</div> -->
 			</div>
 		</div>
     </main>

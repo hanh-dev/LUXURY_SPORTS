@@ -7,6 +7,5 @@
 </head>
 <body>
     <!-- Hãy luôn nhớ khi mà đặt tên page thì là: page_name.view.php -->
-     <h2>Hlello</h2>
 </body>
 </html>
