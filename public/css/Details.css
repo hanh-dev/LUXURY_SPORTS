@@ -1,0 +1,164 @@
+
+.container .bread-product {
+    height: 60px;
+    background-color: #F5F5F5;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.bread-product .nav  {
+    display: flex;
+    gap: 20px;
+
+}
+
+.bread-product li {
+    display: inline-block;
+    position: relative;
+}
+
+.bread-product li:not(:last-child)::after {
+    content: '/';
+    position: absolute;
+    right: -15px;
+    top: 0;
+}
+
+.bread-product li a {
+    color: #333;
+    font-weight: 700;
+}
+
+.container .row {
+    margin: 0px;
+}
+
+.bg-success .btn-sale {
+    background-color: #BAF120;
+    border: none;
+    width: 83px;
+    height: 36px;
+}
+
+.bg-warning, .bg-success {
+    background-color: #fff !important;
+}
+.row .product-image {
+    width: 600px;
+    height: 600px;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+}
+
+.bg-success .product-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.product-detail .heading-title {
+    font-size: 45px;
+}
+.product-detail .product-price {
+    font-size: 40px;
+}
+
+/* Tăng giảm số lượng đơn hàng */
+.product-detail .buttons_added {
+    display: inline-flex;
+    border: 1px solid #ccc;
+}
+
+#number_subtraction, #number_addition {
+    border: none;
+    background-color: #e0e0e0;
+    width: 40px;
+    height: 40px;
+
+}
+
+#number_subtraction:hover, #number_addition:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#number_step {
+    width: 70px;
+    text-align: center;
+    border: none;    
+}
+
+/* Xoá phần có mũi tên lên xuống */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn-update {
+    width: auto !important;
+    display: flex;
+    gap: 20px;
+}
+
+.add-to-wishist {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+p {
+    margin: 0;
+
+}
+
+.btn-primary {
+    background-color: #BAF120;
+    border: none;
+    width: 150px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* Social Media */
+.social-media   {
+}
+.social-media .social-items{
+    display: flex;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
+}
+
+.social-media li {
+    list-style: none;
+}
+
+.social-media li a {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #333;
+}
+
+.box-detail {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 2px solid #eee;
+}
+
+.size, .ship, .free {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px;
+}
+
+.size, .ship {
+    border-right: 2px solid #eee;
+}
