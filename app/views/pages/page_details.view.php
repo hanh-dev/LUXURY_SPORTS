@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/MVC_PROJECT/LUXURY_SPORTS/public/css/Details.css">
 </head>
 <body>
-    <main class="app-main">
+<main class="app-main">
 		<div class="container">
 			<div class="bread-product">
 				<ul class="nav justify-content-center justify-content-lg-start">
@@ -34,7 +34,7 @@
 					<button class="btn-sale">Sale!</button>
 				</div>
 				<div class="col bg-warning">
-					<div class="product-image">
+					<div class="product-img-lg">
 						<img src="https://victeam.co/wp-content/uploads/2022/02/A38-tim-e1645301425232.jpg" alt="áo thể thao">
 					</div>
 				</div>
@@ -66,15 +66,15 @@
 						</div>
 						<div class="box-detail">
 							<div class="size">
-								<i class="fa-regular fa-shirt"></i>
+								<i class="fa-solid fa-shirt"></i>
 								<p>Size Guide</p>
 							</div>
 							<div class="ship">
-								<i class="fa-regular fa-truck-fast"></i>
+								<i class="fa-solid fa-truck-fast"></i>
 								<p>Ship To Home</p>
 							</div>
 							<div class="free">
-								<i class="fa-regular fa-box"></i>
+								<i class="fa-solid fa-box"></i>
 								<p>Free Pickup</p>
 							</div>
 						</div>
@@ -110,7 +110,64 @@
 				</div>
 			</div>
 			<div class="content-2">
-				
+				<div class="heading">
+					<h2 class="heading-title">RELATED PRODUCTS</h2>
+				</div>
+				<div class="products">
+					<button class="arrow left" id="scrollLeft"><i class="fa-solid fa-arrow-left"></i></button>
+
+					<div class="product-item">
+						<div class="product-img-sm">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfC_McqGUpmKtfhTS4oK53A0h6N-Lu0YvBkg&s" alt="">
+						</div>
+						<div class="text-description">
+							<p class="text">
+								Toronto Raptors Nike Kids’ OG Anunoby Swingman
+							</p>
+							<span class="price">$100.00</span>
+						</div>
+					</div>
+					<div class="product-item">
+						<div class="product-img-sm">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfC_McqGUpmKtfhTS4oK53A0h6N-Lu0YvBkg&s" alt="">
+						</div>
+						<div class="text-description">
+							<p class="text">
+								Toronto Raptors Nike Kids’ OG Anunoby Swingman
+							</p>
+							<span class="price">$100.00</span>
+						</div>
+					</div>
+					<div class="product-item">
+						<div class="product-img-sm">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfC_McqGUpmKtfhTS4oK53A0h6N-Lu0YvBkg&s" alt="">
+						</div>
+						<div class="text-description">
+							<p class="text">
+								Toronto Raptors Nike Kids’ OG Anunoby Swingman
+							</p>
+							<span class="price">$100.00</span>
+						</div>
+					</div>
+					<div class="product-item">
+						<div class="product-img-sm">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfC_McqGUpmKtfhTS4oK53A0h6N-Lu0YvBkg&s" alt="">
+						</div>
+						<div class="text-description">
+							<p class="text">
+								Toronto Raptors Nike Kids’ OG Anunoby Swingman
+							</p>
+							<span class="price">$100.00</span>
+						</div>
+					</div>
+					<button class="arrow right" id="scrollRight"><i class="fa-solid fa-arrow-right"></i></button>
+					
+				</div>
+				<!-- <div class="navigation-left-right">
+					<button class="arrow left" id="scrollLeft">&lt;</button>
+					<button class="arrow right" id="scrollRight">&gt;</button>
+
+				</div> -->
 			</div>
 		</div>
     </main>
