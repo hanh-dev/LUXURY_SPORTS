@@ -1,0 +1,27 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* Clear */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site_footer {
+    width: 100%;
+    display: grid;
+    background-color: #13160b;
+    color: #fff;
+    margin-top: 40px;
+}
+
+.footer-box {
+    width: 1279.2px;
+    height: 300px;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 2fr 1fr 1fr;
+}
+
+

@@ -8,5 +8,21 @@
 <body>
     <!-- Hãy luôn nhớ khi mà đặt tên page thì là: page_name.view.php -->
      <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
+     <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
+     <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
+     <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
+     <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
+     <h2>This is homepage</h2>
+     <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
+     <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
+     <h2>Hello Product</h2>
+     <h2>This is homepage</h2>
 </body>
 </html>
