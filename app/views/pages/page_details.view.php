@@ -14,7 +14,7 @@
 
 	</head>
 	<body>
-	<main class="app-main">
+		<main class="app-main">
 			<div class="container">
 				<!-- Kết nối dữ liệu -->
 				<?php
@@ -47,7 +47,6 @@
 						<div class="product-detail">
 							<h2 class="heading-title"><?php echo $product['Name']?></h2>
 							<div class="product-price">
-								<span class="old-price">$99.99</span>
 								<span class="new-price">$88.99</span>
 							</div>
 							<div class="heading-description">
@@ -61,7 +60,7 @@
 									<input type="number" value="1" id="number_step" min="1">
 									<input type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" id="number_addition" value="+">
 								</div>
-								<button class="btn-primary">Add To Cart</button>
+								<button class="btn-add-to-cart-primary">Add To Cart</button>
 							</div>
 							<div class="add-to-wishist">
 								<i class="fa-regular fa-heart"></i>
@@ -117,10 +116,12 @@
 						<h2 class="heading-title">RELATED PRODUCTS</h2>
 					</div>
 					<div class="products">
-						<button class="arrow left" id="scrollLeft"><i class="fa-solid fa-arrow-left"></i></button>
 						<?php if(!empty($data['RelatedProducts'])): ?>
 						<?php foreach($data['RelatedProducts'] as $relatedProduct): ?>
 						<div class="product-item">
+							<div class="cart-heart">
+								<i class="fa-regular fa-heart"></i>
+							</div>
 							<div class="product-img-sm">
 								<img src="<?= 'public/images/' .$relatedProduct['Image'] . '.jpg'?>" alt="<?php echo $relatedProduct['Name'] ?>">
 							</div>
@@ -128,13 +129,12 @@
 								<p class="text"><?php echo $relatedProduct['Name'] ?></p>
 								<span class="price">$100.00</span>
 							</div>
+							<botton class="btn-add-to-cart-second">Add to cart</botton>
 						</div>
 						<?php endforeach; ?>
 						<?php else: ?>
 							<p>No related products found.</p>
 						<?php endif; ?>
-						<button class="arrow right" id="scrollRight"><i class="fa-solid fa-arrow-right"></i></button>
-						
 					</div>
 				</div>
 			</div>
