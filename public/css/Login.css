@@ -1,20 +1,20 @@
 *{
     font-family: arial;
 }
-.container-register{
+.container-login{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.box-form-register{
+.box-form-login{
     width: 35%;
-    background-color: rgba(162, 167, 167, 0.674);
+    background-color: rgba(162, 167, 167, 0.826);
     border-radius: 12px;
     overflow: hidden;
 }
-.title{
+.title-login{
     width: 100%;
     height: 60px;
     background-color: rgb(64, 255, 0);
@@ -23,15 +23,15 @@
     align-items: center;
     font-size: 25px;
 }
-.title span{
+.title-login span{
     margin-left: 11px;
 }
-.title i{
+.title-login i{
     margin-right: 12px;
     font-size: 30px;
     cursor: pointer;
 }
-.email{
+.username-login{
     width: 95%;
     height: 50px;
     border-radius: 5px;
@@ -41,7 +41,7 @@
     font-size: 15px;
     padding-left: 5px;
 }
-.username{
+.password-login{
     width: 95%;
     height: 50px;
     border-radius: 5px;
@@ -51,31 +51,15 @@
     font-size: 15px;
     padding-left: 5px;
 }
-.password{
+.remind-login{
     width: 95%;
-    height: 50px;
-    border-radius: 5px;
-    margin-top: 30px;
-    margin-left: 1.8%;
-    border: none;
-    font-size: 15px;
-    padding-left: 5px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+    /* color: white; */
 }
-.confirmpass{
-    width: 95%;
-    height: 50px;
-    border-radius: 5px;
-    margin-top: 30px;
-    margin-left: 1.8%;
-    border: none;
-    font-size: 15px;
-    padding-left: 5px;
-}
-.remind{
-    margin-left: 12px;
-    font-size: 12px;
-}
-.done-register{
+.done-login{
     width: 96.5%;
     height: 50px;
     border-radius: 5px;
@@ -85,14 +69,21 @@
     background-color: rgb(64, 255, 0);
     font-size: 20px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
-.question{
-    display: flex;
+.forgot-password{
+    margin-left: 10px;
+    color: black;
+}
+.question-login{
     width: 50%;
+    height: 30px;
+    display: flex;
     align-items: center;
     margin-left: 33%;
+    margin-top: 5px;
     color: rgb(228, 226, 226);
 }
-.question a{
+.question-login a{
     color: black;
 }

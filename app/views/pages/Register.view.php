@@ -10,7 +10,6 @@
 </head>
 <body>
     <div class="container-register">
-        <img src="https://www.strathroy-caradoc.ca/en/getting-active/resources/InteriorBannerImages/SportsOrganizations_-_INSIDEPAGE.jpg" alt="">
         <div class="box-form-register">
             <form action="">
                 <div class="title">
@@ -22,7 +21,7 @@
                 <input class="password" type="text" placeholder="Password">
                 <input class="confirmpass" type="text" placeholder="Confirm password">
                 <h4 class="remind">Please ensure your information!</h4>
-                <button class="done" type="submit">Register</button>
+                <button class="done-register">Register</button>
                 <div class="question">
                     <p>Aready a member?</p>
                     <a href="/LUXURY_SPORTS/Login">Login</a>
