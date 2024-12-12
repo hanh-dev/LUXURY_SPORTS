@@ -20,7 +20,8 @@
                         header('Location: /LUXURY_SPORTS/Login');
                         exit();
                     } 
-                    
+                    // ?? tóan tử null-coalescing: nếu Message tồn tại và ko rỗng thì sẽ in ra, không tồn tại hoặc null thì sẽ thay thế bằng ''
+                    echo $data['Message'] ?? '';
                 }
             ?>
             <form action="/LUXURY_SPORTS/Register/register" method="POST">

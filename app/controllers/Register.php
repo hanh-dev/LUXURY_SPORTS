@@ -25,7 +25,15 @@ class Register extends Controller
                 $password = $_POST['password'];
                 $confirmPassword = $_POST['confirmPassword'];
 
-                
+                //kiểm tra lại mật khẩu 
+                if ($password !== $confirmPassword) {
+                    $this->view('master', [
+                        'Result' => $this->result,
+                        'Message' =>'Password does not match',
+                        'Page' => 'Register'
+                    ]);
+                    exit();
+                }
                 //biến lưu pass đã được mã hóa
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                 //gọi đến hàm createUser ở lớp UserModel có kết quả trả về
