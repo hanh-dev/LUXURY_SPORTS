@@ -10,10 +10,12 @@ class Home extends Controller
     public function show() {
         // Lấy dữ liệu từ Model để chuyển sang View
         $products = $this->ProductModel->getProduct();
+        $category = $this->ProductModel->getCategory();
         // Chuyển dữ liệu vừa mới lấy được từ Model
         $this->view('master', [
             // Dữ liệu mà mình muốn truyền vào Page của mình
-            'ProductList' => $products,
+            'Product' => $products,
+            'Category' => $category,
             // Luôn luôn truyền trang mà mình mong muốn sẽ hiển thị ở đây
             'Page' => 'Home'
         ]);
