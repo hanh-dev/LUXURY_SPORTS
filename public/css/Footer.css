@@ -25,7 +25,7 @@ body {
     margin-top: 70px;
 }
 
-.form-content {
+.form-content_right {
     position: relative;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@ body {
     width: max-content;
 }
 
-.form-content .content input {
+.form-content_right .content_right input {
     border: none;
     outline: none;
     padding: 10px 20px;
@@ -47,7 +47,10 @@ body {
     opacity: 0.6;
 }
 
-.form-content i {
+.form-content_right .content_right {
+    position: relative;
+}
+.form-content_right i {
     position: static;
     margin-left: 10px;
     cursor: pointer;
@@ -106,5 +109,9 @@ body {
 
 .footer-icon {
     margin-top: 10px;
+}
+
+.left_tile_shop {
+    margin-bottom: 10px;
 }
 

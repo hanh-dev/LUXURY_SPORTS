@@ -1,18 +1,17 @@
-let currentSlide = 0;
+let currentPosition = 0;
+const slidesTrack = document.querySelector('.slides-track');
+const cards = document.querySelectorAll('.product-card');
+const cardsPerView = 3;
+const totalSlides = cards.length;
 
-const slides = document.querySelectorAll('.product-slide');
-
-function slideProducts(direction) {
-    // Remove active class from current slide
-    slides[currentSlide].classList.remove('active');
+function slideProduct(direction) {
+    const slideWidth = cards[0].offsetWidth + 20; // card width + gap
+    const maxPosition = -(totalSlides - cardsPerView) * slideWidth;
     
-    // Calculate next slide index
-    if (direction === 'next') {
-        currentSlide = (currentSlide + 1) % slides.length;
-    } else {
-        currentSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+    if (direction === 'next' && currentPosition > maxPosition) {
+        currentPosition -= slideWidth;
+    } else if (direction === 'prev' && currentPosition < 0) {
+        currentPosition += slideWidth;
     }
-    
-    // Add active class to new slide
-    slides[currentSlide].classList.add('active');
+    slidesTrack.style.transform = `translateX(${currentPosition}px)`;
 }

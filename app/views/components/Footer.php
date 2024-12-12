@@ -60,9 +60,9 @@
                     <p>Sign up for our newsletter and receive 10% off your</p>
                 </div>
                 <div class="form_email">
-                    <div class="form-content">
-                        <div class="content">
-                            <input type="text" placeholder="Enter your email address">
+                    <div class="form-content_right">
+                        <div class="content_right">
+                            <input type="email" placeholder="Enter your email address">
                         </div>
                         <i class="fa-solid fa-arrow-right"></i>
                     </div>
