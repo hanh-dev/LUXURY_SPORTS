@@ -40,7 +40,7 @@
 					</div>
 					<div class="col bg-warning">
 						<div class="product-img-lg">
-							<img src="<?php echo $product['Image']?>" alt="<?php echo $product['Name']?>">
+								<img src="<?= 'public/images/' .$product['Image'] . '.jpg'?>" alt="<?php echo $product['Name']?>">
 						</div>
 					</div>
 					<div class="col bg-success">
@@ -122,7 +122,7 @@
 						<?php foreach($data['RelatedProducts'] as $relatedProduct): ?>
 						<div class="product-item">
 							<div class="product-img-sm">
-								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfC_McqGUpmKtfhTS4oK53A0h6N-Lu0YvBkg&s" alt="<?php echo $relatedProduct['Name'] ?>">
+								<img src="<?= 'public/images/' .$relatedProduct['Image'] . '.jpg'?>" alt="<?php echo $relatedProduct['Name'] ?>">
 							</div>
 							<div class="text-description">
 								<p class="text"><?php echo $relatedProduct['Name'] ?></p>

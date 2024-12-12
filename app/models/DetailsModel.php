@@ -10,9 +10,6 @@ class DetailsModel extends DB
     }
 
     public function getRelatedProducts($productID, $categoryID) {
-        if ($categoryID === null) {
-            return null;
-        }
         $sql = "SELECT p.Name, p.Image, p.Category_ID, c.Name AS CategoryName
                 FROM Product p
                 JOIN Category c ON p.Category_ID = c.ID
