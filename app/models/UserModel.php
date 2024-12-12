@@ -9,8 +9,22 @@ class UserModel extends DB
         $result = mysqli_query($this->conn, $sql);
     
     
-        // truy vấn thành công, trả về true
-        return true;
+        // truy vấn thành công, trả về true ngược lại falsefalse
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+
+    public function checkEmail($email) {
+        $sql = "SELECT * FROM User WHERE EmailAddress = '$email'";
+        $result = mysqli_query($this->conn, $sql);
+        
+        // hàm đếm số lượng: Kiểm tra xem có data trả về không, nếu có thì > 0 sẽ là true ngược lại là false
+        return mysqli_num_rows($result) > 0;
+    }
+    
     
 }

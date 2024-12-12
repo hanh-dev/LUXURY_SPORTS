@@ -25,11 +25,21 @@ class Register extends Controller
                 $password = $_POST['password'];
                 $confirmPassword = $_POST['confirmPassword'];
 
+                //kiểm tra email
+                if ($this->UserModel->checkEmail($email)) {
+                    $this->view('master', [
+                        'Result' => $this->result,
+                        'Message' => 'Error: Email already registered',
+                        'Page' => 'Register'
+                    ]);
+                    exit();
+                }
+
                 //kiểm tra lại mật khẩu 
                 if ($password !== $confirmPassword) {
                     $this->view('master', [
                         'Result' => $this->result,
-                        'Message' =>'Password does not match',
+                        'Message' =>'Error: Password does not match',
                         'Page' => 'Register'
                     ]);
                     exit();
