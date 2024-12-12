@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="container-register">
+        <img src="https://www.strathroy-caradoc.ca/en/getting-active/resources/InteriorBannerImages/SportsOrganizations_-_INSIDEPAGE.jpg" alt="">
         <div class="box-form-register">
             <form action="">
                 <div class="title">

@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="container-login">
+        <img src="https://static1.squarespace.com/static/595ea7d6e58c62dce01d1625/t/5e5969dc3ca1436a76e4eac1/1564065314028/aspen-project-play-kids-sports-participation.jpeg?format=1500w" alt="">
         <div class="box-form-login">
             <form action="">
                 <div class="title-login">
