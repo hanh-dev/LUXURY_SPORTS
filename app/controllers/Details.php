@@ -1,30 +1,37 @@
 <?php
-    class Details extends Controller
-    {
-        public $DetailsModel;
-         // Hàm này luôn được khởi chạy đầu tiền khi tạo một đối tượng
-        public function __construct() {
-            $this->DetailsModel = $this->model('DetailsModel');
-        }
+class Details extends Controller
+{
+    public $DetailsModel;
 
-        public function show($productID = 1)
-        {
-            //lấy dữ liệu sản phẩm từ model mới
-            $result = $this->DetailsModel->getProduct($productID);
-
-            // // Lưu dữ liệu vào mảng
-            $product = mysqli_fetch_assoc($result);
-            // $products = [];
-            // while($row = mysqli_fetch_assoc($result)) {
-            //     $products[] = $row;
-            // }
-
-            // Truyền dữ liệu sang view
-            $this->view('master',[
-                'Product' => $product,
-                'Page' => 'page_details'
-            ]);
-        }
+    // Hàm này luôn được khởi chạy đầu tiên khi tạo một đối tượng
+    public function __construct() {
+        $this->DetailsModel = $this->model('DetailsModel');
     }
 
+    public function show($productID = 1)
+    {
+        // Lấy dữ liệu sản phẩm hiện tại
+        $result = $this->DetailsModel->getProduct($productID);
+        $product = mysqli_fetch_assoc($result);
+
+        // Lấy danh sách sản phẩm liên quan
+        $relatedProducts = [];
+        if ($product && isset($product['Category_ID'])) {
+            $relatedResult = $this->DetailsModel->getRelatedProducts($productID, $product['Category_ID']);
+            while ($row = mysqli_fetch_assoc($relatedResult)) {
+                $relatedProducts[] = $row;
+            }
+        } else {
+            // Xử lý khi không tìm thấy sản phẩm
+            $product = null;
+        }
+
+        // Truyền dữ liệu sang view
+        $this->view('master', [
+            'Product' => $product,
+            'RelatedProducts' => $relatedProducts,
+            'Page' => 'page_details'
+        ]);
+    }
+}
 ?>

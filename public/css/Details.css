@@ -1,4 +1,8 @@
-
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
 .container .bread-product {
     height: 60px;
     background-color: #F5F5F5;
@@ -114,6 +118,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
     gap: 10px;
     align-items: center;
+    cursor: pointer;
 }
 
 p {
@@ -136,6 +141,7 @@ p {
     gap: 10px;
     padding: 7px;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .size, .ship {
@@ -175,7 +181,7 @@ p {
 
 /* ================ */
 .content-2 {
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
