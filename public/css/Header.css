@@ -10,6 +10,10 @@ body {
     display: grid;
     background-color: #13160b;
     color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
 .header-box {
@@ -19,6 +23,7 @@ body {
     margin: 0 auto;
     justify-content: space-between;
     align-items: center;
+    z-index: 10;
 }
 
 .header_right {
@@ -99,7 +104,6 @@ body {
     box-sizing: border-box;
     padding: 8px 16px;
 }
-
 
 .category:hover .sub_menu {
     visibility: visible;

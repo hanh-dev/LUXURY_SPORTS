@@ -32,7 +32,7 @@
                         <li class="menu-item category">
                             <a href="#" class="cate_menu">
                                 <span>CATEGORY</span>
-                                <i class="fa-solid fa-arrow-down"></i>
+                                <i class="fa-solid fa-angle-down"></i>
                             </a>
                             <ul class="sub_menu">
                                 <li class="sub_menu-item">
