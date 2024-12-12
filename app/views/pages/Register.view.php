@@ -5,33 +5,25 @@
     <base href="/LUXURY_SPORTS/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/Register.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container-register">
-        <div>
+        <img src="https://www.strathroy-caradoc.ca/en/getting-active/resources/InteriorBannerImages/SportsOrganizations_-_INSIDEPAGE.jpg" alt="">
+        <div class="box-form-register">
             <form action="">
-                <div>
+                <div class="title">
                     <span>REGISTER</span>
                     <i class="fa-solid fa-xmark"></i>
                 </div>
-                <div>
-                    <input type="text" placeholder="Email address">
-                </div>
-                <div>
-                    <input type="text" placeholder="Username">
-                </div>
-                <div>
-                    <input type="text" placeholder="Password">
-                </div>
-                <div>
-                    <input type="text" placeholder="Confirm password">
-                </div>
-                <h4>Please ensure your information!</h4>
-                <div>
-                    <button>Register</button>
-                </div>
-                <div>
+                <input class="email" type="text" placeholder="Email address">
+                <input class="username" type="text" placeholder="Username">
+                <input class="password" type="text" placeholder="Password">
+                <input class="confirmpass" type="text" placeholder="Confirm password">
+                <h4 class="remind">Please ensure your information!</h4>
+                <button class="done" type="submit">Register</button>
+                <div class="question">
                     <p>Aready a member?</p>
                     <a href="/LUXURY_SPORTS/Login">Login</a>
                 </div>
