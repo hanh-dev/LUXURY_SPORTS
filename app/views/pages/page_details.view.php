@@ -133,17 +133,6 @@
 						<?php else: ?>
 							<p>No related products found.</p>
 						<?php endif; ?>
-						<!-- <div class="product-item">
-							<div class="product-img-sm">
-								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfC_McqGUpmKtfhTS4oK53A0h6N-Lu0YvBkg&s" alt="">
-							</div>
-							<div class="text-description">
-								<p class="text">
-									Toronto Raptors Nike Kids’ OG Anunoby Swingman
-								</p>
-								<span class="price">$100.00</span>
-							</div>
-						</div> -->
 						<button class="arrow right" id="scrollRight"><i class="fa-solid fa-arrow-right"></i></button>
 						
 					</div>

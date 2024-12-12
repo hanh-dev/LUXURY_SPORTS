@@ -13,8 +13,7 @@ class DetailsModel extends DB
         $sql = "SELECT p.Name, p.Image, p.Category_ID, c.Name AS CategoryName
                 FROM Product p
                 JOIN Category c ON p.Category_ID = c.ID
-                WHERE p.Category_ID = $categoryID AND p.ID != $productID 
-                LIMIT 4";
+                WHERE p.Category_ID = $categoryID AND p.ID != $productID";
         return mysqli_query($this->conn, $sql);
     } 
 }
