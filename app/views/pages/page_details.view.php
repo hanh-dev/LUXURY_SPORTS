@@ -47,7 +47,7 @@
 						<div class="product-detail">
 							<h2 class="heading-title"><?php echo $product['Name']?></h2>
 							<div class="product-price">
-								<span class="new-price">$88.99</span>
+								<span class="new-price">$<?php echo $product['Price']?></span>
 							</div>
 							<div class="heading-description">
 								<p class="text">
@@ -127,7 +127,7 @@
 							</div>
 							<div class="text-description">
 								<p class="text"><?php echo $relatedProduct['Name'] ?></p>
-								<span class="price">$100.00</span>
+								<span class="price">$<?php echo $relatedProduct['Price'] ?></span>
 							</div>
 							<botton class="btn-add-to-cart-second">Add to cart</botton>
 						</div>
