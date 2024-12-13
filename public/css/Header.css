@@ -1,0 +1,131 @@
+/* Header Css */
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.site_header {
+    width: 100%;
+    display: grid;
+    background-color: #13160b;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.header-box {
+    width: 1279.2px;
+    height: 100px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.header_right {
+    
+}
+
+.header_center nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.header_center nav ul li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu-item .sub_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.header_left .elementor-widget-container {
+    display: flex;
+    gap: 10px;
+}
+
+.count_badge {
+    position: absolute;
+    right: -5px;
+    top: -10px;
+}
+
+.kitify-cart {
+    position: relative;
+}
+
+.menu-item .cate_menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.cate_menu i {
+    opacity: 0.7;
+}
+
+.category {
+    position: relative;
+}
+
+.sub_menu-item {
+    margin-bottom: 5px;
+}
+
+.sub_menu-item a {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sub_menu {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #13160b;
+    padding: 0;
+    margin: 0;
+    width: 160px;
+    list-style: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    box-sizing: border-box;
+    padding: 8px 16px;
+}
+
+.category:hover .sub_menu {
+    visibility: visible;
+}
+
+.sub-item {
+    color: #fff !important;
+}
+
+.sub_menu-item {
+    padding: 4px;
+    display: flex;
+    color: rgb(232, 216, 216);
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.sub_menu-item:hover {
+    cursor: pointer;
+    transform: translateX(12px);
+}
+
+.elementor-widget-container div a {
+    color: #fff;
+}

@@ -1,4 +1,4 @@
-<?php
+    <?php
     class App {
         //http://localhost/CLINIC_YB/Home/SayHi/1/2/3
         protected $controller = "Home";
