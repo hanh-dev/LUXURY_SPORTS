@@ -15,7 +15,7 @@ class DetailsModel extends DB
                 FROM Product p
                 JOIN Category c ON p.Category_ID = c.ID
                 JOIN Product_Item pI ON p.ID = pI.Product_ID
-                WHERE p.Category_ID = $categoryID AND p.ID != $productID ";
+                WHERE p.Category_ID = $categoryID AND p.ID != $productID"; /**Loại bỏ sản phẩm hiện tại khỏi danh sách. */
         return mysqli_query($this->conn, $sql);
     } 
 }
