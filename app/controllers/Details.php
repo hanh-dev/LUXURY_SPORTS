@@ -8,7 +8,7 @@ class Details extends Controller
         $this->DetailsModel = $this->model('DetailsModel');
     }
 
-    public function show($productID = 1)
+    public function show($productID)
     {
         // Lấy dữ liệu sản phẩm hiện tại
         $result = $this->DetailsModel->getProduct($productID);

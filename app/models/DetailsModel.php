@@ -11,7 +11,7 @@ class DetailsModel extends DB
     }
 
     public function getRelatedProducts($productID, $categoryID) {
-        $sql = "SELECT p.Name, p.Image, p.Category_ID, pI.Price, c.Name AS CategoryName
+        $sql = "SELECT p.Name, p.Image, p.ID, pI.Price, c.Name AS CategoryName
                 FROM Product p
                 JOIN Category c ON p.Category_ID = c.ID
                 JOIN Product_Item pI ON p.ID = pI.Product_ID

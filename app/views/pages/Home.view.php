@@ -51,7 +51,7 @@
                 </div>
                 <div class="product_menu">
                     <?php foreach($data['Product'] as $product) { ?>
-                        <a href="#">
+                        <a href="Details/show/<?= $product['ID'] ?>">
                             <div class="product_item">
                                 <div class="product_image">
                                     <img src="<?= 'public/images/'.$product['Image'].'.png' ?>" alt="">

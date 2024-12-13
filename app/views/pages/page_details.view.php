@@ -15,13 +15,11 @@
 	</head>
 	<body>
 		<main class="app-main">
-			<div class="container">
-				<!-- Kết nối dữ liệu -->
-				<?php
+		<?php
 					$product = $data['Product'];
 				?>
-				<div class="bread-product">
-					<ul class="nav justify-content-center justify-content-lg-start">
+		<div class="bread-product">
+					<ul class="container nav">
 						<li>
 							<a href="/">Home</a>
 						</li>
@@ -32,12 +30,12 @@
 							<span><?php echo $product['Name']?> </span>
 						</li>
 					</ul> 
-				</div>
+			</div>
+			<div class="container">
+				<!-- Kết nối dữ liệu -->
+
 				<!-- Row -->
 				<div class="row content-1">
-					<div class="col-1 bg-success">
-						<button class="btn-sale">Sale!</button>
-					</div>
 					<div class="col bg-warning">
 						<div class="product-img-lg">
 								<img src="<?= 'public/images/' .$product['Image'] . '.png'?>" alt="<?php echo $product['Name']?>">
@@ -118,19 +116,21 @@
 					<div class="products">
 						<?php if(!empty($data['RelatedProducts'])): ?>
 						<?php foreach($data['RelatedProducts'] as $relatedProduct): ?>
-						<div class="product-item">
-							<div class="cart-heart">
-								<i class="fa-regular fa-heart"></i>
-							</div>
-							<div class="product-img-sm">
-								<img src="<?= 'public/images/' .$relatedProduct['Image'] . '.png'?>" alt="<?php echo $relatedProduct['Name'] ?>">
-							</div>
-							<div class="text-description">
-								<p class="text"><?php echo $relatedProduct['Name'] ?></p>
-								<span class="price">$<?php echo $relatedProduct['Price'] ?></span>
-							</div>
-							<botton class="btn-add-to-cart-second">Add to cart</botton>
-						</div>
+							<a href="Details/show/<?= $relatedProduct['ID'] ?>">
+								<div class="product-item">
+									<div class="cart-heart">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+									<div class="product-img-sm">
+										<img src="<?= 'public/images/' .$relatedProduct['Image'] . '.png'?>" alt="<?php echo $relatedProduct['Name'] ?>">
+									</div>
+									<div class="text-description">
+										<p class="text"><?php echo $relatedProduct['Name'] ?></p>
+										<span class="price">$<?php echo $relatedProduct['Price'] ?></span>
+									</div>
+									<botton class="btn-add-to-cart-second">Add to cart</botton>
+								</div>
+							</a>
 						<?php endforeach; ?>
 						<?php else: ?>
 							<p>No related products found.</p>
