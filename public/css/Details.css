@@ -234,7 +234,7 @@ p {
 }
 
 .products .product-item {
-    width: 265px;
+    width: 295px;
     height: auto;
     border: 2px solid #eee;
     border-radius: 10px;
@@ -290,7 +290,7 @@ p {
 .product-item .btn-add-to-cart-second {
     position: absolute;
     bottom: 100px;
-    left: 65px;
+    left: 95px;
     padding: 10px;
     font-weight: 600;
     border-radius: 5px;

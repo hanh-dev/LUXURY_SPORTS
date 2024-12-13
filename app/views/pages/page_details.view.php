@@ -40,7 +40,7 @@
 					</div>
 					<div class="col bg-warning">
 						<div class="product-img-lg">
-								<img src="<?= 'public/images/' .$product['Image'] . '.jpg'?>" alt="<?php echo $product['Name']?>">
+								<img src="<?= 'public/images/' .$product['Image'] . '.png'?>" alt="<?php echo $product['Name']?>">
 						</div>
 					</div>
 					<div class="col bg-success">
@@ -123,7 +123,7 @@
 								<i class="fa-regular fa-heart"></i>
 							</div>
 							<div class="product-img-sm">
-								<img src="<?= 'public/images/' .$relatedProduct['Image'] . '.jpg'?>" alt="<?php echo $relatedProduct['Name'] ?>">
+								<img src="<?= 'public/images/' .$relatedProduct['Image'] . '.png'?>" alt="<?php echo $relatedProduct['Name'] ?>">
 							</div>
 							<div class="text-description">
 								<p class="text"><?php echo $relatedProduct['Name'] ?></p>
