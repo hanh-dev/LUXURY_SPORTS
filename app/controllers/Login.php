@@ -2,18 +2,38 @@
 class Login extends Controller
 {
     public $UserModel;
-    // Hàm này luôn được khởi chạy đầu tiền khi tạo một đối tượng
+
     public function __construct() {
         $this->UserModel = $this->model('UserModel');
     }
 
     public function show() {
-        // Lấy dữ liệu từ Model để chuyển sang View
-        // $products = $this->ProductModel->getProduct();
-        // Chuyển dữ liệu vừa mới lấy được từ Model
-        $this->view('master', [
-            'Page' => 'Login'
-        ]);
+        $this->view('Login');
     }
 
+    public function login() {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $username = htmlspecialchars(trim($_POST['username'] ));
+            $password = htmlspecialchars(trim($_POST['password'] ));
+            if (empty($username) || empty($password)) {
+                $this->view('Login', [
+                    'Message' => 'Username and password cannot be empty.',
+                    'Result' => false
+                ]);
+                return;
+            }
+            $result = $this->UserModel->checkUsernamePassword($username, $password);
+            if ($result) {
+                //đăng nhập thành công -> home
+                header('Location:/LUXURY_SPORTS/Home');
+                exit();
+            } else {
+                //thông báo lỗi khi đăng nhập không thành công
+                $this->view('Login', [
+                    'Message' => 'Invalid username or password ',
+                    'Result' => false,
+                ]);
+            }
+        }
+    }
 }
