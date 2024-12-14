@@ -22,7 +22,7 @@ class Login extends Controller
                 ]);
                 return;
             }
-            $result = $this->UserModel->checkUsernamePassword($username, $password);
+            $result = $this->UserModel->checkUsernamePassword($username, md5($password));
             if ($result) {
                 //đăng nhập thành công -> home
                 header('Location:/LUXURY_SPORTS/Home');
