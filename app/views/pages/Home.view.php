@@ -66,7 +66,7 @@
                                     <span><?= $product['Name'] ?></span>
                                 </div>
                                 <div class="product_price">
-                                    <span>$20</span>
+                                    <span>$<?= $product['Price'] ?></span>
                                 </div>
                             </div>
                         </a>

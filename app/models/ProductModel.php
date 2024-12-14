@@ -3,7 +3,8 @@ class ProductModel extends DB
 {
     protected $data =  [];
     public function getProduct() {
-        $sql = "select * from Product";
+        $sql = "select p.ID, p.Image, p.Name, pi.Price from Product p
+                join product_item pi on pi.Product_ID = p.ID";
         $result = mysqli_query($this->conn, $sql);
 
         if(!$result) {
