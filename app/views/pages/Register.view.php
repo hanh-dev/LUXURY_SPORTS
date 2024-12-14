@@ -27,7 +27,7 @@
             <form action="/LUXURY_SPORTS/Register/register" method="POST">
                 <div class="title">
                     <span>REGISTER</span>
-                    <i class="fa-solid fa-xmark"></i>
+                    <a href="Home"><i class="fa-solid fa-xmark"></i></a>
                 </div>
                 <input class="email" type="email" name="email" placeholder="Email address">
                 <input class="username" type="text" name="username" placeholder="Username">

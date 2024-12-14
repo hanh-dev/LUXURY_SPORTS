@@ -15,7 +15,7 @@
             <form action="">
                 <div class="title-login">
                     <span>LOGIN</span>
-                    <i class="fa-solid fa-xmark"></i>
+                    <a href="Home"><i class="fa-solid fa-xmark"></i></a>
                 </div>
                 <input class="username-login" type="text" placeholder="Username">
                 <input class="password-login" type="text" placeholder="Password">

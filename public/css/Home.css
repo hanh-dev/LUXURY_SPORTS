@@ -244,7 +244,6 @@
 }
 
 .product-card {
-    min-width: calc((100% - 40px) / 3); /* 3 cards per view with gap */
     margin-right: 20px;
     height: 400px;
     position: relative;
@@ -271,3 +270,4 @@
 
 .next-btn {
     right: 0;
+}

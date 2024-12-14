@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    margin-top: 80px;
 }
 .container-login img{
     width: 100%;

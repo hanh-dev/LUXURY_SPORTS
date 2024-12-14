@@ -5,7 +5,7 @@ const cardsPerView = 3;
 const totalSlides = cards.length;
 
 function slideProduct(direction) {
-    const slideWidth = cards[0].offsetWidth + 20; // card width + gap
+    const slideWidth = cards[0].offsetWidth + 20;
     const maxPosition = -(totalSlides - cardsPerView) * slideWidth;
     
     if (direction === 'next' && currentPosition > maxPosition) {
