@@ -25,6 +25,13 @@ class UserModel extends DB
         // hàm đếm số lượng: Kiểm tra xem có data trả về không, nếu có thì > 0 sẽ là true ngược lại là false
         return mysqli_num_rows($result) > 0;
     }
+
+    public function getUserbyID($id) {
+        $sql = "select * from user where ID = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+        $data = mysqli_fetch_assoc($result);
+        return $data;
+    }
     
     
 }

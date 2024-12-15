@@ -8,9 +8,11 @@ class Profile extends Controller
     }
 
     public function show() {
-        // $data = $this->userModel->getUserbyID();
+        $id = $_SESSION['user_id'];
+        $data = $this->userModel->getUserbyID($id);
         $this->view('master',[
-            'Page' => 'Profile'
+            'Page' => 'Profile',
+            'data' => $data
         ]);
     }
 }

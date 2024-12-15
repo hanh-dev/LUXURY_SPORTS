@@ -14,6 +14,26 @@
         }
     }
 ?>
+<!-- -- create table Role(
+-- 	ID int(10) primary key auto_increment,
+--     Name varchar(10) not null
+-- );
+
+-- create table User(
+-- 	ID int(10) primary key auto_increment,
+--     Name varchar(50) not null,
+--     EmailAddress varchar(50) not null,
+--     Password varchar(100) not null,
+--     Role_ID int(4),
+--     Image varchar(200),
+--     PhoneNumber varchar(11),
+--     foreign key (Role_ID)  references Role(ID)
+-- );
+
+-- Insert data for Role
+-- insert into Role values(1, 'Admin'), (2, 'User');
+-- Insert data for User
+-- insert into User values(1, 'Ho Van Hanh', 'hanh@gmail.com', 'hanhkx12#', 2, null, null); -->
 <!-- 
 -- Insert into product-item
 insert into product_item(Qty_in_stock, Price, Product_ID) values
