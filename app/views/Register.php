@@ -12,22 +12,25 @@
     <div class="container-register">
         <img src="https://www.strathroy-caradoc.ca/en/getting-active/resources/InteriorBannerImages/SportsOrganizations_-_INSIDEPAGE.jpg" alt="">
         <div class="box-form-register">
-            <?php 
-                //kiểm tra $data['Result'] có tồn tại không
-                if (isset($data['Result'])) {
-                    if ($data['Result'] === true) {
-                        //chuyển đến trang Login nếu đăng ký thành công
-                        header('Location: /LUXURY_SPORTS/Login');
-                        exit();
-                    } 
-                    // ?? tóan tử null-coalescing: nếu Message tồn tại và ko rỗng thì sẽ in ra, không tồn tại hoặc null thì sẽ thay thế bằng ''
-                    echo $data['Message'] ?? '';
-                }
-            ?>
+            <div class="inform">
+                <?php 
+                    //kiểm tra $data['Result'] có tồn tại không
+                    if (isset($data['Result'])) {
+                        if ($data['Result'] === true) {
+                            //chuyển đến trang Login nếu đăng ký thành công
+                            header('Location: /LUXURY_SPORTS/Login');
+                            exit();
+                        } 
+                        // ?? tóan tử null-coalescing: nếu Message tồn tại và ko rỗng thì sẽ in ra, không tồn tại hoặc null thì sẽ thay thế bằng ''
+                        echo $data['Message'] ?? '';
+                    }
+                ?>
+            </div>
+            
             <form action="/LUXURY_SPORTS/Register/register" method="POST">
                 <div class="title">
                     <span>REGISTER</span>
-                    <a href="Home"><i class="fa-solid fa-xmark"></i></a>
+                    <a href="/LUXURY_SPORTS/home"><i class="fa-solid fa-xmark"></i></a>
                 </div>
                 <input class="email" type="email" name="email" placeholder="Email address">
                 <input class="username" type="text" name="username" placeholder="Username">

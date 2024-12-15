@@ -10,9 +10,7 @@ class Register extends Controller
 
     //hàm gọi đến file giao diện để hiển thị
     public function show() {
-        $this->view('master',[
-            'Page' => 'Register'
-        ]);
+        $this->view('Register');
     }
 
     public function register() {
@@ -27,34 +25,40 @@ class Register extends Controller
 
                 //kiểm tra email
                 if ($this->UserModel->checkEmail($email)) {
-                    $this->view('master', [
+                    $this->view('Register', [
                         'Result' => $this->result,
-                        'Message' => 'Error: Email already registered',
-                        'Page' => 'Register'
+                        'Message' => 'Error: Email already registered'
+                    ]);
+                    exit();
+                }
+
+                //kiểm tra username
+                if ($this->UserModel->checkUsername($username)) {
+                    $this->view('Register', [
+                        'Result' => $this->result,
+                        'Message' => 'Error: Username already registered'
                     ]);
                     exit();
                 }
 
                 //kiểm tra lại mật khẩu 
                 if ($password !== $confirmPassword) {
-                    $this->view('master', [
+                    $this->view('Register', [
                         'Result' => $this->result,
-                        'Message' =>'Error: Password does not match',
-                        'Page' => 'Register'
+                        'Message' =>'Error: Password does not match'
                     ]);
                     exit();
                 }
                 //biến lưu pass đã được mã hóa
-                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+                // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 //gọi đến hàm createUser ở lớp UserModel có kết quả trả về
-                $kq = $this->UserModel->createUser($email, $username, $hashedPassword);
+                $kq = $this->UserModel->createUser($email, $username, md5($password));
                 $this->result = $kq;
             }
         }
-        $this->view('master',[
+        $this->view('Register',[
             'Message' => 'Please enter all field!',
-            'Result' => $this->result,
-            'Page' => 'Register'
+            'Result' => $this->result
         ]);
     }
 
