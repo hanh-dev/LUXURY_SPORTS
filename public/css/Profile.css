@@ -5,5 +5,72 @@
 }
 
 .container {
-    margin-top: 100px;
+    margin-top: 140px;
+    max-width: 1279.2px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.main_profile {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    
+}
+
+.element_left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.element_right {
+    margin-right: 100px;
+}
+
+
+.image_container {
+    height: 140px;
+    width: 140px;
+    border: 1px solid black;
+}
+
+.AccountDetail {
+    margin-top: 10px;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.right_hold {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right_hold div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right_hold div input {
+    padding: 6px 8px;
+    width: 250px;
+}
+
+button {
+    place-self: center;
+}
+
+.form_btn {
+    margin-top: 40px;
+}
+
+.form_btn button {
+    padding: 8px 16px;
 }
