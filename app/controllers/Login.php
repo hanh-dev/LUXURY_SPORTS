@@ -23,9 +23,11 @@ class Login extends Controller
                 return;
             }
             $result = $this->UserModel->checkUsernamePassword($username, md5($password));
+            $userID = $this->UserModel->getUserID($username);
             if ($result) {
                 //đăng nhập thành công -> home
                 header('Location:/LUXURY_SPORTS/Home');
+                $_SESSION['user_id'] = $userID;
                 exit();
             } else {
                 //thông báo lỗi khi đăng nhập không thành công

@@ -45,4 +45,11 @@ class UserModel extends DB
         }
         return false;
     }
+
+    public function getUserID($username) {
+        $sql = "SELECT ID FROM User WHERE Name = '$username'";
+        $result = mysqli_query($this->conn, $sql);
+        $userID = mysqli_fetch_array($result);
+        return $userID["ID"];
+    }
 }
