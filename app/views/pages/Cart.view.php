@@ -16,7 +16,7 @@
     <div id="cart">
         <div class="container">
             <div class="main-title">
-                <h3 class="text-center" >Cart</h3>
+                <h3 class="text-center" >CART</h3>
             </div>
                 <div class="product-cart" id="layout-page">
                     <div class="cartformpage">
