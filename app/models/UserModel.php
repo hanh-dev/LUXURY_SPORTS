@@ -61,4 +61,15 @@ class UserModel extends DB
         $userID = mysqli_fetch_array($result);
         return $userID["ID"];
     }
+
+    // Update user
+    public function updateUser($id, $name, $email, $phone) {
+        $sql = "update User set Name = '$name', EmailAddress = '$email', PhoneNumber = '$phone' where ID = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+        if($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

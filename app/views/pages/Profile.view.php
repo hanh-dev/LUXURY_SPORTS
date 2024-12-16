@@ -16,7 +16,7 @@
             <div class="element_left">
                 <div class="image_container">
                     <div class="image_hold">
-                        <img src="" alt="">
+                        <img src="<?= $data['data']['Image']!=Null ?$data['data']['Image']: ''  ?>" alt="">
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                 <div class="AccountLogout">
                     <div class="form_logout form">
                         <i class="fas fa-sign-out-alt"></i> 
-                        <span class="logout">Logout</span>
+                        <span class="logout" id="logout">Logout</span>
                     </div>
                 </div>
             </div>
@@ -38,22 +38,24 @@
                 <div class="right_hold">
                     <div class="name">
                         <label for="name">Display Name</label>
-                        <input type="text">
+                        <input type="text" value="<?=$data['data']['Name']!=Null ?$data['data']['Name']: ''?>" readonly id="name">
                     </div>
                     <div class="email">
                         <label for="email">Email Address</label>
-                        <input type="email">
+                        <input type="email" value="<?=$data['data']['EmailAddress']!=Null ?$data['data']['EmailAddress']: ''?>" readonly id="email">
                     </div>
                     <div class="phoneNumber">
                         <label for="phoneNumber">PhoneNumber</label>
-                        <input type="text">
+                        <input type="text" value="<?=$data['data']['PhoneNumber']!=Null ?$data['data']['PhoneNumber']: ''?>" readonly id="phone">
                     </div>
                 </div>
                 <div class="form_btn">
-                    <button>Save Changes</button>
+                    <button id="edit" type="button">Edit</button>
+                    <button id="save" type="button">Save Changes</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="public/js/Profile.js"></script>
 </body>
 </html>
