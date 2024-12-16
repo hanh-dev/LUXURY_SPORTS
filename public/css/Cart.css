@@ -6,7 +6,6 @@
 .container {
     margin-top: 125px;
     max-width: 1279px;
-
 }
 
 .product-cart {
@@ -18,24 +17,20 @@
 .text-center {
     color: #202020;
     font-size: 32px;
-
-
 }
+
 .cartformpage {
    width: 100%;
 }
-
 
 /* Table */
 .cart-hidden th, .cart-hidden tr,.cart-hidden td,.cart-hidden thead {
     border: 1px solid #ddd;
 }
 
-
 .cart-hidden {
     width: 100%;
 }
-
 
 table.cart tr th {
     padding: 10px 5px;
@@ -47,19 +42,14 @@ table.cart tr th {
     font-size: 20px;
 }
 
-
 /*  */
-
-
 table.cart {
     text-align: center;
 }
 
-
 tr.item td.price {
     font-weight: 600;
 }
-
 
 /* Image */
 @media (min-width: 992px) {
@@ -68,23 +58,16 @@ tr.item td.price {
     }
 }
 
-
 .item .image {
     width: 150px;
     height: 150px;
 }
 
-
 img {
     max-width: 100%;
     object-fit: cover;
     height: 100%;
-    /* vertical-align: middle;
-    border-style: none; */
 }
-
-
-
 
 .product-Name a {
     color: #446084;
@@ -92,13 +75,9 @@ img {
     text-decoration: none;    
 }
 
-
-
-
 .qty input {
     border: 1px solid #6666;
 }
-
 
 /* Ẩn thanh bấm số tăng/giảm mặc định của input[type="number"] */
 .qty input[type="number"]::-webkit-inner-spin-button,
@@ -107,24 +86,76 @@ img {
     margin: 0;
 }
 
-
 .qty input[type="number"] {
     -moz-appearance: textfield; /* Ẩn trên Firefox */
     text-align: center;
 }
-
 
 /* Icon delete */
 .remove {
     padding: 0px 5px;
 }
 
-
 .remove .fa-regular {
-    color: #6666;
+    color: #333;
 }
-
 
 .remove .fa-regular:hover {
     color: #BAF120;
+}
+
+/* T-C */
+.total-checkout {
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+/* Cart Total */
+.cart-total {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-total .heading-title {
+    font-size: 20px;
+    text-align: center;
+}
+
+.cart-total .subtotal , .cart-total .total {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #333;
+    align-items: center;
+    padding: 5px;
+}
+
+.subtotal .subtotal-title {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.subtotal p, .total p {
+    margin: 0;
+}
+
+.subtotal-price, .total {
+    color: #666;
+    font-weight: 700;
+}
+
+
+.cart-total .btn-primary-checkout {
+    background-color:  #cdf364;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.btn-primary-checkout:hover {
+    background-color:  #BAF120;
 }

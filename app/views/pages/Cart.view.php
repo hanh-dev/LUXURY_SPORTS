@@ -52,7 +52,20 @@
                             </tbody>
                         </table>
                     </div>
-                    
+                    <!--CART TOTAL -->
+                    <div class="cart-total">
+                        <h3 class="heading-title">CART TOTAL</h3>
+                        <div class="subtotal">
+                            <p class="subtotal-title">Subtotal</p>
+                            <span class="subtotal-price">$20</span>
+                        </div>
+                        <div class="total">
+                            <p class="total-title">TOTAL</p>
+                            <span class="total-price">$20</span>
+                        </div>
+                        <button type="button" class="btn-primary-checkout">Checkout</button>
+                    </div>
+
                 </div>
         </div>
     </div>
