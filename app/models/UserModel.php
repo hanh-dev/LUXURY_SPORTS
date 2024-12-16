@@ -72,4 +72,15 @@ class UserModel extends DB
             return false;
         }
     }
+
+    public function updateImageUser($id, $url) {
+        $sql = "update User set Image = '$url' where ID = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+
+        if($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

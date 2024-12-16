@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <!-- Link Header css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <base href="/LUXURY_SPORTS/">
     <link rel="stylesheet" href="public/css/Profile.css">
     <meta charset="UTF-8">
@@ -16,7 +17,8 @@
             <div class="element_left">
                 <div class="image_container">
                     <div class="image_hold">
-                        <img src="<?= $data['data']['Image']!=Null ?$data['data']['Image']: ''  ?>" alt="">
+                        <img id='image' src="<?= $data['data']['Image'] != null ? $data['data']['Image'] : '' ?>" alt="">
+                        <input type="file" id="fileInput" style="display: none;" accept="image/*">
                     </div>
                 </div>
 
@@ -56,6 +58,17 @@
             </div>
         </div>
     </div>
+    <!-- Toast Updated Successfully -->
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fa-solid fa-circle-check" id="icon_noti"></i>
+                <span id="content_toast">Updated Successfully</span>
+            </div>
+        </div>
+    </div>
     <script src="public/js/Profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </body>
 </html>
