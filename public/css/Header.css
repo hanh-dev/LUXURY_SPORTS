@@ -129,3 +129,23 @@ body {
 .elementor-widget-container div a {
     color: #fff;
 }
+
+
+
+.search-container {
+    display: none; 
+    position: absolute;
+    top: 50px; 
+    right: 10px; 
+    z-index: 999;
+}
+
+.search-input {
+    width: 300px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    margin-top: 16px;
+}
