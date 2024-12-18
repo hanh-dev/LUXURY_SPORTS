@@ -11,7 +11,7 @@ class Cart extends Controller {
         $data = file_get_contents('php://input');
         $data = json_decode($data, true);
 
-        $result = $this->productModel->createOrder($_SESSION['user_id'],$data['productID']);
+        $result = $this->productModel->createOrder($_SESSION['user_id'],$data['productID'], $data['quantity']);
         if($result) {
             echo json_encode(['success' => true, 'message' => 'Added to order successfully']);
         }else {

@@ -284,7 +284,9 @@
     border-radius: 8px;
     opacity: 0;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    width: auto;
 }
+
 .toast.show {
     display: block;
     opacity: 1;
@@ -293,11 +295,14 @@
 
 .toast-body {
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
     background-color: #12d743;
     color: #fff;
     border-radius: 8px;
+    width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
 }
+

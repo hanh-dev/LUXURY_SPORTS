@@ -32,11 +32,12 @@ class ProductModel extends DB
         return $category;
     }
 
-    public function createOrder($userID,$productID) {
+    public function createOrder($userID,$productID, $quantity) {
 
         $orderID = $this->checkOrder($userID);
 
-        $price = $this->getPrice($productID);    
+        $price = $this->getPrice($productID);
+        $total = $price * $quantity;
 
         if($orderID == 0) {
             $insert = "insert into Orders (User_ID, Order_Status_ID) values('$userID', 1)";
@@ -44,7 +45,7 @@ class ProductModel extends DB
             if($result) {
                 $orderIDNew = $this->checkOrder($userID);
                 // get price
-                $insertOrderItem = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total) values ('$orderIDNew', '$productID', 1, '$price')";
+                $insertOrderItem = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total) values ('$orderIDNew', '$productID', '$quantity', '$total')";
                 $resultInsert = mysqli_query($this->conn, $insertOrderItem);
                 if($resultInsert) {
                     return true;
@@ -57,7 +58,12 @@ class ProductModel extends DB
             $checkProductItemExist = $this->checkProductID($userID,$productID);
 
             if($checkProductItemExist == true) {
-                $sql = "update Order_Item set Qty = 1+ Qty where Order_ID = '$orderID' and Product_Item_ID = '$productID'";
+                $sql = "UPDATE Order_Item 
+                        SET Qty = Qty + '$quantity', 
+                            Total = Qty * '$price' 
+                        WHERE Order_ID = '$orderID' 
+                        AND Product_Item_ID = '$productID';
+                        ";
                 $result = mysqli_query($this->conn, $sql);
                 if($result) {
                     return true;
@@ -65,7 +71,8 @@ class ProductModel extends DB
 
                 return false;
             }
-            $sql = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total) values ('$orderID', '$productID', 1, '$price')";
+            // get Total
+            $sql = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total) values ('$orderID', '$productID', '$quantity', '$total')";
             $resultInsert = mysqli_query($this->conn, $sql);
 
             if (!$resultInsert) {

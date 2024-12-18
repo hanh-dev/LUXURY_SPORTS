@@ -1,4 +1,8 @@
 async function addToCart($productID) {
+    // Get quantity of product
+    const quantity = document.getElementById('number_step') 
+        ?document.getElementById('number_step').value 
+        : 1;
     const toastElement = document.getElementById('myToast');
     const toast = new bootstrap.Toast(toastElement);
     const productID = $productID;
@@ -8,7 +12,7 @@ async function addToCart($productID) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ productID })
+            body: JSON.stringify({ productID, quantity })
         })
 
         const data = await res.json();
@@ -25,4 +29,4 @@ async function addToCart($productID) {
     } catch (error) {
         console.error('Error at creating order', error);
     }
-}
+};
