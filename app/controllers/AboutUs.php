@@ -1,5 +1,5 @@
 <?php
-class Home extends Controller
+class AboutUs extends Controller
 {
     // Đang làm về cái phần lấy giá của sản phẩmphẩm
     public $ProductModel;
@@ -18,7 +18,9 @@ class Home extends Controller
             'Product' => $products,
             'Category' => $category,
             // Luôn luôn truyền trang mà mình mong muốn sẽ hiển thị ở đây
-            'Page' => 'Home'
+            'Page' => 'AboutUs'
         ]);
     }
 }
+
+

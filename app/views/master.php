@@ -9,8 +9,15 @@
 <body>
     <?php
         require_once './app/views/components/Header.php';
-        require_once './app/views/pages/'.$data['Page'].'.view'.'.php';
+    ?>
+    <div id="content">
+        <?php
+            require_once './app/views/pages/'.$data['Page'].'.view'.'.php';
+        ?>
+    </div>
+    <?php
         require_once './app/views/components/Footer.php';
     ?>
+    <script src="/LUXURY_SPORTS/public/js/LoadPage.js"></script>
 </body>
 </html>
