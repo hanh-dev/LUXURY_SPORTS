@@ -1,9 +1,14 @@
 <?php
 class UserModel extends DB
 {
-    public function createUser($Email, $Name, $Password) {
+    public function getAllUser() {
+        $sql = "SELECT * FROM user";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    public function createUser($Name, $Email, $Password) {
         // $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-        // thêm user
         $sql = "INSERT INTO User(EmailAddress, Name, Password, Role_ID) VALUES('$Email', '$Name', '$Password', 2)";
         
         // thực hiện truy vấn
@@ -82,5 +87,26 @@ class UserModel extends DB
         } else {
             return false;
         }
+    }
+
+    public function getRoleID($userID) {
+        $sql = "SELECT Role_ID FROM User WHERE ID = '$userID'";
+        $result = mysqli_query($this->conn, $sql);
+        $roleID = mysqli_fetch_assoc($result);
+
+        return $roleID["Role_ID"];
+    }
+
+    //Delete User by ID
+    public function deleteUser($id) {
+        $sql = "DELETE FROM User WHERE ID = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+    }
+
+    // Update User
+    public function updateInforUser($userID, $name, $email, $password) {
+        $sql =  "update User set Name = '$name', EmailAddress = '$email', Password = '$password'
+        where ID = '$userID'";
+        $result = mysqli_query($this->conn, $sql);  
     }
 }

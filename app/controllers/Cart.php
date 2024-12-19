@@ -20,7 +20,9 @@ class Cart extends Controller {
     }
 
     public function getQuantityCart() {
-        $result = $this->productModel->getQuantityCart($_SESSION['user_id']);
-        echo '<div class="count_badge">' . $result . '</div>';
+        if(isset($_SESSION['user_id'])) {
+            $result = $this->productModel->getQuantityCart($_SESSION['user_id']);
+            echo '<div class="count_badge">' . $result . '</div>';
+        }
     }
 }

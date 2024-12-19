@@ -24,11 +24,19 @@ class Login extends Controller
             }
             $result = $this->UserModel->checkUsernamePassword($username, md5($password));
             $userID = $this->UserModel->getUserID($username);
+            $roleID = $this->UserModel->getRoleID($userID);
             if ($result) {
-                //đăng nhập thành công -> home
-                header('Location:/LUXURY_SPORTS/Home');
-                $_SESSION['user_id'] = $userID;
-                exit();
+                if($roleID == 2) {
+                    //đăng nhập thành công -> home
+                    header('Location:/LUXURY_SPORTS/Home');
+                    $_SESSION['user_id'] = $userID;
+                    exit();
+                } else {
+                    //đăng nhập thành công -> home
+                    header('Location:/LUXURY_SPORTS/HomeAdmin');
+                    $_SESSION['user_id'] = $userID;
+                    exit();
+                }
             } else {
                 //thông báo lỗi khi đăng nhập không thành công
                 $this->view('Login', [
