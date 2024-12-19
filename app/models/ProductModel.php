@@ -125,6 +125,15 @@ class ProductModel extends DB
     
         return false;
     }
+
+    public function getQuantityCart($user_id) {
+        $sql = "select sum(Qty) as total from Order_Item oi
+        join Orders o on o.ID = oi.Order_ID
+        where o.User_ID = '$user_id'";
+        $result = mysqli_query($this->conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row['total'];
+    }
     
     
 
