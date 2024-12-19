@@ -21,19 +21,19 @@
             <!-- Header center -->
             <div class="header_center">
                 <nav class="main_navigation">
-                    <ul class="menu-main-menu">
+                    <ul class="menu-main-menu" id="header">
                         <!-- Home -->
                         <li class="menu-item">
-                            <a href="#">
+                            <a href="Home">
                                 <span>HOME</span>
                             </a>
                         </li>
                         <!-- Category -->
                         <li class="menu-item category">
-                            <a href="#" class="cate_menu">
+                            <div onclick="loadPage('')" class="cate_menu">
                                 <span>CATEGORY</span>
                                 <i class="fa-solid fa-angle-down"></i>
-                            </a>
+                            </div>
                             <ul class="sub_menu">
                                 <li class="sub_menu-item">
                                     <i class="fa-solid fa-arrow-right"></i>
@@ -54,12 +54,12 @@
                             </ul>
                         </li>
                         <li class="menu-item">
-                            <a href="#">
+                            <a href="AboutUs">
                                 <span>ABOUT US</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="#">
+                            <a href="ContactUs">
                                 <span>CONTACT US</span>
                             </a>
                         </li>
@@ -70,7 +70,7 @@
             <div class="header_left">
                 <div class="elementor-widget-container">
                     <div class="kitify-menu_account">
-                        <a href="#">
+                        <a href="<?= isset($_SESSION['user_id']) ? 'Profile' : 'Register'; ?>">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"><g clip-path="url(#clip0_312_1296)"><path d="M0.833313 19.8408C0.833313 15.2383 4.56415 11.5075 9.16665 11.5075H10.8333C15.4358 11.5075 19.1666 15.2383 19.1666 19.8408" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 11.5075C12.7614 11.5075 15 9.26893 15 6.50751C15 3.74608 12.7614 1.50751 10 1.50751C7.23858 1.50751 5 3.74608 5 6.50751C5 9.26893 7.23858 11.5075 10 11.5075Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
                         </a>
                     </div>
@@ -83,7 +83,7 @@
                         </a>
                     </div>
                     <div class="search-container" id="searchContainer">
-                        <input type="text" placeholder="Search here..." class="search-input">
+                        <input type="text" placeholder="Search here..." class="search-input" id="searchProduct">
                     </div>
                     <div class="kitify-cart">
                         <a href="#">
@@ -99,6 +99,8 @@
             </div>
         </div>
     </div>
-    <script src="public/js/search.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
+    <script src="public/js/LoadPage.js"></script>
 </body>
 </html>

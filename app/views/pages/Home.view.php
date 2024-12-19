@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
     <!-- Link Header css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
      <base href="/LUXURY_SPORTS/">
     <link rel="stylesheet" href="public/css/Home.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,33 +51,24 @@
                     <h1>PRODUCTS</h1>
                 </div>
                 <div class="product_menu">
-                    <?php foreach($data['Product'] as $product) { ?>
-                        <a href="Details/show/<?= $product['ID'] ?>">
-                            <div class="product_item">
-                                <div class="product_image">
-                                    <img src="<?= 'public/images/'.$product['Image'].'.png' ?>" alt="">
-                                </div>
-                                <div class="wrapp_heart">
-                                    <i class="fa-regular fa-heart"></i>
-                                </div>
-                                <div class="wrapp_add">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="product_name">
-                                    <span><?= $product['Name'] ?></span>
-                                </div>
-                                <div class="product_price">
-                                    <span>$20</span>
-                                </div>
-                            </div>
-                        </a>
-                    <?php } ?>
+                    <!-- Hiển thị dữ liệuliệu -->
                 </div>
             </div>
         </div>
-        </div>
     </div>
 </div>
+    <!-- Toast Updated Successfully -->
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fa-solid fa-circle-check" id="icon_noti"></i>
+                <span id="content_toast">Added product to cart successfully</span>
+            </div>
+        </div>
+    </div>
+    <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
     <script src="public/js/Slider.js"></script>
+    <script src="public/js/Cart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </body>
 </html>
