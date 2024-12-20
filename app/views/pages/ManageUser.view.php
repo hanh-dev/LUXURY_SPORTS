@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <!-- Update Modal -->
+    <!-- Update Modal User -->
     <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
