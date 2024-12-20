@@ -30,7 +30,7 @@ class UploadImage extends Controller {
                 'api_secret' =>$cloudinaryApiSecret,
             ],
         ]);
-
+// Đang đọc code tới đây
         if (isset($_FILES['image'])) {
             $file = $_FILES['image']['tmp_name'];
         
