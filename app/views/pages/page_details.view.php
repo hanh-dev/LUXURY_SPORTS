@@ -58,7 +58,7 @@
 									<input type="number" value="1" id="number_step" min="1">
 									<input type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" id="number_addition" value="+">
 								</div>
-								<button class="btn-add-to-cart-primary">Add To Cart</button>
+								<button class="btn-add-to-cart-primary" onclick="addToCart(<?= $product['ID']?>)">Add To Cart</button>
 							</div>
 							<div class="add-to-wishist">
 								<i class="fa-regular fa-heart"></i>
@@ -139,5 +139,16 @@
 				</div>
 			</div>
 		</main>
-	</body>
-	</html>
+	<!-- Toast Updated Successfully -->
+<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+	<div class="d-flex">
+		<div class="toast-body">
+			<i class="fa-solid fa-circle-check" id="icon_noti"></i>
+			<span id="content_toast">Added product to cart successfully</span>
+		</div>
+	</div>
+</div>
+<script src="public/js/Cart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>
