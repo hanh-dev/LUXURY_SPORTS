@@ -42,6 +42,10 @@ function addUser() {
 }
 
 function deleteUser($id) {
+    const continueDelete = confirm('Do you want to continue delete?');
+    if(!continueDelete) {
+        return;
+    }
     const id = $id;
     $.ajax({
         type: 'POST',
