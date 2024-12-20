@@ -56,7 +56,7 @@ class HomeAdmin extends Controller
                                 <td>' . $number . '</td>
                                 <td>' . $name . '</td>
                                 <td>' . $email . '</td>
-                                <td>' . $password . '</td>
+                                <td><input type="password" value="<?php echo '.$password .'?>" readonly style = "border: none; outline: none; background: transparent; width: 100%;"></td>
                                 <td>
                                     <button class = "btn btn-dark" data-bs-toggle="modal" data-bs-target="#update" onclick="updateUser('.$id.')">Update</button>
                                     <button class = "btn btn-danger" onclick="deleteUser('.$id.')">Delete</button>
@@ -77,8 +77,21 @@ class HomeAdmin extends Controller
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+
+        // check username
+        if($this->UserModel->checkUsername($name)) {
+            echo json_encode(['success'  => false, 'message' => 'Username already exists']);
+            exit();
+        }
+
+        // check if the user already exists
+        if($this->UserModel->checkEmail($email)) {
+            echo json_encode(['success'  => false, 'message' => 'Email already exists']);
+            exit();
+        }
+
         // excute
-        $this->UserModel->createUser($name, $email, $password);
+        $this->UserModel->createUser($name, $email, md5($password));
     }
     // delete user
     public function deleteUser() {
@@ -105,8 +118,13 @@ class HomeAdmin extends Controller
             $userID = $_POST['id'];
             $name = $_POST['name'];
             $email = $_POST['email'];
+            if(!isset($_POST['password'])) {
+                echo json_encode(['success'  => false, 'message' => 'Password is required']);
+                exit();
+            }
             $password = $_POST['password'];
-            $this->UserModel->updateInforUser($userID, $name, $email, $password);
+            $hashPass = md5($password);
+            $this->UserModel->updateInforUser($userID, $name, $email, $hashPass);
         }
     }
 }

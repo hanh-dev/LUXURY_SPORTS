@@ -62,7 +62,7 @@
                 <!-- Password -->
                 <div class="mb-3">
                     <label for="Password" class="form-label">Password</label>
-                    <input type="password" id="passwordUpdate" class="form-control">
+                    <input type="password" id="passwordUpdate" class="form-control" placeholder="Enter new password...">
                 </div>
             </div>
             <div class="modal-footer">

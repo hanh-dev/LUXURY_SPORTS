@@ -33,8 +33,10 @@ class Login extends Controller
                     exit();
                 } else {
                     //đăng nhập thành công -> home
-                    header('Location:/LUXURY_SPORTS/HomeAdmin');
                     $_SESSION['user_id'] = $userID;
+                    if(isset($_SESSION['user_id'])) {
+                        header('Location:/LUXURY_SPORTS/HomeAdmin');
+                    }
                     exit();
                 }
             } else {

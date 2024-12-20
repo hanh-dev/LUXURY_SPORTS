@@ -29,10 +29,14 @@ function addUser() {
         },
         success: function (data, status) {
             displayData();
+            modal.click();
             name.val('');
             email.val('');
             password.val('');
-            modal.click();
+            const user = JSON.parse(data);
+            if(user.success === false) {
+                alert(user.message);
+            }
         }
     });
 }
@@ -72,7 +76,6 @@ function updateUser($id) {
                 const user = JSON.parse(data);
                 name.val(user.Name);
                 email.val(user.EmailAddress);
-                password.val(user.Password);
             } catch (e) {
                 console.error("Error parsing JSON:", e);
             }
@@ -93,6 +96,11 @@ $('#updateButton').off('click').on('click', function() {
             success: function (data, status) {
                 displayData();  
                 modalClose.click();
+                const user = JSON.parse(data);
+                if(user.success === false) {
+                    alert(user.message);
+                    return;
+                }
             }
         });
     }

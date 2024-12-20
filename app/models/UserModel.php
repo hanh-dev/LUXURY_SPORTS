@@ -107,6 +107,6 @@ class UserModel extends DB
     public function updateInforUser($userID, $name, $email, $password) {
         $sql =  "update User set Name = '$name', EmailAddress = '$email', Password = '$password'
         where ID = '$userID'";
-        $result = mysqli_query($this->conn, $sql);  
+        $result = mysqli_query($this->conn, $sql);
     }
 }
