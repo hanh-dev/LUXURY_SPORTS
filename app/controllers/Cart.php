@@ -65,7 +65,7 @@
                 if ($quantity > $stock) {
                     echo json_encode([
                         'success' => false,
-                        'message' => "Quantity exceeds inventory! Only $stock products left."
+                        'message' => "Only $stock products left.",
                     ]);
                     return;
                 }

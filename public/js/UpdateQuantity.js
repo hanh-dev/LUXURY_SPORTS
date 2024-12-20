@@ -19,12 +19,10 @@ async function updateQuantity(event, $productID) {
             body: JSON.stringify({ quantity})
         })
 
-        const textResponse = await res.text(); // Lấy phản hồi dưới dạng text
-        const result = JSON.parse(textResponse); // Chuyển đổi nội dung thành JSON
+        const textResponse = await res.text();
+        const result = JSON.parse(textResponse);
 
         if(result.success) {
-            // const price = parseFloat(event.target.dataset.value);
-            // console.log('Price:', price);
             const totalElement = document.querySelector(`#total-${$productID}`);
             if(totalElement) {
                 totalElement.textContent = (price * quantity).toFixed(2);
@@ -32,11 +30,14 @@ async function updateQuantity(event, $productID) {
 
             updateCartTotal();
         } else {
-            alert(result.message);    
+            alert(result.message);
+            const initialQuantity = result.currentQuantity;
+            event.target.value = initialQuantity;
+
+            updateProductTotals(event.target);
+
         }
     } catch (error) {
         console.error('Error updating quantity:', error);
     }
 }
-
-

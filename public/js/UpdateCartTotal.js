@@ -2,9 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const checkboxes = document.querySelectorAll('.check-select');
     const updateQty = document.querySelectorAll('.qty input');
 
-    // Lắng nghe sự kiện thay đổi của checkbox
+     // Khôi phục trạng thái checkbox từ localStorage
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateCartTotals);
+        // checkbox.addEventListener('change', updateCartTotals);
+        const productID = checkbox.closest('tr.item').dataset.id;
+        const isChecked = localStorage.getItem(`product-${productID}-checked`) === 'true';
+        checkbox.checked = isChecked;
+
+        // Lắng nghe sự kiện thay đổi của checkbox
+        checkbox.addEventListener('change', () => {
+            localStorage.setItem(`product-${productID}-checked`, checkbox.checked);
+            updateCartTotals();
+        });
     });
 
     // Lắng nghe sự kiện thay đổi số lượng sản phẩm

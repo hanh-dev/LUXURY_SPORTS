@@ -42,6 +42,10 @@ table.cart tr th {
     font-size: 20px;
 }
 
+tr th .total {
+    width: 160px;
+}
+
 /*  */
 table.cart {
     text-align: center;
