@@ -90,7 +90,7 @@ class ProductModel extends DB
     
         if ($result && mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            return $row['ID'];
+return $row['ID'];
         }
     
         return 0;
@@ -136,5 +136,20 @@ class ProductModel extends DB
     }
     
     
+
+    public function getAll() {
+        $sql = "select p.Name, p.Image, pi.Price, pi.ID from product_item pi
+        join product p on p.ID = pi.Product_ID";
+        $result = mysqli_query($this->conn, $sql);
+        return $result;
+    }
+    
+    public function searchProduct($key) {
+        $sql = "select p.Name, p.Image, pi.Price, pi.ID from product_item pi
+        join product p on p.ID = pi.Product_ID
+        where p.Name LIKE '%$key%'";
+        $result = mysqli_query($this->conn, $sql);
+        return $result;
+    }
 
 }

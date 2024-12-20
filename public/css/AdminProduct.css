@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-admin{
+    width: 1300px;
+}
+.display-form{
+    width: 200px;
+    height: 40px;
+    background-color: rgb(63, 65, 63);
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.display-form:hover{
+    background-color: rgb(245, 245, 21);
+    color: black;
+    box-shadow: 0 0 25px gray;
+}
+.box-form{
+    display: flex;
+    display: flex;
+    justify-content: center;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 400px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+.input-name{
+    width: 370px;
+    height: 25px;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.input-price{
+    width: 370px;
+    height: 25px;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.input-img{
+    width: 370px;
+    height: 25px;
+}
+.input-add{
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: rgb(81, 84, 81);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.input-add:hover{
+    background-color: rgb(245, 245, 21);
+    color: black;
+}
+.table{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.header-tb{
+    background-color: rgb(197, 192, 192);
+}
+td{
+    text-align: center;
+    vertical-align: middle;
+}
+.img-database{
+    height: 150px;
+    width: 190px;
+    background-color: red;
+}
+.img-database img{
+    width: 100%;
+    height: 100%;
+}
+.id-tb{
+    width: 5%;
+}
+.img-tb{
+    width: 15%;
+}
+.name-tb{
+    width: 35%;
+}
+.price-tb{
+    width: 15%;
+}
+.action-tb{
+    width: 30%;
+}
+.edit-tb, .delete-tb{
+    width: 120px;
+    height: 35px;
+    background-color: rgb(59, 62, 45);
+    color: white;
+    cursor: pointer;
+}
+
+.edit-tb:hover, .delete-tb:hover{
+    background-color: rgb(245, 245, 21);
+    color: black;
+    box-shadow: 0 0 10px grey;
+}
+.table {
+    border-collapse: collapse; /*bỏ khoảng cách giữa các ô*/
+    width: 100%;
+}
+
+.table th, .table td {
+    border: 1px solid #ccc; 
+    padding: 8px; 
+}
+
+.table tr:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+/* form edit */
+.form-edit{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    gap: 15px;
+}
+.name-edit, .price-edit{
+    width: 82%;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.img-edit{
+    width: 82%;
+}
+.edit-button, .out-button{
+    width: 50%;
+    background-color: rgb(84, 84, 83);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+.edit-button:hover, .out-button:hover{
+    background-color: rgb(245, 245, 21);
+    color: black;
+}

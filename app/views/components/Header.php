@@ -75,9 +75,15 @@
                         </a>
                     </div>
                     <div class="kitify-search">
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"><path d="M18.4375 19.1117L13.2988 13.973" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.4375 15.9867C12.2345 15.9867 15.3125 12.9087 15.3125 9.11169C15.3125 5.31474 12.2345 2.23669 8.4375 2.23669C4.64054 2.23669 1.5625 5.31474 1.5625 9.11169C1.5625 12.9087 4.64054 15.9867 8.4375 15.9867Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <a href="#" id="searchIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                <path d="M18.4375 19.1117L13.2988 13.973" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M8.4375 15.9867C12.2345 15.9867 15.3125 12.9087 15.3125 9.11169C15.3125 5.31474 12.2345 2.23669 8.4375 2.23669C4.64054 2.23669 1.5625 5.31474 1.5625 9.11169C1.5625 12.9087 4.64054 15.9867 8.4375 15.9867Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
                         </a>
+                    </div>
+                    <div class="search-container" id="searchContainer">
+                        <input type="text" placeholder="Search here..." class="search-input" id="searchProduct">
                     </div>
                     <div class="kitify-cart">
                         <a href="/LUXURY_SPORTS/Cart">
@@ -92,6 +98,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
     <script src="public/js/Cart.js"></script>
     <script src="public/js/LoadPage.js"></script>
 </body>
