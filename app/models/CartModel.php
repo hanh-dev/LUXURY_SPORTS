@@ -43,5 +43,18 @@
                 return $result;
             }    
 
+            public function getProductStock ($ProductID) {
+                $sql = "SELECT Qty_in_stock FROM Product_Item WHERE ID = ?";
+                $stm = $this->conn->prepare($sql);
+                $stm->bind_param('i', $ProductID);
+                $stm->execute();
+                $result = $stm->get_result();
+
+
+                if($row = $result->fetch_assoc()) {
+                    return $row['Qty_in_stock'];
+                }
+            }
+
         }
     ?>

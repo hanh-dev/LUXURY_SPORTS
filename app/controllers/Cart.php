@@ -41,32 +41,32 @@
                 $quantity = intval($data['quantity']);
        
                 // Kiểm tra tồn kho
-                // $stock = $this->CartModel->getProductStock($productID);
-                // if ($quantity > $stock) {
-                //     echo json_encode([
-                //         'success' => false,
-                //         'message' => "Số lượng vượt quá tồn kho! Chỉ còn lại {$stock} sản phẩm."
-                //     ]);
-                //     return;
-                // }
+                $stock = $this->CartModel->getProductStock($productID);
+                if ($quantity > $stock) {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => "Quantity exceeds inventory! Only $stock products left."
+                    ]);
+                    return;
+                }
        
                 // Cập nhật số lượng trong cơ sở dữ liệu
                 $result = $this->CartModel->updateProductQty($productID, $quantity);
                 if ($result) {
                     echo json_encode([
                         'success' => true,
-                        'message' => 'Cập nhật số lượng thành công!',
+                        'message' => 'Quantity update successful!',
                     ]);
                 } else {
                     echo json_encode([
                         'success' => false,
-                        'message' => 'Cập nhật số lượng thất bại!',
+                        'message' => 'Quantity update failed!',
                     ]);
                 }
             } else {
                 echo json_encode([
                     'success' => false,
-                    'message' => 'Dữ liệu không hợp lệ!',
+                    'message' => 'Invalid data!',
                 ]);
             }
         }

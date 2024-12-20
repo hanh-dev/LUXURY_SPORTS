@@ -32,7 +32,7 @@ async function updateQuantity(event, $productID) {
 
             updateCartTotal();
         } else {
-            alert(result.message);
+            alert(result.message);    
         }
     } catch (error) {
         console.error('Error updating quantity:', error);
