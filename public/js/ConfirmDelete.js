@@ -11,7 +11,6 @@ async function confirmDelete($productID) {
                 body: JSON.stringify({ productID: $productID })
             });
 
-
             const result = await res.json();
             if (result.success === true) {
                 // Hiển thị thông báo xóa thành công
@@ -29,14 +28,12 @@ async function confirmDelete($productID) {
                     row.remove(); // Xóa phần tử sản phẩm khỏi bảng
                 }
 
-
                 updateCartTotals(); // Cập nhật lại tổng giỏ hàng  
                
                 // Sau 3 giây, ẩn thông báo
                 setTimeout(() => {
                     statusMessage.textContent = '';
                 }, 1000);
-
 
             } else {
                 alert('Product not deleted successfully');

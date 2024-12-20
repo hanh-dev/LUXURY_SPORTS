@@ -31,6 +31,17 @@
                 return true;
             }
 
+            public function updateProductQty($productID, $quantity) {
+                $sql = "UPDATE Order_Item SET Qty = ? WHERE Product_Item_ID = ?";
+                $stm = $this->conn->prepare($sql);
+                $stm->bind_param('ii', $quantity, $productID);
+                $result = $stm->execute();
            
+                if (!$result) {
+                    die("Error updating quantity in database");
+                }
+                return $result;
+            }    
+
         }
     ?>

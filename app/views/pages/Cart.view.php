@@ -47,7 +47,7 @@
                                         <span class="text-hover"><?php echo $product['Name']?></span>
                                     </td>
                                     <td class="qty">
-                                    <input type="number" min="1" name="quantity" value="<?php echo $product['Qty'] ?>" class="item-quantity">
+                                        <input type="number" min="1" name="quantity" value="<?php echo $product['Qty'] ?>" class="item-quantity" data-price="<?= $product['Price'] ?>" onkeydown="updateQuantity(event, <?= $product['ID'] ?>)">
                                     </td>
                                     <td class="price">$<?= number_format($product['Price'], 2) ?></td>
                                     <td class="total">$<?= number_format($product['Price'] * $product['Qty'], 2) ?></td>
@@ -76,11 +76,11 @@
                         <h3 class="heading-title">CART TOTAL</h3>
                         <div class="subtotal">
                             <p class="subtotal-title">Subtotal</p>
-                            <span class="subtotal-price">$<?= number_format($subtotal, 2) ?></span>
+                            <span class="subtotal-price" id="subtotal-value">$<?= number_format($subtotal, 2) ?></span>
                         </div>
                         <div class="total">
                             <p class="total-title">TOTAL</p>
-                            <span class="total-price">$<?= number_format($subtotal, 2) ?></span>
+                            <span class="total-price" id="total-value">$<?= number_format($subtotal, 2) ?></span>
                         </div>
                         <button type="button" class="btn-primary-checkout">Checkout</button>
                     </div>
@@ -90,6 +90,8 @@
     </div>
     <!-- Javascript -->
     <script src="public/js/ConfirmDelete.js"></script>
+    <script src="public/js/UpdateQuantity.js"></script>
+    <script src="public/js/UpdateCartTotal.js"></script>
 
 </body>
 </html>

@@ -77,6 +77,8 @@ img {
 
 .qty input {
     border: 1px solid #6666;
+    width: 90px;
+    height: 35px;
 }
 
 /* Ẩn thanh bấm số tăng/giảm mặc định của input[type="number"] */
@@ -104,6 +106,12 @@ img {
     color: #BAF120;
 }
 
+/* Check select */
+.select-product .check-select {
+    width: 20px;
+    height: 20px;
+}
+
 /* T-C */
 .total-checkout {
     display: flex;
@@ -114,7 +122,7 @@ img {
 
 /* Cart Total */
 .cart-total {
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-direction: column;
 }
@@ -131,7 +139,6 @@ img {
     align-items: center;
     padding: 5px;
 }
-
 .subtotal .subtotal-title {
     font-weight: 500;
     font-size: 18px;
@@ -146,14 +153,12 @@ img {
     font-weight: 700;
 }
 
-
 .cart-total .btn-primary-checkout {
-    background-color:  #cdf364;
+    background-color:  #d0f46c;
     padding: 10px;
     border-radius: 5px;
     border: none;
     font-weight: 500;
-    font-size: 18px;
 }
 
 .btn-primary-checkout:hover {
