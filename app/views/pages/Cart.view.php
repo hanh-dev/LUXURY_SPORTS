@@ -16,7 +16,10 @@
     <div id="cart">
         <div class="container">
             <div class="main-title">
-                <h3 class="text-center" >CART</h3>
+            <h3 class="d-flex justify-content-between align-items-center">
+                CART
+                <div class="note text-danger" style="font-size: 14px;">Note: Please push the enter button after changing the quantity</div>
+            </h3>
                 <div id="notification-deleted"></div>
             </div>
                 <div class="product-cart" id="layout-page">

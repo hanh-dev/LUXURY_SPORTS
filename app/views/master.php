@@ -19,5 +19,6 @@
         require_once './app/views/components/Footer.php';
     ?>
     <script src="/LUXURY_SPORTS/public/js/LoadPage.js"></script>
+    <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
 </body>
 </html>

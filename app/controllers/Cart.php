@@ -91,6 +91,13 @@
             }
         }
 
+        public function getQuantityOfProduct() {
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
+            $quantity = $this->CartModel->getProductStock($data['productID']);
+            echo json_encode(['success'=>true,'quantity' => $quantity]);
+        }
+
        
     }
 ?>
