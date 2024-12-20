@@ -23,45 +23,63 @@
                         <table class="cart cart-hidden">
                             <thead>
                                 <tr>
-                                    <th class="image">Image</th>
+                                <th class="image">Image</th>
                                     <th class="product-Name">Name</th>
                                     <th class="qty">Quantity</th>
                                     <th class="price">Price</th>
+                                    <th class="total">Total</th>
                                     <th class="remove">Delete</th>
+                                    <th class="select">Select</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- RENDER DATABASE -->
-                                <tr class="item">
+                                <?php
+                                    $productCart = $data['ProductCart'];
+                                    foreach ($productCart as $product):
+                                ?>
+                                <tr class="item" data-id="<?= $product['ID'] ?>">
                                     <td class="image">
-                                        <img src="#" class="product-img">
+                                        <img src="<?= 'public/images/' .$product['Image'] . '.png'?>" alt="<?php echo $product['Name']?>" class="product-img">
                                     </td>
                                     <td class="product-Name">
-                                        <span class="text-hover">Sneaker</span>
+                                        <span class="text-hover"><?php echo $product['Name']?></span>
                                     </td>
                                     <td class="qty">
-                                        <input type="number" min="1" max="5000" value="5" class="item-quantity">
+                                    <input type="number" min="1" name="quantity" value="<?php echo $product['Qty'] ?>" class="item-quantity">
                                     </td>
-                                    <td class="price">$20</td>
+                                    <td class="price">$<?= number_format($product['Price'], 2) ?></td>
+                                    <td class="total">$<?= number_format($product['Price'] * $product['Qty'], 2) ?></td>
                                     <td class="remove">
-                                        <a href="#" >
+                                        <a onclick="confirmDelete(<?= $product['ID'] ?>)">
                                             <i class="fa-regular fa-circle-xmark"></i>
                                         </a>
                                     </td>
+                                    <td class="select-product">
+                                        <input type="checkbox" class="check-select">
+                                    </td>
                                 </tr>
+                                <?php endforeach; ?>
+
                             </tbody>
                         </table>
                     </div>
                     <!--CART TOTAL -->
+                    <?php
+                        $subtotal = 0;
+                        foreach($productCart as $product){
+                            $subtotal += $product['Price'] * $product['Qty'];
+                        }
+                    ?>
                     <div class="cart-total">
                         <h3 class="heading-title">CART TOTAL</h3>
                         <div class="subtotal">
                             <p class="subtotal-title">Subtotal</p>
-                            <span class="subtotal-price">$20</span>
+                            <span class="subtotal-price">$<?= number_format($subtotal, 2) ?></span>
                         </div>
                         <div class="total">
                             <p class="total-title">TOTAL</p>
-                            <span class="total-price">$20</span>
+                            <span class="total-price">$<?= number_format($subtotal, 2) ?></span>
                         </div>
                         <button type="button" class="btn-primary-checkout">Checkout</button>
                     </div>

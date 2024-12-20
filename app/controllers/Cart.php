@@ -9,8 +9,10 @@
         }
 
         public function show() {
+            $productCart = $this->CartModel->getProductCart();
 
             $this->view('master', [
+                'ProductCart' => $productCart,
                 'Page' => 'Cart'
             ]);
         }
