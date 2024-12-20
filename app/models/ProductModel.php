@@ -3,7 +3,7 @@ class ProductModel extends DB
 {
     protected $data =  [];
     public function getProduct() {
-        $sql = "select p.ID, p.Image, p.Name, pi.Price from Product p
+        $sql = "select p.ID, p.Image, p.Name, pi.Price, pi.Qty_in_stock from Product p
                 join product_item pi on pi.Product_ID = p.ID";
         $result = mysqli_query($this->conn, $sql);
 
@@ -90,7 +90,7 @@ class ProductModel extends DB
     
         if ($result && mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-return $row['ID'];
+            return $row['ID'];
         }
     
         return 0;
@@ -138,7 +138,7 @@ return $row['ID'];
     
 
     public function getAll() {
-        $sql = "select p.Name, p.Image, pi.Price, pi.ID from product_item pi
+        $sql = "select p.Name, p.Image, pi.Price, pi.ID, pi.Qty_in_stock from product_item pi
         join product p on p.ID = pi.Product_ID";
         $result = mysqli_query($this->conn, $sql);
         return $result;

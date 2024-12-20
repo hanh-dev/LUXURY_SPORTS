@@ -1,4 +1,4 @@
-// Edit
+ // Edit
 let edit = false;
 document.getElementById('edit').addEventListener('click', () => {
     edit = true;
@@ -118,8 +118,6 @@ document.getElementById('logout').addEventListener('click', async () => {
         });
 
         const data = await res.json();
-        console.log(data);  
-
         if(data.success == true) {
             window.location.href = '/LUXURY_SPORTS/Home';
         }
@@ -142,13 +140,7 @@ document.getElementById('fileInput').addEventListener('change', async() => {
         return;
     }
 
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        document.getElementById('image').src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-
-    const formData = new FormData();
+    const formData = new FormData(); // multipart/form-data
     formData.append('image', file);
 
     try {

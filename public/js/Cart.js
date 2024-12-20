@@ -15,13 +15,30 @@ $(document).ready(function () {
     }
 
     window.addToCart = async function ($productID) {
-        // Get quantity of product
+        const productID = $productID;
         const quantity = document.getElementById('number_step') 
-            ? document.getElementById('number_step').value 
-            : 1;
+        ? document.getElementById('number_step').value 
+        : 1;
+        // Get the quantity of product
+        try {
+            const res = await fetch('/LUXURY_SPORTS/Cart/getQuantityOfProduct', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({productID: productID})
+            });
+
+            const data = await res.json();
+            if(quantity>data.quantity) {
+                alert('Only has ' + data.quantity + ' of this product in stock.');
+                return;
+            }
+        } catch (error) {
+            console.log('Error at creating order related to quantity', error);
+        }
         const toastElement = document.getElementById('myToast');
         const toast = new bootstrap.Toast(toastElement);
-        const productID = $productID;
 
         try {
             const res = await fetch('/LUXURY_SPORTS/Cart/createOrder', {

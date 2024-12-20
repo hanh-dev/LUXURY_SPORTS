@@ -2,10 +2,14 @@
         class CartModel extends DB
         {
             public function getProductCart() {
+                $userID = $_SESSION['user_id'];
+                $orderID = $this->getOrderID($userID);
                 $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID
-                        FROM Order_Item oi
+                        FROM Orders o
+                        JOIN Order_Item oi ON o.ID = oi.Order_ID
                         JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
-                        JOIN Product p ON pI.Product_ID = p.ID";
+                        JOIN Product p ON pI.Product_ID = p.ID
+                        WHERE oi.Order_ID = '$orderID'";
                 $result = mysqli_query($this->conn,$sql);
 
                 if(!$result) {
@@ -17,6 +21,16 @@
                     $productCart [] = $row;
                 }
                 return $productCart;
+            }
+
+            public function getOrderID($userID) {
+                $sql = "select Order_ID from Order_Item oi
+                join Orders o on o.ID = oi.Order_ID
+                where o.User_ID = '$userID'";
+
+                $result = mysqli_query($this->conn, $sql);
+                $orderID = mysqli_fetch_assoc($result);
+                return $orderID['Order_ID'];
             }
 
             public function removeProduct($ProductID) {

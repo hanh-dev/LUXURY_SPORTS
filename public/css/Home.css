@@ -306,3 +306,9 @@
     padding: 10px 20px;
 }
 
+.disabled {
+    pointer-events: none;
+    color: gray;
+    cursor: not-allowed;
+}
+

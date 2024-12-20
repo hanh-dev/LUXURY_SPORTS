@@ -1,6 +1,6 @@
 async function updateQuantity(event, $productID) {
     if (event.key !== 'Enter') {
-        return; // Nếu không phải phím Enter thì không làm gì cả
+        return;
     }
 
     const quantity = event.target.value;
