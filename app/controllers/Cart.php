@@ -18,4 +18,11 @@ class Cart extends Controller {
             echo json_encode(['success' => false, 'message' => 'Error creating order']);
         }
     }
+
+    public function getQuantityCart() {
+        if(isset($_SESSION['user_id'])) {
+            $result = $this->productModel->getQuantityCart($_SESSION['user_id']);
+            echo '<div class="count_badge">' . $result . '</div>';
+        }
+    }
 }
