@@ -10,7 +10,7 @@ class HomeAdmin extends Controller
     public function show() {
         $products = $this->ProductModel->getProduct();
         $users = $this->UserModel->getAllUser();
-        $admin = $this->UserModel->getUserbyID($_SESSION['user_id']);
+        $admin = $this->UserModel->getUserbyID($_SESSION['admin_id']);
         
         $this->view('admin', [
             'Admin' => $admin,
