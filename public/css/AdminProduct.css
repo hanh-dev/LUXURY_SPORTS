@@ -63,6 +63,7 @@ body{
     cursor: pointer;
     border-radius: 5px;
 }
+
 .input-add:hover{
     background-color: rgb(245, 245, 21);
     color: black;
