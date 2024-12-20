@@ -17,6 +17,7 @@
         <div class="container">
             <div class="main-title">
                 <h3 class="text-center" >CART</h3>
+                <div id="notification-deleted"></div>
             </div>
                 <div class="product-cart" id="layout-page">
                     <div class="cartformpage">
@@ -87,5 +88,8 @@
                 </div>
         </div>
     </div>
+    <!-- Javascript -->
+    <script src="public/js/ConfirmDelete.js"></script>
+
 </body>
 </html>

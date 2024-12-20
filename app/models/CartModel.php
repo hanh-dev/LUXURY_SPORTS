@@ -16,9 +16,21 @@
                 while($row = mysqli_fetch_assoc($result)) {
                     $productCart [] = $row;
                 }
-
                 return $productCart;
             }
+
+            public function removeProduct($ProductID) {
+                $sql = "DELETE FROM Order_Item WHERE Product_Item_ID = ?";
+                $stm = $this->conn->prepare($sql);
+                $stm->bind_param('i', $ProductID);
+                $result = $stm->execute();
+
+                if(!$result) {
+                    return false;
+                }
+                return true;
+            }
+
            
         }
     ?>
