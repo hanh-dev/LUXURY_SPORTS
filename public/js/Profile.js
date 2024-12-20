@@ -1,4 +1,4 @@
-// Edit
+ // Edit
 let edit = false;
 document.getElementById('edit').addEventListener('click', () => {
     edit = true;
