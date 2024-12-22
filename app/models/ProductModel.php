@@ -40,12 +40,12 @@ class ProductModel extends DB
         $total = $price * $quantity;
 
         if($orderID == 0) {
-            $insert = "insert into Orders (User_ID, Order_Status_ID) values('$userID', 1)";
+            $insert = "insert into Orders (User_ID) values('$userID')";
             $result = mysqli_query($this->conn, $insert);
             if($result) {
                 $orderIDNew = $this->checkOrder($userID);
                 // get price
-                $insertOrderItem = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total) values ('$orderIDNew', '$productID', '$quantity', '$total')";
+                $insertOrderItem = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total, Status) values ('$orderIDNew', '$productID', '$quantity', '$total', 1)";
                 $resultInsert = mysqli_query($this->conn, $insertOrderItem);
                 if($resultInsert) {
                     return true;
@@ -72,7 +72,7 @@ class ProductModel extends DB
                 return false;
             }
             // get Total
-            $sql = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total) values ('$orderID', '$productID', '$quantity', '$total')";
+            $sql = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total, Status) values ('$orderID', '$productID', '$quantity', '$total', 1)";
             $resultInsert = mysqli_query($this->conn, $sql);
 
             if (!$resultInsert) {

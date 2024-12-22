@@ -44,7 +44,7 @@ class Product extends Controller
     public function searchProduct() {
             $key = $_POST['searchProduct'];
             $product = $this->ProductModel->searchProduct($key);
-            if ($product) {
+            if ($product && $product->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($product)) {
                     echo "<div class='product_item'>
                             <a href='Details/show/{$row['ID']}'>
@@ -66,6 +66,8 @@ class Product extends Controller
                             </div>
                           </div>";
                 }
+            } else  {
+                echo "<div>Not Found</div>";
             }
         }
         }
