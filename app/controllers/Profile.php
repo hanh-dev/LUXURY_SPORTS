@@ -72,6 +72,7 @@ class Profile extends Controller
                 <h6>Status</h6>
                 <div>
                     <select id="status">
+                        <option value="All">All</option>
                         <option value="pending">Pending</option>
                         <option value="paid">Paid</option>
                         <option value="shipped">Shipped</option>
@@ -79,7 +80,7 @@ class Profile extends Controller
                     </select>
                 </div>
             </div>
-                <table class="cart cart-hidden">
+                <table class="cart cart-hidden" id="cart">
                     <thead>
                         <tr>
                             <th class="image">Image</th>
@@ -89,7 +90,7 @@ class Profile extends Controller
                         </select>
                     </div>
                 </div>
-                <tbody>';
+                <tbody id="table_body">';
             
             if (!empty($productCart)) {
                 foreach ($productCart as $product) {
@@ -97,10 +98,10 @@ class Profile extends Controller
                     $productName = htmlspecialchars($product['Name']);
                     $status = $product['Status'];
                     $statusName = $this->cartModel->getStatus($status);
-                    $productId = htmlspecialchars($product['ID']);
-                    $productQty = htmlspecialchars($product['Qty']);
-                    $productPrice = htmlspecialchars($product['Price']);
-                    $productTotal = number_format($productPrice * $productQty);
+                    $productId = $product['ID'];
+                    $productQty = $product['Qty'];
+                    $productPrice = $product['Price'];
+                    $productTotal = $productPrice * $productQty;
         
                     echo '<tr class="item" data-id="' . $productId . '">
                     <td class="image">
@@ -122,7 +123,58 @@ class Profile extends Controller
             echo '      </tbody>
                     </table>
                 </div>';
-        }    
+        }
+        // OrderPage_Status
+        public function OrderPage_Status() {
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
+            $status = $data['status'];
+            $productCartStatus = $this->cartModel->getProductCart($status);
+            echo '<div class="cartformpage">
+                <table class="cart cart-hidden" id="cart">
+                    <thead>
+                        <tr>
+                            <th class="image">Image</th>
+                            <th class="product-Name">Name</th>
+                            <th class="product-Name">Status</th>
+                            <th class="total">Total</option>
+                        </select>
+                    </div>
+                </div>
+                <tbody id="table_body">';
+            
+            if (!empty($productCartStatus)) {
+                foreach ($productCartStatus as $product) {
+                    $imagePath = 'public/images/' . htmlspecialchars($product['Image']) . '.png';
+                    $productName = htmlspecialchars($product['Name']);
+                    $status = $product['Status'];
+                    $statusName = $this->cartModel->getStatus($status);
+                    $productId = $product['ID'];
+                    $productQty = $product['Qty'];
+                    $productPrice = $product['Price'];
+                    $productTotal = $productPrice * $productQty;
+        
+                    echo '<tr class="item" data-id="' . $productId . '">
+                    <td class="image">
+                        <img src="' . $imagePath . '" alt="' . $productName . '" class="product-img">
+                    </td>
+                    <td class="product-Name">
+                        <span class="text-hover">' . $productName . '</span>
+                    </td>
+                    <td class="product-Status">
+                        <span class="text-hover">' . $statusName . '</span>
+                    </td>
+                    <td class="total">$' . $productTotal . ' for ' . $productQty . ' ' . (($productQty > 1) ? 'items' : 'item') . '</td>
+                </tr>';        
+                }
+            } else {
+                echo '<tr><td colspan="5">No products in cart.</td></tr>';
+            }
+        
+            echo '      </tbody>
+                    </table>
+                </div>';
+        }
         // Logout
         public function unsetUser() {
             unset($_SESSION['user_id']);

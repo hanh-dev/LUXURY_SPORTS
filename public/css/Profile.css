@@ -25,7 +25,7 @@
 }
 
 .element_right {
-    margin-right: 180px;
+    width: 100%;
 }
 
 
@@ -150,6 +150,8 @@ tr.item td.price {
 }
 
 .item td {
+    width: 90px;
+    height: auto;
     padding: 10px;
 }
  

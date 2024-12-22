@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const html = await res.text();
             content_right.innerHTML = html;
             currentPage = page;
+            attachDynamicEventListeners();
         } catch (error) {
             console.error('Error at fetching page in profile:', error);
         }
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const attachDynamicEventListeners = () => {
         const editButton = document.getElementById('edit');
         const saveButton = document.getElementById('save');
+        const statusSelect = document.getElementById("status");
 
         if (editButton) {
             editButton.addEventListener('click', () => {
@@ -93,6 +95,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     showToast(toastElement, icon, content, 'You must be in edit mode!', 'red', 'fa-circle-exclamation');
                 }
+            });
+        }
+        if(statusSelect) {
+            statusSelect.addEventListener("change", async() => {
+                const container = document.getElementById('cart');
+                container.innerHTML = '';
+                const selectedValue = statusSelect.value;
+
+                try {
+                    const res = await fetch('/LUXURY_SPORTS/Profile/OrderPage_Status', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: selectedValue })
+                    })
+                    const html = await res.text();
+                    container.innerHTML = html;
+                } catch (error) {
+                    console.log('Error at fetching OrderPage_Status', error);
+                }
+
             });
         }
     };

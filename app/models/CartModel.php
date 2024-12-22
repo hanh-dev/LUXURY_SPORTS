@@ -1,15 +1,25 @@
 <?php
         class CartModel extends DB
         {
-            public function getProductCart() {
+            public function getProductCart($status = 'All') {
                 $userID = $_SESSION['user_id'];
                 $orderID = $this->getOrderID($userID);
-                $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID, oi.Status
-                        FROM Orders o
-                        JOIN Order_Item oi ON o.ID = oi.Order_ID
-                        JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
-                        JOIN Product p ON pI.Product_ID = p.ID
-                        WHERE oi.Order_ID = '$orderID'";
+                if($status!='All') {
+                    $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID, oi.Status
+                            FROM Order_Status os
+                            JOIN Order_Item oi on os.ID = oi.Status
+                            JOIN Orders o on o.ID = oi.Order_ID
+                            JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
+                            JOIN Product p ON pI.Product_ID = p.ID
+                            WHERE oi.Order_ID = '$orderID' AND os.Name = '$status'";
+                } else if($status === null || $status === 'All') {
+                    $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID, oi.Status
+                            FROM Orders o
+                            JOIN Order_Item oi ON o.ID = oi.Order_ID
+                            JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
+                            JOIN Product p ON pI.Product_ID = p.ID
+                            WHERE oi.Order_ID = '$orderID'";
+                }
                 $result = mysqli_query($this->conn,$sql);
 
                 if(!$result) {
@@ -76,6 +86,5 @@
                 $row = mysqli_fetch_assoc($result);
                 return $row['Name'];
             }
-
         }
     ?>
