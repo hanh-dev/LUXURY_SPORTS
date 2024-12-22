@@ -90,16 +90,22 @@
     flex-direction: column;
     gap: 20px;
 }
-/* .form-right .order-summary {
-    overflow-y: scroll;
-} */
+
+.order-summary {
+    height: 355px;
+    overflow-y: auto;
+}
+
+.order-summary::-webkit-scrollbar {
+    width: 7px;
+}
 
 .order-summary .product-item {
     display: flex;
     gap: 20px;
     width: 100%;
-    border-bottom: 2px solid #A39999;
-    border-top: 2px solid #A39999;
+    border-bottom: 1px solid #A39999;
+    border-top: 1px solid #A39999;
     padding: 20px 10px;
     justify-content: space-between;
     position: relative;

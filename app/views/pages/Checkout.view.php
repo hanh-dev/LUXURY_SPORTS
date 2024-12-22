@@ -45,25 +45,32 @@
                         </div>
                     </div>
                     <div class="return-order">
-                        <button type="button" class="return"><i class="fa-solid fa-arrow-left"></i>Return to cart</button>
+                            <button type="button" class="return"><i class="fa-solid fa-arrow-left"></i>Return to cart</button>
                         <button type="button" class="order">Place order</button>
                     </div>
                 </div>
                 <div class="form-right">
-                    <h4 class="heading-order">Order Sumary</h4>
+                    <h4 class="heading-order">Order Summary</h4>
                     <div class="order-summary">
+                        <?php
+                            foreach($data['ProductOrder'] as $product) {
+                        ?>
                         <div class="product-item">
-                            <div class="box-quantity">1</div>
+                            <div class="box-quantity"><?php echo $product['Qty']?></div>
                             <div class="image">
-                                <img src="public/images/Basketball-img.png" alt="">
+                                <img src="<?= 'public/images/' .$product['Image'] . '.png'?>" alt="<?php echo $product['Name']?>">
                             </div>
                             <div class="tile-price">
-                                <p class="title">Basketball</p>
-                                <span class="price">$34</span>
+                                <p class="title"><?php echo $product['Name']?></p>
+                                <span class="price">$<?= $product['Price'] ?></span>
+                            </div>
+                            <div class="total">
+                                <span class="total-price">$<?= $product['Price'] * $product['Qty'] ?></span>
+                            </div>
                         </div>
-                        <div class="total">
-                            <span class="total-price">$34</span>
-                        </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                     <div class="total-order">
                         <h5 class="heading-total">TOTAL</h5>
