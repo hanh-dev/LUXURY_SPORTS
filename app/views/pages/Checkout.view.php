@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="form-right">
-                    <!-- <h4 class="heading-order">Order Sumary</h4>
+                    <h4 class="heading-order">Order Sumary</h4>
                     <div class="order-summary">
                         <div class="product-item">
                             <div class="box-quantity">1</div>
@@ -68,7 +68,7 @@
                     <div class="total-order">
                         <h5 class="heading-total">TOTAL</h5>
                         <span class="total">$34</span>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
