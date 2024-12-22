@@ -52,8 +52,8 @@
                                     <td class="qty">
                                         <input type="number" min="1" name="quantity" value="<?php echo $product['Qty'] ?>" class="item-quantity" data-price="<?= $product['Price'] ?>" onkeydown="updateQuantity(event, <?= $product['ID'] ?>)">
                                     </td>
-                                    <td class="price">$<?= number_format($product['Price']) ?></td>
-                                    <td class="total">$<?= number_format($product['Price'] * $product['Qty']) ?></td>
+                                    <td class="price">$<?= $product['Price'] ?></td>
+                                    <td class="total">$<?= $product['Price'] * $product['Qty'] ?></td>
                                     <td class="remove">
                                         <a onclick="confirmDelete(<?= $product['ID'] ?>)">
                                             <i class="fa-regular fa-circle-xmark"></i>
@@ -79,13 +79,13 @@
                         <h3 class="heading-title">CART TOTAL</h3>
                         <div class="subtotal">
                             <p class="subtotal-title">Subtotal</p>
-                            <span class="subtotal-price" id="subtotal-value">$<?= number_format($subtotal) ?></span>
+                            <span class="subtotal-price" id="subtotal-value">$<?= $subtotal ?></span>
                         </div>
                         <div class="total">
                             <p class="total-title">TOTAL</p>
-                            <span class="total-price" id="total-value">$<?= number_format($subtotal) ?></span>
+                            <span class="total-price" id="total-value">$<?= $subtotal ?></span>
                         </div>
-                        <button type="button" class="btn-primary-checkout">Checkout</button>
+                        <button type="button" class="btn-primary-checkout">Proceed to Checkout</button>
                     </div>
 
                 </div>

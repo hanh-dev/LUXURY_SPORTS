@@ -34,7 +34,7 @@ function updateProductTotals(input) {
     // Cập nhật lại tổng của sản phẩm trong dòng tương ứng
     if (!isNaN(price) && !isNaN(quantity)) {
         const total = price * quantity;
-        row.querySelector('.total').textContent = `$${total.toFixed(2)}`;
+        row.querySelector('.total').textContent = `$${total}`;
     }
 
     updateCartTotals();  // Cập nhật lại tổng giỏ hàng
@@ -69,6 +69,6 @@ function updateCartTotals() {
     }
 
     const total = subtotal;
-    document.getElementById('subtotal-value').textContent = `$${subtotal.toFixed(2)}`;
-    document.getElementById('total-value').textContent =`$${total.toFixed(2)}`;
+    document.getElementById('subtotal-value').textContent = `$${subtotal}`;
+    document.getElementById('total-value').textContent =`$${total}`;
 }
