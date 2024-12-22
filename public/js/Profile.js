@@ -210,6 +210,7 @@ removeItem = async function (id) {
 
         const result = await response.json();
         if (result.success) {
+            loadQuantity();
             console.log('Item removed successfully!');
             document.querySelector(`[data-id="${id}"]`).remove();
         } else {
@@ -219,4 +220,16 @@ removeItem = async function (id) {
         console.error('Error while removing item:', error);
     }
 };
+function loadQuantity() {
+    $.ajax({
+        type: "GET",
+        url: "/LUXURY_SPORTS/Cart/getQuantityCart",
+        success: function (res) {
+            $('#display_quantity').html(res);
+        },
+        error: function () {
+            console.error('Error loading cart quantity.');
+        }
+    });
+}
 
