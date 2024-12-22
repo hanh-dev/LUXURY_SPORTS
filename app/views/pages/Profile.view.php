@@ -22,10 +22,17 @@
                     </div>
                 </div>
 
-                <div class="AccountDetail">
+                <div class="AccountDetail" id="accountDetail">
                     <div class="form_detail form">
                         <i class="fa-solid fa-user"></i>
                         <span class="detail">Account Detail</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="OrderTrack" id='ordertrack'>
+                    <div class="form_detail form">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="detail">Orders</span>
                     </div>
                 </div>
                 <hr>
@@ -37,27 +44,11 @@
                 </div>
             </div>
             <div class="element_right">
-                <div class="right_hold">
-                    <div class="name">
-                        <label for="name">Display Name</label>
-                        <input type="text" value="<?=$data['data']['Name']!=Null ?$data['data']['Name']: ''?>" readonly id="name">
-                    </div>
-                    <div class="email">
-                        <label for="email">Email Address</label>
-                        <input type="email" value="<?=$data['data']['EmailAddress']!=Null ?$data['data']['EmailAddress']: ''?>" readonly id="email">
-                    </div>
-                    <div class="phoneNumber">
-                        <label for="phoneNumber">PhoneNumber</label>
-                        <input type="text" value="<?=$data['data']['PhoneNumber']!=Null ?$data['data']['PhoneNumber']: ''?>" readonly id="phone">
-                    </div>
-                </div>
-                <div class="form_btn">
-                    <button id="edit" type="button">Edit</button>
-                    <button id="save" type="button">Save Changes</button>
+                <div id="profile_display">
+                    <!-- Display content -->
                 </div>
             </div>
         </div>
-    </div>
     <!-- Toast Updated Successfully -->
     <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
         <div class="d-flex">

@@ -4,7 +4,7 @@
             public function getProductCart() {
                 $userID = $_SESSION['user_id'];
                 $orderID = $this->getOrderID($userID);
-                $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID
+                $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID, oi.Status
                         FROM Orders o
                         JOIN Order_Item oi ON o.ID = oi.Order_ID
                         JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
@@ -30,7 +30,7 @@
 
                 $result = mysqli_query($this->conn, $sql);
                 $orderID = mysqli_fetch_assoc($result);
-                return $orderID['Order_ID'];
+                return isset($orderID['Order_ID'])?$orderID['Order_ID']:'';
             }
 
             public function removeProduct($ProductID) {
@@ -68,6 +68,13 @@
                 if($row = $result->fetch_assoc()) {
                     return $row['Qty_in_stock'];
                 }
+            }
+
+            public function getStatus($statusID) {
+                $sql = "SELECT Name FROM Order_Status WHERE ID = '$statusID'";
+                $result = mysqli_query($this->conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                return $row['Name'];
             }
 
         }

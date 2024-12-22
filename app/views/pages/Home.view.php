@@ -51,7 +51,7 @@
                     <h1>PRODUCTS</h1>
                 </div>
                 <div class="product_menu">
-                    <!-- Hiển thị dữ liệuliệu -->
+                    <!-- Hiển thị dữ liệu -->
                 </div>
             </div>
         </div>
