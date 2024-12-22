@@ -106,6 +106,7 @@ class Profile extends Controller
                     echo '<tr class="item" data-id="' . $productId . '">
                     <td class="image">
                         <img src="' . $imagePath . '" alt="' . $productName . '" class="product-img">
+                        <span onclick="removeItem('.$productId.')">Remove item</span>
                     </td>
                     <td class="product-Name">
                         <span class="text-hover">' . $productName . '</span>
@@ -157,6 +158,7 @@ class Profile extends Controller
                     echo '<tr class="item" data-id="' . $productId . '">
                     <td class="image">
                         <img src="' . $imagePath . '" alt="' . $productName . '" class="product-img">
+                        <span onclick="removeItem('.$productId.')">Remove item</span>
                     </td>
                     <td class="product-Name">
                         <span class="text-hover">' . $productName . '</span>
@@ -174,6 +176,20 @@ class Profile extends Controller
             echo '      </tbody>
                     </table>
                 </div>';
+        }
+        // Delete Product
+        public function removeItem() {
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
+            $userID = $_SESSION['user_id'] ?? null;
+            $orderID = $this->cartModel->getOrderID($userID);
+            $productID = $data['id'];
+            $result = $this->cartModel->removeItem($orderID, $productID);
+            if($result) {
+                echo json_encode(['success' => true, 'message'=>'Successfully removed item from cart']);
+            } else {
+                echo json_encode(['success' => false, 'message'=> 'Failed to remove item']);
+            }
         }
         // Logout
         public function unsetUser() {

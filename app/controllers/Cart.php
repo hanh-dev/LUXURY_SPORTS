@@ -97,7 +97,5 @@
             $quantity = $this->CartModel->getProductStock($data['productID']);
             echo json_encode(['success'=>true,'quantity' => $quantity]);
         }
-
-       
     }
 ?>

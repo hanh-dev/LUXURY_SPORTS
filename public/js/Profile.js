@@ -193,6 +193,30 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Upload failed:', error);
         }
     });
-
     handlePage();
 });
+// delete
+removeItem = async function (id) {
+    console.log('You are deleting an item:', id);
+
+    try {
+        const response = await fetch('/LUXURY_SPORTS/Profile/removeItem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            console.log('Item removed successfully!');
+            document.querySelector(`[data-id="${id}"]`).remove();
+        } else {
+            console.error('Failed to remove item:', result.message);
+        }
+    } catch (error) {
+        console.error('Error while removing item:', error);
+    }
+};
+

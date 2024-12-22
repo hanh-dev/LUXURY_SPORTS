@@ -145,8 +145,22 @@ tr.item td.price {
 }
  
 .item .image {
+    position: relative;
     width: 100px;
     height: 100px;
+}
+
+.image span{
+    position: absolute;
+    bottom: 0;
+    right: 4px;
+    font-size: 12px;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.image span:hover {
+    cursor: pointer;
 }
 
 .item td {

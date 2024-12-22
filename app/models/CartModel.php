@@ -86,5 +86,15 @@
                 $row = mysqli_fetch_assoc($result);
                 return $row['Name'];
             }
+
+            // removeItem
+            public function removeItem($orderID, $productID) {
+                $sql = "DELETE FROM Order_Item WHERE Order_ID = '$orderID' AND Product_Item_ID = '$productID'";
+                $result = mysqli_query($this->conn, $sql);
+                if (!$result) {
+                    return false;
+                }
+                return true;
+            }
         }
     ?>
