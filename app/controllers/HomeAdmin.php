@@ -127,4 +127,59 @@ class HomeAdmin extends Controller
             $this->UserModel->updateInforUser($userID, $name, $email, $hashPass);
         }
     }
+
+
+    // Quản lí Product
+    public function getAllProduct() {
+        if (isset($_POST['dataProduct'])){
+            $products = $this->ProductModel->getAll();  
+            $table = '<table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>';
+
+            $number = 1;
+            if (mysqli_num_rows($products) > 0) {
+                while ($row = mysqli_fetch_assoc($products)) {
+                    $id = $row['ID'];
+                    $name = $row['Name'];
+                    $img = $row['Image'];  
+                    $price = $row['Price']; 
+
+                    $table .= '<tr>
+                                <td>' . $number . '</td>
+                                <td>
+                                    <div class="img-database">
+                                        <img src="' . $img . '"alt=">
+                                    </div>
+                                </td>
+                                <td>' . $name . '</td>
+                                <td><b>' . $price . '</b></td>
+                                <td>
+                                    <button class="btn btn-dark">Edit</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>';
+                    $number++;
+                }
+            } else {
+                $table .= '<tr><td colspan="5">No products available</td></tr>';
+            }
+            $table .= '</table>';
+            echo $table;
+        }
+            
+    }
+
+        // Xóa product 
+    public function deleteProduct() {
+        $id = $_POST['id'];
+        $this->UserModel->deleteUser($id);
+    }
 }

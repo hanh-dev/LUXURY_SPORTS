@@ -152,4 +152,8 @@ return $row['ID'];
         return $result;
     }
 
+    public function deleteProduct($id) {
+        $sql = "DELETE FROM Product WHERE ID = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+    }
 }
