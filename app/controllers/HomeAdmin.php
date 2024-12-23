@@ -26,12 +26,6 @@ class HomeAdmin extends Controller
         ]);
     }
 
-    public function manageProduct() {
-        $this->view('admin', [
-            'Page' => 'ManageProduct',
-        ]);
-    }
-
     public function getAllUser() {
         if(isset($_POST['datasend'])) {
             $users = $this->UserModel->getAllUser();
@@ -112,6 +106,7 @@ class HomeAdmin extends Controller
             echo json_encode(["error" => "ID is required"]);
         }
     }
+
     // update user
     public function updateUser() {
         if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
@@ -126,5 +121,16 @@ class HomeAdmin extends Controller
             $hashPass = md5($password);
             $this->UserModel->updateInforUser($userID, $name, $email, $hashPass);
         }
+    }
+
+    // Manage Product
+    public function manageProduct() {
+        $this->view('admin', [
+            'Page' => 'ManageProduct',
+        ]);
+    }
+    // get all product
+    public function getAllProduct() {
+        $products = $this->ProductModel->getProduct();
     }
 }
