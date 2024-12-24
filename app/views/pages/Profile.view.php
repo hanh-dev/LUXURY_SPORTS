@@ -22,10 +22,17 @@
                     </div>
                 </div>
 
-                <div class="AccountDetail">
+                <div class="AccountDetail" id="accountDetail">
                     <div class="form_detail form">
                         <i class="fa-solid fa-user"></i>
                         <span class="detail">Account Detail</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="OrderTrack" id='ordertrack'>
+                    <div class="form_detail form">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="detail">Orders</span>
                     </div>
                 </div>
                 <hr>
@@ -37,27 +44,11 @@
                 </div>
             </div>
             <div class="element_right">
-                <div class="right_hold">
-                    <div class="name">
-                        <label for="name">Display Name</label>
-                        <input type="text" value="<?=$data['data']['Name']!=Null ?$data['data']['Name']: ''?>" readonly id="name">
-                    </div>
-                    <div class="email">
-                        <label for="email">Email Address</label>
-                        <input type="email" value="<?=$data['data']['EmailAddress']!=Null ?$data['data']['EmailAddress']: ''?>" readonly id="email">
-                    </div>
-                    <div class="phoneNumber">
-                        <label for="phoneNumber">PhoneNumber</label>
-                        <input type="text" value="<?=$data['data']['PhoneNumber']!=Null ?$data['data']['PhoneNumber']: ''?>" readonly id="phone">
-                    </div>
-                </div>
-                <div class="form_btn">
-                    <button id="edit" type="button">Edit</button>
-                    <button id="save" type="button">Save Changes</button>
+                <div id="profile_display">
+                    <!-- Display content -->
                 </div>
             </div>
         </div>
-    </div>
     <!-- Toast Updated Successfully -->
     <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
         <div class="d-flex">
@@ -67,8 +58,9 @@
             </div>
         </div>
     </div>
+    <!-- script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="public/js/Profile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </body>
 </html>

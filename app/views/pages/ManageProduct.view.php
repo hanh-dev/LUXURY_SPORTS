@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <base href="/LUXURY_SPORTS/">
+    <link rel="stylesheet" href="public/css/ManageProduct.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,6 +17,16 @@
                     <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Add Product</h1>
                 </div>
                 <div class="modal-body">
+                    <!-- Category -->
+                    <div class="mb-3">
+                        <label for="Category" class="form-label">Category</label>
+                        <select id="category" class="form-select">
+                            <option value="Football">Football</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Pickleball">Pickleball</option>
+                        </select>
+                    </div>
                     <!-- Image -->
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
@@ -44,7 +55,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="close">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addUser()" >Add User</button>
+                    <button type="button" class="btn btn-primary" onclick="addProduct()" >Add Product</button>
                 </div>
             </div>
         </div>
@@ -57,10 +68,20 @@
                 <h1 class="modal-title fs-5 text-center" id="update">Update Product</h1>
             </div>
             <div class="modal-body">
+                <!-- Category -->
+                <div class="mb-3">
+                    <label for="Category" class="form-label">Category</label>
+                    <select id="categoryUpdate" class="form-select">
+                        <option value="Football">Football</option>
+                        <option value="Tennis">Tennis</option>
+                        <option value="Basketball">Basketball</option>
+                        <option value="Pickleball">Pickleball</option>
+                    </select>
+                </div>
                 <!-- Image -->
                 <div class="mb-3">
                     <label for="Image" class="form-label">Image</label>
-                    <input type="file" id="imageUpdate" class="form-control">
+                    <input type="file" id="imgUpdate"></input>
                 </div>
                 <!-- Name -->
                 <div class="mb-3">
@@ -70,17 +91,17 @@
                 <!-- Quantity -->
                 <div class="mb-3">
                     <label for="Quantity" class="form-label">Quantity</label>
-                    <input type="number" id="quantityUpdate" class="form-control" placeholder="Enter new quantity...">
+                    <input type="number" id="quantityUpdate" class="form-control">
                 </div>
                 <!-- Description -->
                 <div class="mb-3">
                     <label for="Des" class="form-label">Description</label>
-                    <input type="text" id="desdUpdate" class="form-control" placeholder="Enter new description...">
+                    <input type="text" id="desdUpdate" class="form-control">
                 </div>
                 <!-- Price -->
                 <div class="mb-3">
                     <label for="Price" class="form-label">Price</label>
-                    <input type="number" id="priceUpdate" class="form-control" placeholder="Enter new price...">
+                    <input type="number" id="priceUpdate" class="form-control">
                 </div>
             </div>
             <div class="modal-footer">

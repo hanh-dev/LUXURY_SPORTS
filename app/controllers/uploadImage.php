@@ -22,7 +22,7 @@ class UploadImage extends Controller {
     public function updateImage() {
         $cloudinaryCloudName = $_ENV['CLOUDINARY_CLOUD_NAME'];
         $cloudinaryApiKey = $_ENV['CLOUDINARY_API_KEY'];
-        $cloudinaryApiSecret = $_ENV['CLOUDINARY_API_SECRET'];
+        $cloudinaryApiSecret =   $_ENV['CLOUDINARY_API_SECRET'];
         $cloudinary = new Cloudinary([
             'cloud' => [
                 'cloud_name' => $cloudinaryCloudName,
@@ -30,7 +30,6 @@ class UploadImage extends Controller {
                 'api_secret' =>$cloudinaryApiSecret,
             ],
         ]);
-// Đang đọc code tới đây
         if (isset($_FILES['image'])) {
             $file = $_FILES['image']['tmp_name'];
         
@@ -38,11 +37,10 @@ class UploadImage extends Controller {
                 $uploadResult = $cloudinary->uploadApi()->upload(
                     $file, ['folder' => 'user_picture/']
                 );
-
                 $result = $this->userModel->updateImageUser($_SESSION['user_id'],$uploadResult['secure_url']);
 
                 if ($result) {
-                    echo json_encode(['success' => true, 'imageUrl' => $uploadResult['secure_url']]);
+                    echo json_encode(['success' => true, 'imageUrl' => $uploadResult['secure_url'], 'test'=>$uploadResult]);
                 }
             } catch (Exception $e) {
                 echo json_encode(['success' => false, 'message' => $e->getMessage()]);

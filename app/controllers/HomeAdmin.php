@@ -132,5 +132,141 @@ class HomeAdmin extends Controller
     // get all product
     public function getAllProduct() {
         $products = $this->ProductModel->getProduct();
+        if (isset($_POST['datasend'])) {
+            $table = '<table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>';
+            
+            $number = 1;
+    
+            if (!empty($products)) {
+                foreach ($products as $row) {
+                    $id = $row['ID'];
+                    $image = $row['Image'];
+                    if (strpos($image, 'public/images/') === false) {
+                        $image = 'public/images/' . $image . '.png';
+                    }                
+                    $name = htmlspecialchars($row['Name']);
+                    $description = htmlspecialchars($row['Description']);
+                    $quantity = $row['Qty_in_stock'];
+                    $price = $row['Price'];
+                    
+                    $table .= '<tr>
+                                <td>' . $number . '</td>
+                                <td><img src="' . $image . '" alt="Product Image" style="max-width: 50px;"></td>
+                                <td>' . $name . '</td>
+                                <td class="description">' . $description . '</td>
+                                <td>' . $quantity . '</td>
+                                <td>' . $price . '</td>
+                                <td>
+                                    <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#update" onclick="updateProduct(' . $id . ')">Update</button>
+                                    <button class="btn btn-danger" onclick="deleteProduct(' . $id . ')">Delete</button>
+                                </td>
+                            </tr>';
+                    $number++;
+                }
+            } else {
+                $table .= '<tr><td colspan="7" class="text-center">No data available</td></tr>';
+            }
+    
+            $table .= '</tbody></table>';
+            echo $table;
+        }
     }
+
+    // create product
+    public function createProduct() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $category = $_POST['category'];
+            // get categoryID
+            $categoryID = $this->ProductModel->getCategoryID($category);
+            $name = $_POST['name'] ?? '';
+            $des = $_POST['description'] ?? '';
+            $qty = $_POST['quantity'] ?? 1;
+            $price = $_POST['price'] ?? 0;
+            if(isset($_FILES['image'])) {
+                $fileTmpPath = $_FILES['image']['tmp_name'];
+                $file_name = $_FILES['image']['name'];
+                $uploadFolder = 'public/images/';
+
+                $dest_path = $uploadFolder . $file_name;
+                if(move_uploaded_file($fileTmpPath, $dest_path)) {
+                    echo json_encode(['success' => true, 'message' => 'Updated the product successfully']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Error moving the uploaded file']);
+                    exit();
+                }
+            }
+            // create
+            $result = $this->ProductModel->createProduct($name, $des, $price, $dest_path, $categoryID, $qty);
+            if($result) {
+                echo json_encode(['success' => true, 'message' => 'Product created successfully']);
+            }
+        }
+    }
+    // delete product
+    public function deleteProduct() {
+        $id = $_POST['id'];
+        $result = $this->ProductModel->deleteProduct($id);
+        if($result) {
+            echo json_encode(['success' => true, 'message' => 'Product deleted successfully']);
+        }else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting product']);
+        }
+    }
+    // product infor
+    public function productInfo() {
+        $id = $_POST['id'];
+        $result = $this->ProductModel->getProduct($id);
+        if(!empty($result)) {
+            echo json_encode($result);
+        }else {
+            echo json_encode(['success' => false, 'message' => 'Product not found']);
+        }
+    }
+    // update product
+    public function updateProduct() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $category = $_POST['category'];
+            // get categoryID
+            $categoryID = $this->ProductModel->getCategoryID($category);
+            $name = $_POST['name'] ?? '';
+            $des = $_POST['description'] ?? '';
+            $qty = $_POST['quantity'] ?? 1;
+            $price = $_POST['price'] ?? 0;
+    
+            $dest_path = null;
+    
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $fileTmpPath = $_FILES['image']['tmp_name'];
+                $file_name = $_FILES['image']['name'];
+                $uploadFolder = 'public/images/';
+                $dest_path = $uploadFolder . $file_name;
+    
+                if (!move_uploaded_file($fileTmpPath, $dest_path)) {
+                    $dest_path = null;
+                }
+            }
+    
+            // update
+            $result = $this->ProductModel->updateProduct($id, $name, $des, $price, $dest_path, $categoryID, $qty);
+    
+            if ($result) {
+                echo json_encode(['success' => true, 'message' => 'Product updated successfully', 'path' => $dest_path]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to update product', 'path' => $dest_path]);
+            }
+        }
+    }    
 }
