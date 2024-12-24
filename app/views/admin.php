@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a href="HomeAdmin/manageProduct" id="manageProduct" class="nav-link" style="cursor: pointer">Manage Product</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="HomeAdmin/manageOder" id="manageOder" class="nav-link" style="cursor: pointer">Manage Oder</a>
+                    </li>
                 </ul>
             </div>
 

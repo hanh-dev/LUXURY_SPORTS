@@ -2,9 +2,17 @@
 class ProductModel extends DB
 {
     protected $data =  [];
-    public function getProduct() {
-        $sql = "select p.ID, p.Image, p.Name, pi.Price, pi.Qty_in_stock from Product p
-                join product_item pi on pi.Product_ID = p.ID";
+    public function getProduct($id = null) {
+        if ($id) {
+            $sql = "select p.ID, p.Image,p.Description, p.Name, pi.Price, pi.Qty_in_stock, pi.Price, c.CategoryName
+            from Category c
+            join Product p on c.ID = p.Category_ID
+            join product_item pi on pi.Product_ID = p.ID
+            where p.ID = '$id'";
+        }else {
+            $sql = "select p.ID, p.Image,p.Description, p.Name, pi.Price, pi.Qty_in_stock, pi.Price from Product p
+            join product_item pi on pi.Product_ID = p.ID";
+        }
         $result = mysqli_query($this->conn, $sql);
 
         if(!$result) {
@@ -152,8 +160,74 @@ class ProductModel extends DB
         return $result;
     }
 
-    public function deleteProduct($id) {
-        $sql = "DELETE FROM Product WHERE ID = '$id'";
+    // get category id
+    public function getCategoryID($category) {
+        $sql = "SELECT ID FROM Category WHERE CategoryName = '$category'";
         $result = mysqli_query($this->conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row['ID'];
     }
+    // create product
+    public function createProduct($name, $des, $price, $image, $category, $qty) {
+        $sql = "insert into Product(Name, Image, Description, Category_ID) values('$name', '$image', '$des', '$category')";
+        $result = mysqli_query($this->conn, $sql);
+        if($result) {
+            $product_id = mysqli_insert_id($this->conn);
+            // insert vào bảng product_item
+            $sql = "insert into Product_Item(Product_ID, Price, Qty_in_stock) values('$product_id', '$price', '$qty')";
+            $result = mysqli_query($this->conn, $sql);
+            if($result) {
+                return true;
+            }
+        }
+        return false;
+    }
+    // delete product
+    public function deleteProduct($id) {
+        $sql = "DELETE FROM Product_Item WHERE Product_ID = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+
+        if ($result) {
+            $sql = "DELETE FROM Product WHERE ID = '$id'";
+            $result = mysqli_query($this->conn, $sql);
+            if ($result) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // update product
+    public function updateProduct($id, $name, $des, $price, $image, $categoryID, $qty) {
+        if($image!=null) {
+            $sql = "UPDATE Product 
+                    SET 
+                        Name = '$name', 
+                        Image = '$image', 
+                        Description = '$des', 
+                        Category_ID = '$categoryID'
+                    WHERE 
+                        ID = '$id'";
+        }else {
+            $sql = "UPDATE Product 
+            SET 
+                Name = '$name', 
+                Description = '$des', 
+                Category_ID = '$categoryID'
+            WHERE ID = '$id'";
+        }
+    
+        // Thực thi câu lệnh
+        $result = $this->conn->query($sql);
+        if($result) {
+            $sql = "UPDATE Product_Item SET Price = '$price', Qty_in_stock = '$qty'
+            WHERE Product_ID = '$id'";
+            $resultP = $this->conn->query($sql);
+            if($resultP) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }

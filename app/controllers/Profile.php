@@ -86,9 +86,9 @@ class Profile extends Controller
                             <th class="image">Image</th>
                             <th class="product-Name">Name</th>
                             <th class="product-Name">Status</th>
-                            <th class="total">Total</option>
-                        </select>
-                    </div>
+                            <th class="total">Total</th>
+                        </tr>
+                    </thead>
                 </div>
                 <tbody id="table_body">';
             

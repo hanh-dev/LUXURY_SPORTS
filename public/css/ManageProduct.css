@@ -1,0 +1,27 @@
+#display_data {
+    margin-top: 10px;
+    max-height: 650px; 
+    overflow-y: auto; 
+    padding: 10px;
+}
+
+#display_data::-webkit-scrollbar {
+    display: none;
+}
+
+.description {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+thead tr th {
+    text-align: center;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+}
