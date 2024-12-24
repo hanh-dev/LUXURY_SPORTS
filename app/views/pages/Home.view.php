@@ -30,7 +30,7 @@
                                 <img src="<?= 'public/images/'.$category['Image'] .'.png'?>" alt="">
                             </div>
                             <div class="content">
-                                <h2><?php echo $category['Name'] ?></h2>
+                                <h2><?php echo $category['CategoryName'] ?></h2>
                                 <div class="form-btn">
                                     <button class="shop-now">Shop Now</button>
                                 </div>
