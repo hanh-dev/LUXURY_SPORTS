@@ -19,42 +19,42 @@
             <div class="container-small">
                 <div class="form-left">
                     <h4 class="heading-billing">Billing address</h4>
-                    <form action="" id="frm-infor">
+                    <form action="" id="frm-infor" onsubmit="validateForm(event)">
                         <div class="user-Name">
-                            <input type="text" class="name" placeholder="User name">
+                            <input type="text" class="name" name="name" placeholder="User name" required>
                         </div>
                         <div class="user-Adress">
-                            <input type="text" class="address" placeholder="Address">
+                            <input type="text" class="address" name="address" placeholder="Address" required>
                         </div>
                         <div class="user-Phone">
-                            <input type="text" class="phone" placeholder="Phone">
+                            <input type="text" class="phone" name="phone" placeholder="Phone" required>
+                        </div>
+                        <div id="error-message" class="error-message" style="display: none;">
+                            <span>Vui lòng điền đầy đủ thông tin.</span>
                         </div>
                     </form>
-                    <div class="payment">
-                        <h4 class="heading-payment">Payment Options</h4>
-                        <div class="method-payment">
-                            <div class="momo">
-                                <input type="radio" id="momo" name="payment-option" value="momo">
-                                <label for="momo">Direct bank transfer</label>
-                            </div>
-                            <div class="cash">
-                                <input type="radio" id="cash"  name="payment-option" value="cash">
-                                <label for="cash">Cash on delivery</label>
-
-                            </div>
-                        </div>
-                    </div>
                     <div class="return-order">
-                            <button type="button" class="return"><i class="fa-solid fa-arrow-left"></i>Return to cart</button>
-                        <button type="button" class="order">Place order</button>
+                        <button type="button" class="return"><a  href="/LUXURY_SPORTS/Cart/show"><i class="fa-solid fa-arrow-left"></i>Return to cart</a></button>
+                        <form action="/LUXURY_SPORTS/Cart/confirm_momo" method="POST"  onsubmit="validateForm(event)">
+                            <input type="hidden" name="amount" id="selectedAmountInput" value="<?= $totalPrice ?>">
+                            <button type="submit" name="payUrl" class="btn btn-primary">
+                                Pay with MoMo
+                            </button>
+                        </form>
+
                     </div>
                 </div>
                 <div class="form-right">
                     <h4 class="heading-order">Order Summary</h4>
                     <div class="order-summary">
-                        <?php
-                            foreach($data['ProductOrder'] as $product) {
-                        ?>
+                    <?php
+                        if (isset($data['ProductOrder']) && is_array($data['ProductOrder']) && count($data['ProductOrder']) > 0) {
+                            // Nếu dữ liệu có, thì tiếp tục xử lý
+                            $totalPrice = 0;
+                            foreach ($data['ProductOrder'] as $product) {
+                                $totalPrice += $product['Price'] * $product['Qty'];
+                    ?>
+
                         <div class="product-item">
                             <div class="box-quantity"><?php echo $product['Qty']?></div>
                             <div class="image">
@@ -69,16 +69,19 @@
                             </div>
                         </div>
                         <?php
+                                }
                             }
                         ?>
                     </div>
                     <div class="total-order">
                         <h5 class="heading-total">TOTAL</h5>
-                        <span class="total">$34</span>
+                        <span class="total">$<?= $totalPrice ?></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="public/js/ConfirmCart.js"></script>
 </body>
 </html>

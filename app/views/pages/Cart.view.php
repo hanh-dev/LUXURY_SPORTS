@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="cart">
-        <div class="container">
+        <div class="container" id="cart_contain">
             <div class="main-title">
             <h3 class="d-flex justify-content-between align-items-center">
                 CART
@@ -85,16 +85,14 @@
                             <p class="total-title">TOTAL</p>
                             <span class="total-price" id="total-value">$<?= $subtotal ?></span>
                         </div>
-                        <button type="button" class="btn-primary-checkout">Proceed to Checkout</button>
+                        <button type="button" class="btn-primary-checkout" onclick="checkout()">Proceed to Checkout</button>
                     </div>
 
                 </div>
         </div>
     </div>
     <!-- Javascript -->
-    <script src="public/js/ConfirmDelete.js"></script>
-    <script src="public/js/UpdateQuantity.js"></script>
-    <script src="public/js/UpdateCartTotal.js"></script>
+    <script src="public/js/ConfirmCart.js"></script>
 
 </body>
 </html>

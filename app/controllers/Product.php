@@ -67,5 +67,20 @@ class Product extends Controller
                           </div>";
                 }
             }
-        }
-        }
+    }
+
+    public function checkout() {
+        echo '<div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>';
+    }
+}
