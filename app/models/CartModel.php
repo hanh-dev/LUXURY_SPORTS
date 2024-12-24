@@ -1,11 +1,25 @@
 <?php
         class CartModel extends DB
         {
-            public function getProductCart() {
-                $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID
-                        FROM Order_Item oi
-                        JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
-                        JOIN Product p ON pI.Product_ID = p.ID";
+            public function getProductCart($status = 'All') {
+                $userID = $_SESSION['user_id'];
+                $orderID = $this->getOrderID($userID);
+                if($status!='All') {
+                    $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID, oi.Status
+                            FROM Order_Status os
+                            JOIN Order_Item oi on os.ID = oi.Status
+                            JOIN Orders o on o.ID = oi.Order_ID
+                            JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
+                            JOIN Product p ON pI.Product_ID = p.ID
+                            WHERE oi.Order_ID = '$orderID' AND os.Name = '$status'";
+                } else if($status === null || $status === 'All') {
+                    $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID, oi.Status
+                            FROM Orders o
+                            JOIN Order_Item oi ON o.ID = oi.Order_ID
+                            JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
+                            JOIN Product p ON pI.Product_ID = p.ID
+                            WHERE oi.Order_ID = '$orderID'";
+                }
                 $result = mysqli_query($this->conn,$sql);
 
                 if(!$result) {
@@ -17,6 +31,16 @@
                     $productCart [] = $row;
                 }
                 return $productCart;
+            }
+
+            public function getOrderID($userID) {
+                $sql = "select Order_ID from Order_Item oi
+                join Orders o on o.ID = oi.Order_ID
+                where o.User_ID = '$userID'";
+
+                $result = mysqli_query($this->conn, $sql);
+                $orderID = mysqli_fetch_assoc($result);
+                return isset($orderID['Order_ID'])?$orderID['Order_ID']:'';
             }
 
             public function removeProduct($ProductID) {
@@ -56,5 +80,21 @@
                 }
             }
 
+            public function getStatus($statusID) {
+                $sql = "SELECT Name FROM Order_Status WHERE ID = '$statusID'";
+                $result = mysqli_query($this->conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                return $row['Name'];
+            }
+
+            // removeItem
+            public function removeItem($orderID, $productID) {
+                $sql = "DELETE FROM Order_Item WHERE Order_ID = '$orderID' AND Product_Item_ID = '$productID'";
+                $result = mysqli_query($this->conn, $sql);
+                if (!$result) {
+                    return false;
+                }
+                return true;
+            }
         }
     ?>

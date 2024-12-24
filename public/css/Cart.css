@@ -42,7 +42,7 @@ table.cart tr th {
     font-size: 20px;
 }
 
-tr th .total {
+tr th.total {
     width: 160px;
 }
 

@@ -11,26 +11,32 @@ class Product extends Controller
         $data = $this->ProductModel->getAll();
         if ($data) {
             while ($row = mysqli_fetch_assoc($data)) {
+                $isSoldOut = $row['Qty_in_stock'] <= 0;
                 echo "<div class='product_item'>
-                        <a href='Details/show/{$row['ID']}'>
-                            <div class='product_image'>
-                                <img src='public/images/{$row['Image']}.png' alt=''>
-                            </div>
-                        </a>
-                        <div class='wrapp_heart'>
-                            <i class='fa-regular fa-heart'></i>
+                    <a href='Details/show/{$row['ID']}'>
+                        <div class='product_image'>
+                            <img src='public/images/{$row['Image']}.png' alt=''>
                         </div>
-                        <div class='wrapp_add'>
-                            <span onclick='addToCart({$row['ID']})'>Add to cart</span>
-                        </div>
-                        <div class='product_name'>
-                            <span>{$row['Name']}</span>
-                        </div>
-                        <div class='product_price'>
-                            <span>\${$row['Price']}</span>
-                        </div>
-                      </div>";
-            }
+                    </a>
+                    <div class='wrapp_heart'>
+                        <i class='fa-regular fa-heart'></i>
+                    </div>
+                    <div class='wrapp_add'>
+                       <span 
+                            " . ($isSoldOut ? "" : "onclick='addToCart({$row['ID']})'") . "
+                            class='" . ($isSoldOut ? "disabled" : "") . "'
+                        >
+                            " . ($isSoldOut ? "Sold Out" : "Add to Cart") . "
+                       </span>
+                    </div>
+                    <div class='product_name'>
+                        <span>{$row['Name']}</span>
+                    </div>
+                    <div class='product_price'>
+                        <span>\${$row['Price']}</span>
+                    </div>
+                </div>";
+            }            
         }
     }
 
@@ -38,7 +44,7 @@ class Product extends Controller
     public function searchProduct() {
             $key = $_POST['searchProduct'];
             $product = $this->ProductModel->searchProduct($key);
-            if ($product) {
+            if ($product && $product->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($product)) {
                     echo "<div class='product_item'>
                             <a href='Details/show/{$row['ID']}'>
@@ -60,6 +66,8 @@ class Product extends Controller
                             </div>
                           </div>";
                 }
+            } else  {
+                echo "<div>Not Found</div>";
             }
         }
         }
