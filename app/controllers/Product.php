@@ -11,11 +11,14 @@ class Product extends Controller
         $data = $this->ProductModel->getAll();
         if ($data) {
             while ($row = mysqli_fetch_assoc($data)) {
+                if (strpos($row['Image'], 'public/images/') === false) {
+                    $row['Image'] = 'public/images/' . $row['Image'] . '.png';
+                }   
                 $isSoldOut = $row['Qty_in_stock'] <= 0;
                 echo "<div class='product_item'>
                     <a href='Details/show/{$row['ID']}'>
                         <div class='product_image'>
-                            <img src='public/images/{$row['Image']}.png' alt=''>
+                            <img src=".$row['Image']." alt=''>
                         </div>
                     </a>
                     <div class='wrapp_heart'>
@@ -46,10 +49,13 @@ class Product extends Controller
             $product = $this->ProductModel->searchProduct($key);
             if ($product && $product->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($product)) {
+                    if (strpos($row['Image'], 'public/images/') === false) {
+                        $row['Image'] = 'public/images/' . $row['Image'] . '.png';
+                    }
                     echo "<div class='product_item'>
                             <a href='Details/show/{$row['ID']}'>
                                 <div class='product_image'>
-                                    <img src='public/images/{$row['Image']}.png' alt=''>
+                                    <img src=".$row['Image']." alt=''>
                                 </div>
                             </a>
                             <div class='wrapp_heart'>

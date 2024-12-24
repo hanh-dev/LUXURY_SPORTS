@@ -44,7 +44,12 @@
                                 ?>
                                 <tr class="item" data-id="<?= $product['ID'] ?>">
                                     <td class="image">
-                                        <img src="<?= 'public/images/' .$product['Image'] . '.png'?>" alt="<?php echo $product['Name']?>" class="product-img">
+                                        <?php
+                                            if (strpos($product['Image'], 'public/images/') === false) {
+                                                $product['Image'] = 'public/images/' . $product['Image'] . '.png';
+                                            }
+                                        ?>
+                                        <img src="<?= $product['Image'] ?>" alt=''>
                                     </td>
                                     <td class="product-Name">
                                         <span class="text-hover"><?php echo $product['Name']?></span>
