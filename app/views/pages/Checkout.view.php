@@ -35,10 +35,9 @@
                     </form>
                     <div class="return-order">
                         <button type="button" class="return"><a  href="/LUXURY_SPORTS/Cart/show"><i class="fa-solid fa-arrow-left"></i>Return to cart</a></button>
-                        <form action="/LUXURY_SPORTS/Cart/confirm_momo" method="POST"  onsubmit="validateForm(event)">
-                            <input type="hidden" name="amount" id="selectedAmountInput" value="<?= $totalPrice ?>">
-                            <button type="submit" name="payUrl" class="btn btn-primary">
-                                Pay with MoMo
+                        <form action="/LUXURY_SPORTS/app/controllers/OnlineCheckout.php" method="POST"  onsubmit="validateForm(event)">
+                            <button type="submit" class="btn btn-primary"> 
+                                Pay 
                             </button>
                         </form>
 
@@ -82,5 +81,6 @@
     </div>
 
     <script src="public/js/ConfirmCart.js"></script>
+    <script src="config_momo.json"></script>
 </body>
 </html>
