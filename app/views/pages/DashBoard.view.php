@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <h4 class="text text-center">Hello , <?= $data['Admin']['Name']; ?></h4>
+    <h4 class="text text-center">Hello , <?= $data['Admin']['UserName']; ?></h4>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

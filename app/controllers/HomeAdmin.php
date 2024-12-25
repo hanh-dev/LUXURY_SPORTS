@@ -43,7 +43,7 @@ class HomeAdmin extends Controller
             if (mysqli_num_rows($users) > 0) {
                 while ($row = mysqli_fetch_assoc($users)) {
                     $id = $row['ID'];
-                    $name = $row['Name'];
+                    $name = $row['UserName'];
                     $email = $row['EmailAddress'];
                     $password = $row['Password'];
                     $table .= '<tr>
@@ -269,4 +269,31 @@ class HomeAdmin extends Controller
             }
         }
     }    
-}
+
+
+    // manage oder
+    public function manageOrder() {
+        $this->view('admin', [
+            'Page' => 'ManageOrder',
+        ]);
+    }
+    // get all oder
+    public function getAllOrder() {
+        $products = $this->ProductModel->getOrder();
+        if (isset($_POST['datasend'])) {
+            $table = '<table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>';
+        }
+    }
+}  

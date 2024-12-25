@@ -9,7 +9,7 @@ class UserModel extends DB
 
     public function createUser($Name, $Email, $Password) {
         // $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO User(EmailAddress, Name, Password, Role_ID) VALUES('$Email', '$Name', '$Password', 2)";
+        $sql = "INSERT INTO User(EmailAddress, UserName, Password, Role_ID) VALUES('$Email', '$Name', '$Password', 2)";
         
         // thực hiện truy vấn
         $result = mysqli_query($this->conn, $sql);
@@ -31,7 +31,7 @@ class UserModel extends DB
     }
 
     public function checkUsername($username) {
-        $sql = "SELECT * FROM User WHERE Name = '$username'";
+        $sql = "SELECT * FROM User WHERE UserName = '$username'";
         $result = mysqli_query($this->conn, $sql);
         
         //hàm đếm số lượng: Kiểm tra xem có data trả về không, nếu có thì > 0 sẽ là true ngược lại là false
@@ -48,7 +48,7 @@ class UserModel extends DB
     
 
     public function checkUsernamePassword($username, $password) {
-        $sql = "SELECT * FROM User WHERE Name = '$username'";
+        $sql = "SELECT * FROM User WHERE UserName = '$username'";
         $result = mysqli_query($this->conn, $sql);
         $count = mysqli_num_rows($result);
         if ($count > 0) {
@@ -61,7 +61,7 @@ class UserModel extends DB
     }
 
     public function getUserID($username) {
-        $sql = "SELECT ID FROM User WHERE Name = '$username'";
+        $sql = "SELECT ID FROM User WHERE UserName = '$username'";
         $result = mysqli_query($this->conn, $sql);
         $userID = mysqli_fetch_array($result);
         return $userID["ID"];
@@ -69,7 +69,7 @@ class UserModel extends DB
 
     // Update user
     public function updateUser($id, $name, $email, $phone) {
-        $sql = "update User set Name = '$name', EmailAddress = '$email', PhoneNumber = '$phone' where ID = '$id'";
+        $sql = "update User set UserName = '$name', EmailAddress = '$email', PhoneNumber = '$phone' where ID = '$id'";
         $result = mysqli_query($this->conn, $sql);
         if($result) {
             return true;
@@ -105,7 +105,7 @@ class UserModel extends DB
 
     // Update User
     public function updateInforUser($userID, $name, $email, $password) {
-        $sql =  "update User set Name = '$name', EmailAddress = '$email', Password = '$password'
+        $sql =  "update User set UserName = '$name', EmailAddress = '$email', Password = '$password'
         where ID = '$userID'";
         $result = mysqli_query($this->conn, $sql);
     }

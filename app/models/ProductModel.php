@@ -230,4 +230,22 @@ class ProductModel extends DB
         return false;
     }
     
+    //get data oder
+    public function getOrder(){
+        // get status name
+        $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, p.ID, oi.Status, u.UserName, os.StatusName
+        FROM Order_Status os
+        JOIN Order_Item oi ON os.ID = oi.Status
+        JOIN Orders o ON o.ID = oi.Order_ID
+        JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
+        JOIN Product p ON pI.Product_ID = p.ID
+        JOIN User u ON o.User_ID = u.ID";
+        $result = mysqli_query($this->conn, $sql);
+
+        $oder = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $oder[] = $row;
+        }
+        return $oder;
+    }
 }
