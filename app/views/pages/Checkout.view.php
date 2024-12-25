@@ -47,27 +47,26 @@
                 <div class="form-right">
                     <h4 class="heading-order">Order Summary</h4>
                     <div class="order-summary">
-                    <?php
-                        if (isset($data['ProductOrder']) && is_array($data['ProductOrder']) && count($data['ProductOrder']) > 0) {
-                            // Nếu dữ liệu có, thì tiếp tục xử lý
-                            $totalPrice = 0;
-                            foreach ($data['ProductOrder'] as $product) {
-                                $totalPrice += $product['Price'] * $product['Qty'];
-                    ?>
-
-                        <div class="product-item">
-                            <div class="box-quantity"><?php echo $product['Qty']?></div>
-                            <div class="image">
-                                <img src="<?= 'public/images/' .$product['Image'] . '.png'?>" alt="<?php echo $product['Name']?>">
-                            </div>
-                            <div class="tile-price">
-                                <p class="title"><?php echo $product['Name']?></p>
-                                <span class="price">$<?= $product['Price'] ?></span>
-                            </div>
-                            <div class="total">
-                                <span class="total-price">$<?= $product['Price'] * $product['Qty'] ?></span>
-                            </div>
-                        </div>
+                        <?php
+                            if (isset($data['ProductOrder']) && is_array($data['ProductOrder'])) {
+                                
+                                $totalPrice = 0;
+                                foreach ($data['ProductOrder'] as $product) {
+                                    $totalPrice += $product['Price'] * $product['Qty'];
+                        ?>
+                                <div class="product-item">
+                                    <div class="box-quantity"><?php echo $product['Qty']?></div>
+                                    <div class="image">
+                                        <img src="<?= 'public/images/' . $product['Image'] . '.png' ?>" alt="<?php echo $product['Name']?>">
+                                    </div>
+                                    <div class="tile-price">
+                                        <p class="title"><?php echo $product['Name']?></p>
+                                        <span class="price">$<?= $product['Price'] ?></span>
+                                    </div>
+                                    <div class="total">
+                                        <span class="total-price">$<?= $product['Price'] * $product['Qty'] ?></span>
+                                    </div>
+                                </div>
                         <?php
                                 }
                             }

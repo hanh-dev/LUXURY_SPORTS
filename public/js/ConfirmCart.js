@@ -165,26 +165,26 @@ function updateCartTotals() {
 
 
 async function checkout() {
-    // const selectedCheckboxes = document.querySelectorAll('.check-select:checked');
+    const selectedCheckboxes = document.querySelectorAll('.check-select:checked');
     const selectedProducts = [];
 
-    // selectedCheckboxes.forEach(checkbox => {
-    //     const row = checkbox.closest('tr.item');
-    //     const productID = row.dataset.id;
-    //     const quantity = row.querySelector('.item-quantity').value;
-    //     const price = row.querySelector('.price').textContent.replace('$', ''); // Loại bỏ ký tự '$'
-    //     const image = row.querySelector('img').src.split('/').pop().replace('.png', ''); // Lấy tên ảnh
-    //     const name = row.querySelector('.product-Name .text-hover').textContent; // Lấy tên sản phẩm
+    selectedCheckboxes.forEach(checkbox => {
+        const row = checkbox.closest('tr.item');
+        const productID = row.dataset.id;
+        const Qty = row.querySelector('.item-quantity').value;
+        const Price = row.querySelector('.price').textContent.replace('$', ''); // Loại bỏ ký tự '$'
+        const Image = row.querySelector('img').src.split('/').pop().replace('.png', ''); // Lấy tên ảnh
+        const Name = row.querySelector('.product-Name .text-hover').textContent; // Lấy tên sản phẩm
 
-    //     // Thêm thông tin sản phẩm vào mảng selectedProducts
-    //     selectedProducts.push({
-    //         productID, 
-    //         price, 
-    //         image, 
-    //         name, 
-    //         quantity
-    //     });
-    // });
+        // Thêm thông tin sản phẩm vào mảng selectedProducts
+        selectedProducts.push({
+            productID, 
+            Price, 
+            Image, 
+            Name, 
+            Qty
+        });
+    });
 
     console.log("Sản phẩm đã chọn: ", JSON.stringify(selectedProducts));
     try {
@@ -194,7 +194,7 @@ async function checkout() {
                 'Content-Type': 'application/json'
             },
 
-            body: JSON.stringify(selectedProducts)
+            body: JSON.stringify({ selectedProducts })
         });
 
         const html = await res.text();

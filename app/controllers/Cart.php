@@ -100,26 +100,19 @@
 
         // checkout
         public function checkout() {
-            // $data = file_get_contents('php://input');
-            // $data = json_decode($data, true);
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
         
-            // if (!empty($data['selectedProducts'])) {
-            //     // Trường hợp có sản phẩm được chọn
-            //     $productsToCheckout = $data['selectedProducts'];
-            // } else {
-            //     $productsToCheckout = $this->CartModel->getProductCart();
-            // }
-        
-            $productsToCheckout = $this->CartModel->getProductCart();
-
-            // Kiểm tra nếu không phải là mảng, trả về lỗi
-            // if (!is_array($productsToCheckout)) {
-            //     $productsToCheckout = [];
-            // }
+            if (!empty($data['selectedProducts']) && is_array($data['selectedProducts'])) {
+                $productsToCheckout = $data['selectedProducts'];
+            } else {
+                // Lấy tất cả sản phẩm trong giỏ hàng
+                $productsToCheckout = $this->CartModel->getProductCart();
+            }
         
             
             $this->view('master', [
-                // 'ProductOrder' => $productsToCheckout,
+                'ProductOrder' => $productsToCheckout,
                 'Page' => 'Checkout',
             ]);
         }
