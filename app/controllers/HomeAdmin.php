@@ -294,6 +294,41 @@ class HomeAdmin extends Controller
                 </tr>
             </thead>
             <tbody>';
+
+            $number = 1;
+    
+            if (!empty($products)) {
+                foreach ($products as $row) {
+                    $id = $row['ID'];
+                    $image = $row['Image'];
+                    if (strpos($image, 'public/images/') === false) {
+                        $image = 'public/images/' . $image . '.png';
+                    }                
+                    $name = htmlspecialchars($row['Name']);
+                    $quantity = $row['Qty'];
+                    $status = $row['StatusName'];
+                    $userName = $row['UserName'];
+                    $total = $row['Total'];
+                    
+                    $table .= '<tr>
+                                <td>' . $number . '</td>
+                                <td>'.$userName.'</td>
+                                <td><img src="' . $image . '" alt="Product Image" style="max-width: 50px;"></td>
+                                <td>' . $name . '</td>
+                                <td>' . $quantity . '</td>
+                                <td>$' . $total . '</td>
+                                <td class="status">' . $status . '
+                                    <span onclick="changeStatus('.$id.')">change status</span>
+                                </td>
+                            </tr>';
+                    $number++;
+                }
+            } else {
+                $table .= '<tr><td colspan="7" class="text-center">No data available</td></tr>';
+            }
+    
+            $table .= '</tbody></table>';
+            echo $table;
         }
     }
-}  
+}
