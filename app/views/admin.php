@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a href="HomeAdmin/manageProduct" id="manageProduct" class="nav-link" style="cursor: pointer">Manage Product</a>
                     </li>
+                    <li class="nav-item">
+                        <span class="nav-link" id="logout" style="cursor: pointer">Logout</span>
+                    </li>
                 </ul>
             </div>
 
@@ -36,6 +39,8 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="public/js/manageUser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
