@@ -268,5 +268,11 @@ class HomeAdmin extends Controller
                 echo json_encode(['success' => false, 'message' => 'Failed to update product', 'path' => $dest_path]);
             }
         }
-    }    
+    }
+    
+    // logout
+    public function unsetAdmin() {
+        session_destroy();
+        echo json_encode(['success' => true, 'message' => 'Admin logged out']);
+    }
 }
