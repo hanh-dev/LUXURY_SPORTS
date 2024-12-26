@@ -52,7 +52,7 @@ class Register extends Controller
                 //biến lưu pass đã được mã hóa
                 // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 //gọi đến hàm createUser ở lớp UserModel có kết quả trả về
-                $kq = $this->UserModel->createUser($email, $username, md5($password));
+                $kq = $this->UserModel->createUser($username, $email, md5($password));
                 $this->result = $kq;
             }
         }

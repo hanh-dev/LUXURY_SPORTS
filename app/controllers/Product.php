@@ -75,5 +75,20 @@ class Product extends Controller
             } else  {
                 echo "<div>Not Found</div>";
             }
-        }
-        }
+    }
+
+    public function checkout() {
+        echo '<div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>
+        <div> Check out Page</div>';
+    }
+}

@@ -66,6 +66,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
     <script src="public/js/Slider.js"></script>
     <script src="public/js/Cart.js"></script>

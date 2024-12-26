@@ -97,5 +97,34 @@
             $quantity = $this->CartModel->getProductStock($data['productID']);
             echo json_encode(['success'=>true,'quantity' => $quantity]);
         }
+
+        // checkout
+        public function checkout() {
+            $data = file_get_contents('php://input');
+            $data = json_decode($data, true);
+        
+            if (!empty($data['selectedProducts']) && is_array($data['selectedProducts'])) {
+                $productsToCheckout = $data['selectedProducts'];
+            } else {
+                // Lấy tất cả sản phẩm trong giỏ hàng
+                $productsToCheckout = $this->CartModel->getProductCart();
+            }
+        
+            
+            $this->view('master', [
+                'ProductOrder' => $productsToCheckout,
+                'Page' => 'Checkout',
+            ]);
+        }
+
+        public function success() {
+            echo 'Success';
+        }
+
+        public function cancel() {
+            echo 'Cancelled';
+        }
+        
+    
     }
 ?>
