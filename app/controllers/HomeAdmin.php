@@ -333,41 +333,40 @@ class HomeAdmin extends Controller
         }
     }
 
-public function updateStatus() {
-    $data = file_get_contents('php://input');
-    
-    // Kiểm tra xem dữ liệu có tồn tại không
-    if (!$data) {
-        echo json_encode(['success' => false, 'message' => 'No data received']);
-        return;
+    public function updateStatus() {
+        $data = file_get_contents('php://input');
+        
+        // Kiểm tra xem dữ liệu có tồn tại không
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'No data received']);
+            return;
+        }
+
+        // Giải mã JSON và kiểm tra xem nó có hợp lệ không
+        $data = json_decode($data, true);
+
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'Data not valid']);
+            return;
+        }
+
+        // Kiểm tra xem các trường cần thiết có tồn tại trong dữ liệu không
+        if (!isset($data['id'], $data['status'], $data['userName'])) {
+            echo json_encode(['success' => false, 'message' => 'Missing required data fields']);
+            return;
+        }
+
+        // Lấy giá trị và gọi phương thức updateStatus
+        $productID = $data['id'];
+        $status = $data['status'];
+        $userName = $data['userName'];
+        
+        // Cập nhật trạng thái
+        $result = $this->ProductModel->updateStatus($productID, $status, $userName);
+        if (!$result) {
+            echo json_encode(['success' => false, 'message' => 'Error']);
+        } else {
+            echo json_encode(['success' => true, 'message' => 'Updated Successfully']);
+        }
     }
-
-    // Giải mã JSON và kiểm tra xem nó có hợp lệ không
-    $data = json_decode($data, true);
-
-    if (!$data) {
-        echo json_encode(['success' => false, 'message' => 'Data not valid']);
-        return;
-    }
-
-    // Kiểm tra xem các trường cần thiết có tồn tại trong dữ liệu không
-    if (!isset($data['id'], $data['status'], $data['userName'])) {
-        echo json_encode(['success' => false, 'message' => 'Missing required data fields']);
-        return;
-    }
-
-    // Lấy giá trị và gọi phương thức updateStatus
-    $productID = $data['id'];
-    $status = $data['status'];
-    $userName = $data['userName'];
-    
-    // Cập nhật trạng thái
-    $result = $this->ProductModel->updateStatus($productID, $status, $userName);
-    if (!$result) {
-        echo json_encode(['success' => false, 'message' => 'Error']);
-    } else {
-        echo json_encode(['success' => true, 'message' => 'Updated Successfully']);
-    }
-}
-
 }

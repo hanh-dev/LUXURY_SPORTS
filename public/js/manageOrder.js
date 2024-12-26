@@ -36,13 +36,13 @@ function changeStatus(id) {
 // Hàm để lưu trạng thái và gửi yêu cầu update
 async function updateStatus() {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('update'));
-    const status = document.getElementById('statusUpdate').value;  // Trạng thái mới được chọn
+    const status = document.getElementById('statusUpdate').value;
 
     try {
         const res = await fetch('/LUXURY_SPORTS/HomeAdmin/updateStatus', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'  // Đảm bảo Content-Type là application/json
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 id: currentID,  // Gửi id của sản phẩm
