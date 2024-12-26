@@ -50,6 +50,7 @@ $(document).ready(function () {
             });
 
             const data = await res.json();
+            console.log('Data returned', data);
 
             if (data.success == true) {
                 toast.show();

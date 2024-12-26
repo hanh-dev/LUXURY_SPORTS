@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="/LUXURY_SPORTS/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
       <!-- Bootstrap CSS  -->
@@ -35,12 +36,8 @@
                     </form>
                     <div class="return-order">
                         <button type="button" class="return"><a  href="/LUXURY_SPORTS/Cart/show"><i class="fa-solid fa-arrow-left"></i>Return to cart</a></button>
-                        <form action="/LUXURY_SPORTS/app/controllers/OnlineCheckout.php" method="POST"  onsubmit="validateForm(event)">
-                            <button type="submit" class="btn btn-primary"> 
-                                Pay 
-                            </button>
-                        </form>
-
+                        
+                        <button onclick="payment()">Pay</button>
                     </div>
                 </div>
                 <div class="form-right">
@@ -52,7 +49,7 @@
                                 $totalPrice = 0;
                                 foreach ($data['ProductOrder'] as $product) {
                                     $totalPrice += $product['Price'] * $product['Qty'];
-                        ?>
+                                ?>
                                 <div class="product-item">
                                     <div class="box-quantity"><?php echo $product['Qty']?></div>
                                     <div class="image">
@@ -79,8 +76,5 @@
             </div>
         </div>
     </div>
-
-    <script src="public/js/ConfirmCart.js"></script>
-    <script src="config_momo.json"></script>
 </body>
 </html>

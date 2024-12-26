@@ -30,7 +30,7 @@
                                 <img src="<?= 'public/images/'.$category['Image'] .'.png'?>" alt="">
                             </div>
                             <div class="content">
-                                <h2><?php echo $category['Name'] ?></h2>
+                                <h2><?php echo $category['CategoryName'] ?></h2>
                                 <div class="form-btn">
                                     <button class="shop-now">Shop Now</button>
                                 </div>
@@ -51,7 +51,7 @@
                     <h1>PRODUCTS</h1>
                 </div>
                 <div class="product_menu">
-                    <!-- Hiển thị dữ liệuliệu -->
+                    <!-- Hiển thị dữ liệu -->
                 </div>
             </div>
         </div>
@@ -66,6 +66,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
     <script src="public/js/Slider.js"></script>
     <script src="public/js/Cart.js"></script>

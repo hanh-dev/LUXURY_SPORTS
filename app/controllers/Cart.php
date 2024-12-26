@@ -116,6 +116,14 @@
                 'Page' => 'Checkout',
             ]);
         }
+
+        public function success() {
+            echo 'Success';
+        }
+
+        public function cancel() {
+            echo 'Cancelled';
+        }
         
     
     }

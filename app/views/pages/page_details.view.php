@@ -37,8 +37,13 @@
 				<!-- Row -->
 				<div class="row content-1">
 					<div class="col bg-warning">
+						<?php
+							if (strpos($product['Image'], 'public/images/') === false) {
+								$product['Image'] = 'public/images/' . $product['Image'] . '.png';
+							}
+						?>
 						<div class="product-img-lg">
-								<img src="<?= 'public/images/' .$product['Image'] . '.png'?>" alt="<?php echo $product['Name']?>">
+							<img src="<?=$product['Image'] ?>" alt=''>
 						</div>
 					</div>
 					<div class="col bg-success">

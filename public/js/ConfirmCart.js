@@ -203,27 +203,3 @@ async function checkout() {
         console.log('Error during checkout:', error);
     }
 }
-
-function validateForm(event) {
-    const name = document.querySelector('.name').value.trim();
-    const address = document.querySelector('.address').value.trim();
-    const phone = document.querySelector('.phone').value.trim();
-    const errorMessage = document.getElementById('error-message');
-
-    // Kiểm tra thông tin
-    if (!name || !address || !phone) {
-        errorMessage.style.display = 'block'; // Hiển thị thông báo lỗi
-        event.preventDefault(); // Ngăn không cho form gửi đi
-        return false;
-    }
-
-    // Kiểm tra số điện thoại có đúng 10 chữ số
-    if (!/^\d{10}$/.test(phone)) {
-        alert("Số điện thoại phải là 10 chữ số.");
-        event.preventDefault(); // Ngăn không cho form gửi đi
-        return false;
-    }
-
-    errorMessage.style.display = 'none'; // Ẩn thông báo lỗi nếu tất cả đều hợp lệ
-    return true; // Cho phép form gửi đi
-}
