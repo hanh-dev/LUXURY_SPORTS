@@ -281,7 +281,8 @@ class HomeAdmin extends Controller
     public function getAllOrder() {
         $products = $this->ProductModel->getOrder();
         if (isset($_POST['datasend'])) {
-            $table = '<table class="table table-hover">
+            $table = '
+            <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
@@ -310,17 +311,17 @@ class HomeAdmin extends Controller
                     $userName = $row['UserName'];
                     $total = $row['Total'];
                     
-                    $table .= '<tr>
-                                <td>' . $number . '</td>
-                                <td>'.$userName.'</td>
-                                <td><img src="' . $image . '" alt="Product Image" style="max-width: 50px;"></td>
-                                <td>' . $name . '</td>
-                                <td>' . $quantity . '</td>
-                                <td>$' . $total . '</td>
-                                <td class="status">' . $status . '
-                                    <span onclick="changeStatus('.$id.')">change status</span>
-                                </td>
-                            </tr>';
+                    $table .= '<tr data-id="' . $id . '">
+                            <td>' . $number . '</td>
+                            <td class="userName">' . $userName . '</td>
+                            <td><img src="' . $image . '" alt="Product Image" style="max-width: 50px;"></td>
+                            <td>' . $name . '</td>
+                            <td>' . $quantity . '</td>
+                            <td>$' . $total . '</td>
+                            <td class="status">' . $status . '
+                                <span onclick="changeStatus(' . $id . ')">change status</span>
+                            </td>
+                    </tr>';
                     $number++;
                 }
             } else {

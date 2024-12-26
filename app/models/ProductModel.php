@@ -248,4 +248,35 @@ class ProductModel extends DB
         }
         return $oder;
     }
+
+    public function updateStatus($id, $status, $userName) {
+        $orderID = $this->getOrderID($userName);
+        $statusID = $this->getStatusID($status);
+        $sql ="update Order_Item set Status = '$statusID' where Product_Item_ID = '$id' and Order_ID = '$orderID'";
+        $result = mysqli_query($this->conn, $sql);
+        if(!$result) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getOrderID($userName) {
+        $sql = "select Order_ID from Order_Item oi
+        join Orders o on o.ID = oi.Order_ID
+        join User u on u.ID = o.User_ID
+        where u.UserName ='$userName'";
+
+        $result = mysqli_query($this->conn, $sql);
+        $orderID = mysqli_fetch_assoc($result);
+        return isset($orderID['Order_ID'])?$orderID['Order_ID']:'';
+    }
+
+    public function getStatusID($status) {
+        $sql = "select ID from Order_Status where StatusName = '$status'";
+        $result = mysqli_query($this->conn, $sql);
+        $statusID = mysqli_fetch_assoc($result);
+        return isset($statusID["ID"])?$statusID["ID"]:"";
+    }
+
 }
