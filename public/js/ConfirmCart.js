@@ -1,3 +1,5 @@
+
+
 async function confirmDelete($productID) {
     let result = confirm("Do you want to continue?");
     if (result) {
@@ -29,7 +31,7 @@ async function confirmDelete($productID) {
                 }
 
                 updateCartTotals(); // Cập nhật lại tổng giỏ hàng  
-               
+                await updateCartQuantity();
                 // Sau 3 giây, ẩn thông báo
                 setTimeout(() => {
                     statusMessage.textContent = '';
@@ -41,6 +43,21 @@ async function confirmDelete($productID) {
         } catch (error) {
             console.error('Error during product deletion:', error);
         }
+    }
+}
+
+// Hàm cập nhật số lượng giỏ hàng
+async function updateCartQuantity() {
+    try {
+        const res = await fetch('/LUXURY_SPORTS/Cart/getQuantityCart');
+        const quantity = await res.text();
+
+        const quantityElement = document.getElementById('display_quantity');
+        if (quantityElement) {
+            quantityElement.innerHTML = quantity;
+        }
+    } catch (error) {
+        console.error('Error updating cart quantity:', error);
     }
 }
 
@@ -170,7 +187,7 @@ async function checkout() {
 
     selectedCheckboxes.forEach(checkbox => {
         const row = checkbox.closest('tr.item');
-        const productID = row.dataset.id;
+        const ID = row.dataset.id;
         const Qty = row.querySelector('.item-quantity').value;
         const Price = row.querySelector('.price').textContent.replace('$', ''); // Loại bỏ ký tự '$'
         const Image = row.querySelector('img').src.split('/').pop().replace('.png', ''); // Lấy tên ảnh
@@ -178,7 +195,7 @@ async function checkout() {
 
         // Thêm thông tin sản phẩm vào mảng selectedProducts
         selectedProducts.push({
-            productID, 
+            ID, 
             Price, 
             Image, 
             Name, 
