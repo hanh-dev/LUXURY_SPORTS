@@ -33,4 +33,37 @@ function changeStatus(id) {
     myModal.show();
 }
 
+// Hàm để lưu trạng thái và gửi yêu cầu update
+async function updateStatus() {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('update'));
+    const status = document.getElementById('statusUpdate').value;  // Trạng thái mới được chọn
+
+    try {
+        const res = await fetch('/LUXURY_SPORTS/HomeAdmin/updateStatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'  // Đảm bảo Content-Type là application/json
+            },
+            body: JSON.stringify({
+                id: currentID,  // Gửi id của sản phẩm
+                status: status, 
+                userName: userName  // Gửi trạng thái mới
+            })
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch page updateStatus');
+        }
+        const responseData = await res.json(); // Lấy dữ liệu JSON trả về từ server
+
+        if (responseData.success === false) {
+            alert('Có lỗi xảy ra khi cập nhật trạng thái.');
+        } else {
+            console.log('Cập nhật trạng thái thành công!');
+        }
+    } catch (error) {
+        console.log('Lỗi khi cập nhật:', error);
+    }
+    myModal.hide();  // Đóng modal sau khi cập nhật
+}
 
