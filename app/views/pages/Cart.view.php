@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="/LUXURY_SPORTS/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <!-- Bootstrap CSS  -->
@@ -11,6 +12,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="public/css/Cart.css">
+    <link rel="stylesheet" href="public/css/Checkout.css">
 </head>
 <body>
     <div id="cart">
@@ -40,36 +42,45 @@
                                 <!-- RENDER DATABASE -->
                                 <?php
                                     $productCart = $data['ProductCart'];
-                                    foreach ($productCart as $product):
+                                    if (empty($productCart)):  // Kiểm tra nếu giỏ hàng rỗng
                                 ?>
-                                <tr class="item" data-id="<?= $product['ID'] ?>">
-                                    <td class="image">
-                                        <?php
-                                            if (strpos($product['Image'], 'public/images/') === false) {
-                                                $product['Image'] = 'public/images/' . $product['Image'] . '.png';
-                                            }
-                                        ?>
-                                        <img src="<?= $product['Image'] ?>" alt=''>
-                                    </td>
-                                    <td class="product-Name">
-                                        <span class="text-hover"><?php echo $product['Name']?></span>
-                                    </td>
-                                    <td class="qty">
-                                        <input type="number" min="1" name="quantity" value="<?php echo $product['Qty'] ?>" class="item-quantity" data-price="<?= $product['Price'] ?>" onkeydown="updateQuantity(event, <?= $product['ID'] ?>)">
-                                    </td>
-                                    <td class="price">$<?= $product['Price'] ?></td>
-                                    <td class="total">$<?= $product['Price'] * $product['Qty'] ?></td>
-                                    <td class="remove">
-                                        <a onclick="confirmDelete(<?= $product['ID'] ?>)">
-                                            <i class="fa-regular fa-circle-xmark"></i>
-                                        </a>
-                                    </td>
-                                    <td class="select-product">
-                                        <input type="checkbox" class="check-select">
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-
+                                        <tr>
+                                            <td colspan="7" class="text-center" style="font-size: 16px">Browse products to add to your cart</td>  <!-- Hiển thị thông báo khi không có sản phẩm -->
+                                        </tr>
+                                <?php
+                                    else:
+                                        foreach ($productCart as $product):
+                                ?>
+                                        <tr class="item" data-id="<?= $product['ID'] ?>">
+                                            <td class="image">
+                                                <?php
+                                                    if (strpos($product['Image'], 'public/images/') === false) {
+                                                        $product['Image'] = 'public/images/' . $product['Image'] . '.png';
+                                                    }
+                                                ?>
+                                                <img src="<?= $product['Image'] ?>" alt=''>
+                                            </td>
+                                            <td class="product-Name">
+                                                <span class="text-hover"><?php echo $product['Name']?></span>
+                                            </td>
+                                            <td class="qty">
+                                                <input type="number" min="1" name="quantity" value="<?php echo $product['Qty'] ?>" class="item-quantity" data-price="<?= $product['Price'] ?>" onkeydown="updateQuantity(event, <?= $product['ID'] ?>)">
+                                            </td>
+                                            <td class="price">$<?= $product['Price'] ?></td>
+                                            <td class="total">$<?= $product['Price'] * $product['Qty'] ?></td>
+                                            <td class="remove">
+                                                <a onclick="confirmDelete(<?= $product['ID'] ?>)">
+                                                    <i class="fa-regular fa-circle-xmark"></i>
+                                                </a>
+                                            </td>
+                                            <td class="select-product">
+                                                <input type="checkbox" class="check-select">
+                                            </td>
+                                        </tr>
+                                <?php
+                                        endforeach;
+                                    endif;
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -92,12 +103,11 @@
                         </div>
                         <button type="button" class="btn-primary-checkout" onclick="checkout()">Proceed to Checkout</button>
                     </div>
-
                 </div>
         </div>
     </div>
     <!-- Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="public/js/ConfirmCart.js"></script>
-
 </body>
 </html>
