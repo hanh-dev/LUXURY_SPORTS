@@ -33,7 +33,6 @@ function changeStatus(id) {
     myModal.show();
 }
 
-// Hàm để lưu trạng thái và gửi yêu cầu update
 async function updateStatus() {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('update'));
     const status = document.getElementById('statusUpdate').value;
@@ -45,25 +44,27 @@ async function updateStatus() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: currentID,  // Gửi id của sản phẩm
+                id: currentID,
                 status: status, 
-                userName: userName  // Gửi trạng thái mới
+                userName: userName 
             })
         });
 
         if (!res.ok) {
             throw new Error('Failed to fetch page updateStatus');
         }
-        const responseData = await res.json(); // Lấy dữ liệu JSON trả về từ server
+        const responseData = await res.json();
 
         if (responseData.success === false) {
             alert('Có lỗi xảy ra khi cập nhật trạng thái.');
         } else {
+            var row = document.querySelector('tr[data-id="' + currentID + '"]');
+            var statusCell = row.querySelector('.status');
+            statusCell.innerHTML = status + ' <span onclick="changeStatus(' + currentID + ')">change status</span>';
             console.log('Cập nhật trạng thái thành công!');
         }
     } catch (error) {
         console.log('Lỗi khi cập nhật:', error);
     }
-    myModal.hide();  // Đóng modal sau khi cập nhật
+    myModal.hide();
 }
-
