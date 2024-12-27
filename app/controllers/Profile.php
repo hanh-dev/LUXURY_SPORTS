@@ -94,7 +94,11 @@ class Profile extends Controller
             
             if (!empty($productCart)) {
                 foreach ($productCart as $product) {
-                    $imagePath = 'public/images/' . htmlspecialchars($product['Image']) . '.png';
+                    
+                    if (strpos($product['Image'], 'public/images/') === false) {
+                        $product['Image'] = 'public/images/' . $product['Image'] . '.png';
+                    }
+                    $imagePath = $product['Image'];
                     $productName = htmlspecialchars($product['Name']);
                     $status = $product['Status'];
                     $statusName = $this->cartModel->getStatus($status);

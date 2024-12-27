@@ -96,5 +96,21 @@
                 }
                 return true;
             }
+
+            // update status of orders
+            public function updateOrderStatus($productID) {
+                // get orderID
+                $userID = $_SESSION['user_id'];
+                $orderID = $this->getOrderID($userID);
+                foreach($productID as $id) {
+                    $sql = "UPDATE Order_Item SET Status = 2 WHERE Order_ID = '$orderID' AND Product_Item_ID = '$id'";
+                    $result = mysqli_query($this->conn, $sql);
+                    if (!$result) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
         }
     ?>

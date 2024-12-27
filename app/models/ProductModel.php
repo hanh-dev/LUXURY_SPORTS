@@ -54,6 +54,12 @@ class ProductModel extends DB
                 $orderIDNew = $this->checkOrder($userID);
                 // get price
                 $insertOrderItem = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total, Status) values ('$orderIDNew', '$productID', '$quantity', '$total', 1)";
+                //update item status
+                $updateStatus = "update Order_Item set Status = 1 where Order_ID = '$orderIDNew' and Product_Item_ID = '$productID'";
+                $check = mysqli_query($this->conn, $updateStatus);
+                if(!$check) {
+                    return false;
+                }
                 $resultInsert = mysqli_query($this->conn, $insertOrderItem);
                 if($resultInsert) {
                     return true;
@@ -81,6 +87,11 @@ class ProductModel extends DB
             }
             // get Total
             $sql = "insert into Order_Item (Order_ID, Product_Item_ID, Qty, Total, Status) values ('$orderID', '$productID', '$quantity', '$total', 1)";
+            $updateStatus = "update Order_Item set Status = 1 where Order_ID = '$orderID' and Product_Item_ID = '$productID'";
+            $check = mysqli_query($this->conn, $updateStatus);
+            if(!$check) {
+                return false;
+            }
             $resultInsert = mysqli_query($this->conn, $sql);
 
             if (!$resultInsert) {

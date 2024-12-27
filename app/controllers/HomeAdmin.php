@@ -369,4 +369,10 @@ class HomeAdmin extends Controller
             echo json_encode(['success' => true, 'message' => 'Updated Successfully']);
         }
     }
+    
+    // logout
+    public function unsetAdmin() {
+        session_destroy();
+        echo json_encode(['success' => true, 'message' => 'Admin logged out']);
+    }
 }
