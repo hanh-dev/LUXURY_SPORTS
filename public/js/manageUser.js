@@ -110,20 +110,3 @@ $('#updateButton').off('click').on('click', function() {
     }
 });
 }
-// Test
-document.getElementById('logout').addEventListener('click', async() => {
-    try {
-        const res = await fetch('/LUXURY_SPORTS/HomeAdmin/unsetAdmin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        const data = await res.json();
-        if(data.success === true) {
-            window.location.href = '/LUXURY_SPORTS/Home';
-        }
-    } catch (error) {
-        console.log('Error at loging out', error);
-    }
-})

@@ -1,23 +1,23 @@
 <?php
 class Details extends Controller
 {
-    public $DetailsModel;
+    public $ProductModel;
 
     // Hàm này luôn được khởi chạy đầu tiên khi tạo một đối tượng
     public function __construct() {
-        $this->DetailsModel = $this->model('DetailsModel');
+        $this->ProductModel = $this->model('ProductModel');
     }
 
     public function show($productID = null) {
         {
             // Lấy dữ liệu sản phẩm hiện tại
-            $result = $this->DetailsModel->getProduct($productID);
+            $result = $this->ProductModel->getProductDetail($productID);
             $product = mysqli_fetch_assoc($result);
 
             // Lấy danh sách sản phẩm liên quan
             $relatedProducts = [];
             if ($product && isset($product['Category_ID'])) {
-                $relatedResult = $this->DetailsModel->getRelatedProducts($productID, $product['Category_ID']);
+                $relatedResult = $this->ProductModel->getRelatedProducts($productID, $product['Category_ID']);
                 while ($row = mysqli_fetch_assoc($relatedResult)) {
                     $relatedProducts[] = $row;
                 }
@@ -30,7 +30,7 @@ class Details extends Controller
             $this->view('master', [
                 'Product' => $product,
                 'RelatedProducts' => $relatedProducts,
-                'Page' => 'page_details'
+                'Page' => 'user/PageDetail'
             ]);
         }
     }

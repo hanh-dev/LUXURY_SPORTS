@@ -11,7 +11,7 @@
                             JOIN Orders o on o.ID = oi.Order_ID
                             JOIN Product_Item pI ON oi.Product_Item_ID = pI.ID
                             JOIN Product p ON pI.Product_ID = p.ID
-                            WHERE oi.Order_ID = '$orderID' AND os.Name = '$status'";
+                            WHERE oi.Order_ID = '$orderID' AND os.StatusName = '$status'";
                 } else if($status === null || $status === 'All') {
                     $sql = "SELECT oi.*, pI.Price, pI.Qty_in_stock, p.Name, p.Image, P.ID, oi.Status
                             FROM Orders o
@@ -81,10 +81,10 @@
             }
 
             public function getStatus($statusID) {
-                $sql = "SELECT Name FROM Order_Status WHERE ID = '$statusID'";
+                $sql = "SELECT StatusName FROM Order_Status WHERE ID = '$statusID'";
                 $result = mysqli_query($this->conn, $sql);
                 $row = mysqli_fetch_assoc($result);
-                return $row['Name'];
+                return $row['StatusName'];
             }
 
             // removeItem

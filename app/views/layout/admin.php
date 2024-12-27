@@ -25,7 +25,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="HomeAdmin/manageOrder" id="manageOrder" class="nav-link" style="cursor: pointer">Manage Order</a>
-                        <span class="nav-link" id="logout" style="cursor: pointer">Logout</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link"  style="cursor: pointer" onclick="logout()">Logout</span>
                     </li>
                 </ul>
             </div>

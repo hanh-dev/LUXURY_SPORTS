@@ -10,7 +10,7 @@ class Register extends Controller
 
     //hàm gọi đến file giao diện để hiển thị
     public function show() {
-        $this->view('Register');
+        $this->view('user/Register');
     }
 
     public function register() {

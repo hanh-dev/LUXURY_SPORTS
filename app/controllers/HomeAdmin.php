@@ -8,6 +8,9 @@ class HomeAdmin extends Controller
         $this->UserModel = $this->model('UserModel');
     }
     public function show() {
+        if(!isset($_SESSION['admin_id'])) {
+            header('Location:/LUXURY_SPORTS/Login');
+        }
         $products = $this->ProductModel->getProduct();
         $users = $this->UserModel->getAllUser();
         $admin = $this->UserModel->getUserbyID($_SESSION['admin_id']);
@@ -16,13 +19,13 @@ class HomeAdmin extends Controller
             'Admin' => $admin,
             'Product' => $products,
             'User' => $users,
-            'Page' => 'DashBoard'
+            'Page' => 'admin/DashBoard'
         ]);
     }
 
     public function manageUser() {
         $this->view('admin', [
-            'Page' => 'ManageUser',
+            'Page' => 'admin/ManageUser',
         ]);
     }
 
@@ -126,7 +129,7 @@ class HomeAdmin extends Controller
     // Manage Product
     public function manageProduct() {
         $this->view('admin', [
-            'Page' => 'ManageProduct',
+            'Page' => 'admin/ManageProduct',
         ]);
     }
     // get all product
@@ -274,7 +277,7 @@ class HomeAdmin extends Controller
     // manage oder
     public function manageOrder() {
         $this->view('admin', [
-            'Page' => 'ManageOrder',
+            'Page' => 'admin/ManageOrder',
         ]);
     }
     // get all oder
@@ -372,7 +375,7 @@ class HomeAdmin extends Controller
     
     // logout
     public function unsetAdmin() {
-        session_destroy();
+        unset($_SESSION['admin_id']);
         echo json_encode(['success' => true, 'message' => 'Admin logged out']);
     }
 }
