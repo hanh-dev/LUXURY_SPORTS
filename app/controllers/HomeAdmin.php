@@ -43,7 +43,7 @@ class HomeAdmin extends Controller
             if (mysqli_num_rows($users) > 0) {
                 while ($row = mysqli_fetch_assoc($users)) {
                     $id = $row['ID'];
-                    $name = $row['Name'];
+                    $name = $row['UserName'];
                     $email = $row['EmailAddress'];
                     $password = $row['Password'];
                     $table .= '<tr>
@@ -267,6 +267,106 @@ class HomeAdmin extends Controller
             } else {
                 echo json_encode(['success' => false, 'message' => 'Failed to update product', 'path' => $dest_path]);
             }
+        }
+    }    
+
+
+    // manage oder
+    public function manageOrder() {
+        $this->view('admin', [
+            'Page' => 'ManageOrder',
+        ]);
+    }
+    // get all oder
+    public function getAllOrder() {
+        $products = $this->ProductModel->getOrder();
+        if (isset($_POST['datasend'])) {
+            $table = '
+            <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>';
+
+            $number = 1;
+    
+            if (!empty($products)) {
+                foreach ($products as $row) {
+                    $id = $row['ID'];
+                    $image = $row['Image'];
+                    if (strpos($image, 'public/images/') === false) {
+                        $image = 'public/images/' . $image . '.png';
+                    }                
+                    $name = htmlspecialchars($row['Name']);
+                    $quantity = $row['Qty'];
+                    $status = $row['StatusName'];
+                    $userName = $row['UserName'];
+                    $total = $row['Total'];
+                    
+                    $table .= '<tr data-id="' . $id . '">
+                            <td>' . $number . '</td>
+                            <td class="userName">' . $userName . '</td>
+                            <td><img src="' . $image . '" alt="Product Image" style="max-width: 50px;"></td>
+                            <td>' . $name . '</td>
+                            <td>' . $quantity . '</td>
+                            <td>$' . $total . '</td>
+                            <td class="status">' . $status . '
+                                <span onclick="changeStatus(' . $id . ')">change status</span>
+                            </td>
+                    </tr>';
+                    $number++;
+                }
+            } else {
+                $table .= '<tr><td colspan="7" class="text-center">No data available</td></tr>';
+            }
+    
+            $table .= '</tbody></table>';
+            echo $table;
+        }
+    }
+
+    public function updateStatus() {
+        $data = file_get_contents('php://input');
+        
+        // Kiểm tra xem dữ liệu có tồn tại không
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'No data received']);
+            return;
+        }
+
+        // Giải mã JSON và kiểm tra xem nó có hợp lệ không
+        $data = json_decode($data, true);
+
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'Data not valid']);
+            return;
+        }
+
+        // Kiểm tra xem các trường cần thiết có tồn tại trong dữ liệu không
+        if (!isset($data['id'], $data['status'], $data['userName'])) {
+            echo json_encode(['success' => false, 'message' => 'Missing required data fields']);
+            return;
+        }
+
+        // Lấy giá trị và gọi phương thức updateStatus
+        $productID = $data['id'];
+        $status = $data['status'];
+        $userName = $data['userName'];
+        
+        // Cập nhật trạng thái
+        $result = $this->ProductModel->updateStatus($productID, $status, $userName);
+        if (!$result) {
+            echo json_encode(['success' => false, 'message' => 'Error']);
+        } else {
+            echo json_encode(['success' => true, 'message' => 'Updated Successfully']);
         }
     }
     

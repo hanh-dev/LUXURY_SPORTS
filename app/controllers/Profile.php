@@ -41,7 +41,7 @@ class Profile extends Controller
     public function accountDetailPage() {
         $id = $_SESSION['user_id'];
         $user = $this->userModel->getUserbyID($id);
-        $name = $user['Name'];
+        $name = $user['UserName'];
         $email = $user['EmailAddress'];
         $phone = isset($user['PhoneNumber'])?$user['PhoneNumber']:'';
         echo '<div class="right_hold">
