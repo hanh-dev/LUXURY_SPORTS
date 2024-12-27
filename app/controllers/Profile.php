@@ -13,7 +13,7 @@ class Profile extends Controller
         $id = $_SESSION['user_id'];
         $data = $this->userModel->getUserbyID($id);
         $this->view('master',[
-            'Page' => 'Profile',
+            'Page' => 'user/Profile',
             'data' => $data
         ]);
     }
@@ -176,7 +176,6 @@ class Profile extends Controller
             } else {
                 echo '<tr><td colspan="5">No products in cart.</td></tr>';
             }
-        
             echo '      </tbody>
                     </table>
                 </div>';

@@ -134,4 +134,17 @@ $(document).ready(function () {
             alert('An error occurred during payment. Please try again.');
         }
     }
+
+    window.logout = async () => {
+        try {
+           const res = await fetch ('/LUXURY_SPORTS/HomeAdmin/unsetAdmin');
+           if(!res.ok) {
+                throw new Error('HTTP error ! Status: ' + res.status);
+           }
+        //move to homepage when logout is successful
+           window.location.href = '/LUXURY_SPORTS/Home';
+        } catch (error) {
+            console.log('Error at logging out admin');
+        }
+    }
 });

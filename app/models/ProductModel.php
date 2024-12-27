@@ -289,5 +289,23 @@ class ProductModel extends DB
         $statusID = mysqli_fetch_assoc($result);
         return isset($statusID["ID"])?$statusID["ID"]:"";
     }
+    // get product detail
+    public function getProductDetail($productID) {
+        $sql = "SELECT p.Name, p.Image, p.Description, pI.Price, p.Category_ID,pI.ID, c.CategoryName AS CategoryName 
+                FROM Product p
+                JOIN Category c ON p.Category_ID = c.ID
+                JOIN Product_Item pI ON p.ID = pI.Product_ID
+                WHERE p.ID = $productID";
+        return mysqli_query($this->conn, $sql);
+    }
+    //get related product
+    public function getRelatedProducts($productID, $categoryID) {
+        $sql = "SELECT p.Name, p.Image, p.ID, pI.Price, c.CategoryName AS CategoryName
+                FROM Product p
+                JOIN Category c ON p.Category_ID = c.ID
+                JOIN Product_Item pI ON p.ID = pI.Product_ID
+                WHERE p.Category_ID = $categoryID AND p.ID != $productID";
+        return mysqli_query($this->conn, $sql);
+    }
 
 }

@@ -8,7 +8,7 @@ class Login extends Controller
     }
 
     public function show() {
-        $this->view('Login');
+        $this->view('user/Login');
     }
 
     public function login() {
@@ -42,7 +42,7 @@ class Login extends Controller
             } else {
                 //thông báo lỗi khi đăng nhập không thành công
                 $this->view('Login', [
-                    'Message' => 'Invalid username or password ',
+                    'Message' => 'Invalid username or password',
                     'Result' => false,
                 ]);
             }

@@ -16,7 +16,7 @@
 
             $this->view('master', [
                 'ProductCart' => $productCart,
-                'Page' => 'Cart'
+                'Page' => 'user/Cart'
             ]);
         }
 
