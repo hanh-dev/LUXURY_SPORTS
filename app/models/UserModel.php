@@ -53,7 +53,7 @@ class UserModel extends DB
         $count = mysqli_num_rows($result);
         if ($count > 0) {
             $user = mysqli_fetch_array($result);
-            if(($password ==$user["Password"])) {
+            if(($password == $user["Password"])) {
                 return true;
             }
         }
@@ -100,13 +100,13 @@ class UserModel extends DB
     //Delete User by ID
     public function deleteUser($id) {
         $sql = "DELETE FROM User WHERE ID = '$id'";
-        $result = mysqli_query($this->conn, $sql);
+        mysqli_query($this->conn, $sql);
     }
 
     // Update User
     public function updateInforUser($userID, $name, $email, $password) {
         $sql =  "update User set UserName = '$name', EmailAddress = '$email', Password = '$password'
         where ID = '$userID'";
-        $result = mysqli_query($this->conn, $sql);
+        mysqli_query($this->conn, $sql);
     }
 }

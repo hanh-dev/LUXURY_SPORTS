@@ -61,17 +61,4 @@ class Register extends Controller
             'Result' => $this->result
         ]);
     }
-
-    public function addProduct(){
-        if(isset($_POST['add_product'])) {
-            $product_name = $_POST['product_name'];
-            $product_price = $_POST['product_price'];
-            $product_img = $_POST['product_img'] ['tmp_name'];
-            $product_img_folder = 'uploaded_img/'.$product_img;
-
-            if(empty($product_name) || empty($product_price) || empty($product_img)) {
-                $message[] = 'please fill out all';
-            }
-        }
-    }
 }
