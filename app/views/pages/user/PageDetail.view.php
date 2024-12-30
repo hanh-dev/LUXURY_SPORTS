@@ -66,7 +66,7 @@
 								<button class="btn-add-to-cart-primary" onclick="addToCart(<?= $product['ID']?>)">Add To Cart</button>
 							</div>
 							<div class="add-to-wishist">
-								<i class="fa-regular fa-heart"></i>
+								<i class="fa-regular fa-heart" onclick="addToWishList(<?= $product['ID']?>)"></i>
 								<p class=text-wishist>Add to wishist</p>
 							</div>
 							<div class="box-detail">

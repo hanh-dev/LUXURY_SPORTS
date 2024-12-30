@@ -3,10 +3,12 @@ class Profile extends Controller
 {
     public $userModel;
     public $cartModel;
+    public $productModel;
     public function __construct()
     {
         $this->cartModel = $this->model('CartModel');
         $this->userModel = $this->model('UserModel');
+        $this->productModel = $this->model('ProductModel');
     }
 
     public function show() {
@@ -199,4 +201,59 @@ class Profile extends Controller
             unset($_SESSION['user_id']);
             echo json_encode(['success' => true, 'message'=>'Logged out successfully.']);
         }
+
+    // WishList
+    public function wishListPage($userID = null) {
+        if (!isset($_SESSION['user_id'])) {
+            echo json_encode(['success' => false, 'message' => 'User is not logged in.']);
+            exit;
+        }        
+        $userID = $_SESSION['user_id'];
+        $productWishList = $this->productModel->getProductWishlist($userID);
+        echo '<div class="cartformpage">
+        <div class="wishList">
+            <h6>WishList</h6>
+        </div>
+            <table class="cart cart-hidden" id="cart">
+                <thead>
+                    <tr>
+                        <th class="image">Image</th>
+                        <th class="product-Name">Name</th>
+                        <th class="product-Price">Price</th>
+                    </tr>
+                </thead>
+            </div>
+            <tbody id="table_body">';
+        
+        if (!empty($productWishList)) {
+            foreach ($productWishList as $product) {
+                
+                if (strpos($product['Image'], 'public/images/') === false) {
+                    $product['Image'] = 'public/images/' . $product['Image'] . '.png';
+                }
+                $imagePath = $product['Image'];
+                $productName = htmlspecialchars($product['Name']);
+                $productId = $product['Product_ID'];
+                $productPrice = $product['Price'];        
+                echo '<tr class="item" data-id="' . $productId . '">
+                <td class="image">
+                    <img src="' . $imagePath . '" alt="' . $productName . '" class="product-img">
+                    <span >Remove item</span>
+                </td>
+                <td class="product-Name">
+                    <span class="text-hover">' . $productName . '</span>
+                </td>
+                <td class="product-Price">$' . $productPrice . ' </td>
+            </tr>';        
+            }
+        } else {
+            echo '<tr><td colspan="5">No products in WishList.</td></tr>';
+        }
+    
+        echo '      </tbody>
+                </table>
+            </div>';
     }
+  
+   
+}

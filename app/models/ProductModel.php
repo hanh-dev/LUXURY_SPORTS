@@ -308,4 +308,5 @@ class ProductModel extends DB
         return mysqli_query($this->conn, $sql);
     }
 
+    
 }

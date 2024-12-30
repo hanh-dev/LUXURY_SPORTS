@@ -26,7 +26,7 @@ class Product extends Controller
                     </div>
                     <div class='wrapp_add'>
                        <span 
-                            " . ($isSoldOut ? "" : "onclick='addToCart({$row['ID']})'") . "
+                            " . ($isSoldOut ? "" : "onclick='addToCart({$row['ID']})'") . "x
                             class='" . ($isSoldOut ? "disabled" : "") . "'
                         >
                             " . ($isSoldOut ? "Sold Out" : "Add to Cart") . "
@@ -79,14 +79,6 @@ class Product extends Controller
 
     public function checkout() {
         echo '<div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
         <div> Check out Page</div>
         <div> Check out Page</div>
         <div> Check out Page</div>';

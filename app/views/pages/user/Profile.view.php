@@ -36,6 +36,13 @@
                     </div>
                 </div>
                 <hr>
+                <div class="WishListTrack" id='wishlisttrack'>
+                    <div class="form_detail form">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="detail">WishList</span>
+                    </div>
+                </div>
+                <hr>
                 <div class="AccountLogout">
                     <div class="form_logout form">
                         <i class="fas fa-sign-out-alt"></i> 

@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+/* hr {
+    margin: 1rem 0;
+    color: inherit;
+    background-color: currentColor;
+    border: 0;
+    opacity: .25;
+} */
+
 .container {
     margin-top: 140px;
     max-width: 1279.2px;

@@ -1,5 +1,3 @@
-
-
 async function confirmDelete($productID) {
     let result = confirm("Do you want to continue?");
     if (result) {

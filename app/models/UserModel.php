@@ -109,4 +109,6 @@ class UserModel extends DB
         where ID = '$userID'";
         $result = mysqli_query($this->conn, $sql);
     }
+
+   
 }
