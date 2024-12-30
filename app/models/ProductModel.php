@@ -156,12 +156,17 @@ class ProductModel extends DB
     
     
 
-    public function getAll() {
-        $sql = "select p.Name, p.Image, pi.Price, pi.ID, pi.Qty_in_stock from product_item pi
-        join product p on p.ID = pi.Product_ID";
+    public function getAll($userID) {
+        $sql = "select p.Name, p.Image, pi.Price, pi.ID, pi.Qty_in_stock, 
+        (case when exists (SELECT 1 FROM WishList wl WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID) 
+        THEN 1 ELSE 0 END) AS isFavorite 
+        from product_item pi
+        join product p on p.ID = pi.Product_ID";  //1: true, 0: false
         $result = mysqli_query($this->conn, $sql);
         return $result;
     }
+
+    
     
     public function searchProduct($key) {
         $sql = "select p.Name, p.Image, pi.Price, pi.ID from product_item pi

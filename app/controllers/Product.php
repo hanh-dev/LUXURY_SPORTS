@@ -8,13 +8,15 @@ class Product extends Controller
     }
 
     public function getAll() {
-        $data = $this->ProductModel->getAll();
+        $userID = $_SESSION['user_id']; 
+        $data = $this->ProductModel->getAll($userID);
         if ($data) {
             while ($row = mysqli_fetch_assoc($data)) {
                 if (strpos($row['Image'], 'public/images/') === false) {
                     $row['Image'] = 'public/images/' . $row['Image'] . '.png';
                 }   
                 $isSoldOut = $row['Qty_in_stock'] <= 0;
+                $isFavorite = $row['isFavorite'];
                 echo "<div class='product_item'>
                     <a href='Details/show/{$row['ID']}'>
                         <div class='product_image'>
@@ -22,7 +24,9 @@ class Product extends Controller
                         </div>
                     </a>
                     <div class='wrapp_heart'>
-                        <i class='fa-regular fa-heart'></i>
+                        <i class='" . ($isFavorite ? "fa-solid fa-heart" : "fa-regular fa-heart") . "' 
+                            onclick='" . ($isFavorite ? "removeProductFromWishList({$row['ID']})" : "addToWishList({$row['ID']})") . "'>
+                        </i>
                     </div>
                     <div class='wrapp_add'>
                        <span 
@@ -59,8 +63,10 @@ class Product extends Controller
                                 </div>
                             </a>
                             <div class='wrapp_heart'>
-                                <i class='fa-regular fa-heart'></i>
-                            </div>
+                                <i class='" . ($isFavorite ? "fa-solid fa-heart" : "fa-regular fa-heart") . "' 
+                                     onclick='" . ($isFavorite ? "removeProductFromWishList({$row['ID']})" : "addToWishList({$row['ID']})") . "'>
+                                </i>
+                        </div>
                             <div class='wrapp_add'>
                                 <span onclick='addToCart({$row['ID']})'>Add to cart</span>
                             </div>

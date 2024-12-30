@@ -148,7 +148,8 @@ p {
 }
 /* BOX-DETAIL */
 
-.add-to-wishist {
+/* Icon heart */
+.wrapp_heart {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -156,7 +157,7 @@ p {
     font-size: 20px;
 }
 
-.add-to-wis i {
+.wrapp_heart i {
     font-size: 22px;
 }
 

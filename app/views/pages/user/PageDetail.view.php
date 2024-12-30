@@ -65,8 +65,11 @@
 								</div>
 								<button class="btn-add-to-cart-primary" onclick="addToCart(<?= $product['ID']?>)">Add To Cart</button>
 							</div>
-							<div class="add-to-wishist">
-								<i class="fa-regular fa-heart" onclick="addToWishList(<?= $product['ID']?>)"></i>
+							<div class="wrapp_heart">
+								<i class="<?= $isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart' ?>" 
+									data-id="<?= $product['ID'] ?>" 
+									onclick="<?= $isFavorite ? "removeProductFromWishList({$product['ID']})" : "addToWishList({$product['ID']})" ?>">
+								</i>
 								<p class=text-wishist>Add to wishist</p>
 							</div>
 							<div class="box-detail">
@@ -153,7 +156,9 @@
 		</div>
 	</div>
 </div>
+<!-- Script -->
 <script src="public/js/Cart.js"></script>
+<script src="public/js/WishList.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </body>
 </html>

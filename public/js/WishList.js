@@ -10,7 +10,17 @@ async function addToWishList($productID) {
             body : JSON.stringify({productID: $productID})
         });
         const data = await res.json();
-        console.log('addToWishList 2', data);
+        if(data.success){
+            // Tìm icon trái tim liên quan đến sản phẩm
+            const heartIcon = document.querySelector(`.wrapp_heart i[onclick='addToWishList(${$productID})']`);
+            if (heartIcon) {
+                // Thay đổi class để chuyển icon
+                heartIcon.classList.remove('fa-regular', 'fa-heart');
+                heartIcon.classList.add('fa-solid', 'fa-heart');
+                heartIcon.setAttribute('onclick', `removeProductFromWishList(${$productID})`);
+            }   
+            console.log('Product added to wish list!');
+        }
     } catch (error) {
         console.log("Failed to add to wish list");
     }
@@ -31,8 +41,12 @@ async function removeProductFromWishList(productID) {
         const result = await res.json();
         console.log('removeProduct', result);
         if (result.success) {
-            loadQuantity();
-            console.log('Item removed successfully!');
+            const heartIcon = document.querySelector(`.wrapp_heart i[onclick='addToWishList(${productID})']`);
+            if (heartIcon) {
+                heartIcon.classList.remove('fa-solid', 'fa-heart');
+                heartIcon.classList.add('fa-regular', 'fa-heart');
+            }
+            console.log('Product removed from wish list!');
             document.querySelector(`[data-id="${productID}"]`).remove();
         } else {
             console.error('Failed to remove item:', result.message);
