@@ -308,5 +308,23 @@ class ProductModel extends DB
         return mysqli_query($this->conn, $sql);
     }
 
+    // get product wishlist
+    public function getProductWishlist($userID) {
+        $sql = "SELECT p.Name, p.Image , pi.Price , pi.Product_ID FROM WishList wl
+        JOIN User u ON wl.User_ID = u.ID
+        JOIN Product_Item pi ON wl.Product_Item_ID = pi.ID
+        JOIN Product p ON pi.Product_ID = p.ID
+        WHERE u.ID = $userID";
+
+        $result = mysqli_query($this->conn,$sql);
+
+        $product = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $product [] = $row;
+        }
+
+        return $product;
+    }
+
     
 }
