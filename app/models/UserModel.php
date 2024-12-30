@@ -115,7 +115,6 @@ class UserModel extends DB
         $sql = "insert into WishList (User_ID, Product_Item_ID)
         values ('$userID', '$productID')";
 
-
         return mysqli_query($this->conn, $sql);
     }
 

@@ -202,6 +202,27 @@ class Profile extends Controller
             echo json_encode(['success' => true, 'message'=>'Logged out successfully.']);
         }
 
+
+    public function addToWishlist() {
+        if (!isset($_SESSION['user_id'])) {
+            echo json_encode(['success' => false, 'message' => 'User is not logged in.']);
+            exit;
+        }        
+        $userID = $_SESSION['user_id'];
+        $data = file_get_contents('php://input');
+        $data = json_decode($data, true);
+        $productID = $data['productID'];
+
+        $result = $this->userModel->addToWishList($userID, $productID);
+    
+        if ($result) {
+            $_SESSION['update'] = true;
+            echo json_encode(['success' => true, 'message' => 'Added to wishlist successfully.']);
+        } else {
+            $_SESSION['update'] = false;
+            echo json_encode(['success' => false, 'message' => 'Failed to add to wishlist.']);
+        }
+    }
     // WishList
     public function wishListPage($userID = null) {
         if (!isset($_SESSION['user_id'])) {
@@ -238,7 +259,7 @@ class Profile extends Controller
                 echo '<tr class="item" data-id="' . $productId . '">
                 <td class="image">
                     <img src="' . $imagePath . '" alt="' . $productName . '" class="product-img">
-                    <span >Remove item</span>
+                    <span onclick="removeProductFromWishList(' . $productId . ')">Remove item</span>
                 </td>
                 <td class="product-Name">
                     <span class="text-hover">' . $productName . '</span>
