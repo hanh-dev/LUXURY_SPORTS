@@ -276,5 +276,17 @@ class Profile extends Controller
             </div>';
     }
   
-   
+    // Delete product of Wishlist table
+    public function deleteItem() {
+        $data = file_get_contents('php://input');
+        $data = json_decode($data, true);
+        $userID = $_SESSION['user_id'] ?? null;
+        $productID = $data['id'];
+        $result = $this->productModel->removeItem($userID,$productID);
+        if($result) {
+            echo json_encode(['success' => true, 'message'=>'Successfully removed item from cart']);
+        } else {
+            echo json_encode(['success' => false, 'message'=> 'Failed to remove item']);
+        }
+    }
 }

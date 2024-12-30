@@ -308,7 +308,7 @@ class ProductModel extends DB
         return mysqli_query($this->conn, $sql);
     }
 
-    // get product wishlist
+    // get product wishlist 
     public function getProductWishlist($userID) {
         $sql = "SELECT p.Name, p.Image , pi.Price , pi.Product_ID FROM WishList wl
         JOIN User u ON wl.User_ID = u.ID
@@ -326,5 +326,10 @@ class ProductModel extends DB
         return $product;
     }
 
-    
+    // Delete a product of Wishlist table
+    public function removeItem($userID,$productID) {
+        $sql = "DELETE FROM Wishlist WHERE User_ID = '$userID' AND Product_Item_ID = '$productID'";
+
+        return mysqli_query($this->conn, $sql);
+    }
 }
