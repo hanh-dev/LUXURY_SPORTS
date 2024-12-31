@@ -161,6 +161,15 @@
 			</div>
 		</div>
 	</div>
+	<!-- Toast Add WishList Successfully -->
+	<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="toastWishList">
+		<div class="d-flex">
+			<div class="toast-body">
+				<i class="fa-solid fa-circle-check" id="icon_noti"></i>
+				<span id="content_toast">Added product to your wishlist successfully</span>
+			</div>
+		</div>
+	</div>
 <!-- Script -->
 	<script src="public/js/Cart.js"></script>
 	<script src="public/js/WishList.js"></script>

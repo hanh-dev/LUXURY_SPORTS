@@ -1,5 +1,7 @@
 async function addToWishList($productID) {
     console.log('addToWishList 1', $productID);
+    const toastElement = document.getElementById('toastWishList');
+    const toast = new bootstrap.Toast(toastElement);
 
     try {
         const res = await fetch('/LUXURY_SPORTS/Profile/addToWishList', {
@@ -25,6 +27,11 @@ async function addToWishList($productID) {
                 heartIconDetail.classList.add('fa-solid', 'fa-heart');
                 heartIconDetail.setAttribute('onclick', `removeProductFromWishList(${$productID})`);
             }  
+            
+            toast.show();
+            setTimeout(function () {
+                toast.hide();
+            }, 2500);
             
         }
     } catch (error) {
