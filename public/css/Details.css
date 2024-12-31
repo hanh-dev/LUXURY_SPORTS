@@ -149,7 +149,7 @@ p {
 /* BOX-DETAIL */
 
 /* Icon heart */
-.wrapp_heart {
+.wrapp_heart-detail {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -157,7 +157,7 @@ p {
     font-size: 20px;
 }
 
-.wrapp_heart i {
+.wrapp_heart-detail i {
     font-size: 22px;
 }
 
@@ -276,7 +276,7 @@ p {
     margin-top: 10px;
 }
 
-.cart-heart {
+.wrapp_heart {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -302,7 +302,7 @@ p {
     visibility: hidden;
 }
 
-.cart-heart:hover {
+.wrapp_heart:hover {
     background-color:#BAF120;
 }
 
@@ -311,7 +311,7 @@ p {
     color: #333;
 }
 
-.product-item:hover .cart-heart,
+.product-item:hover .wrapp_heart,
 .product-item:hover .btn-add-to-cart-second {
     visibility: visible;
 }

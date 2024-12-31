@@ -157,11 +157,11 @@ class ProductModel extends DB
     
 
     public function getAll($userID) {
-        $sql = "select p.Name, p.Image, pi.Price, pi.ID, pi.Qty_in_stock, 
-        (case when exists (SELECT 1 FROM WishList wl WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID) 
-        THEN 1 ELSE 0 END) AS isFavorite 
-        from product_item pi
-        join product p on p.ID = pi.Product_ID";  //1: true, 0: false
+        $sql ="SELECT p.Name, p.Image, pi.Price, pi.ID, pi.Qty_in_stock,
+                (case when exists (SELECT 1 FROM WishList wl WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID) 
+                 THEN 1 ELSE 0 END) AS isFavorite 
+                 FROM Product_Item pi
+                join product p on p.ID = pi.Product_ID";  //1: true, 0: false
         $result = mysqli_query($this->conn, $sql);
         return $result;
     }
@@ -295,8 +295,10 @@ class ProductModel extends DB
         return isset($statusID["ID"])?$statusID["ID"]:"";
     }
     // get product detail
-    public function getProductDetail($productID) {
-        $sql = "SELECT p.Name, p.Image, p.Description, pI.Price, p.Category_ID,pI.ID, c.CategoryName AS CategoryName 
+    public function getProductDetail($userID, $productID) {
+        $sql = "SELECT p.Name, p.Image, p.Description, pI.Price, p.Category_ID, pI.ID, c.CategoryName AS CategoryName,
+                  (CASE WHEN EXISTS (SELECT 1 FROM WishList wl WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID) 
+                    THEN 1 ELSE 0 END) AS isFavorite
                 FROM Product p
                 JOIN Category c ON p.Category_ID = c.ID
                 JOIN Product_Item pI ON p.ID = pI.Product_ID
@@ -304,12 +306,14 @@ class ProductModel extends DB
         return mysqli_query($this->conn, $sql);
     }
     //get related product
-    public function getRelatedProducts($productID, $categoryID) {
-        $sql = "SELECT p.Name, p.Image, p.ID, pI.Price, c.CategoryName AS CategoryName
+    public function getRelatedProducts($productID, $categoryID, $userID) {
+        $sql = "SELECT p.Name, p.Image, p.ID, pI.Price, c.CategoryName AS CategoryName,
+                    (CASE WHEN EXISTS (SELECT 1 FROM WishList wl WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID) 
+                    THEN 1 ELSE 0 END) AS isFavorite
                 FROM Product p
                 JOIN Category c ON p.Category_ID = c.ID
                 JOIN Product_Item pI ON p.ID = pI.Product_ID
-                WHERE p.Category_ID = $categoryID AND p.ID != $productID";
+                WHERE p.Category_ID =  $categoryID AND p.ID != $productID";
         return mysqli_query($this->conn, $sql);
     }
 

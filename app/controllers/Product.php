@@ -8,7 +8,7 @@ class Product extends Controller
     }
 
     public function getAll() {
-        $userID = $_SESSION['user_id']; 
+        $userID = $_SESSION['user_id'] ?? null; 
         $data = $this->ProductModel->getAll($userID);
         if ($data) {
             while ($row = mysqli_fetch_assoc($data)) {

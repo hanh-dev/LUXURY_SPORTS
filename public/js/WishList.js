@@ -13,13 +13,19 @@ async function addToWishList($productID) {
         if(data.success){
             // Tìm icon trái tim liên quan đến sản phẩm
             const heartIcon = document.querySelector(`.wrapp_heart i[onclick='addToWishList(${$productID})']`);
+            const heartIconDetail = document.querySelector(`.wrapp_heart-detail i[onclick='addToWishList(${$productID})']`)
             if (heartIcon) {
-                // Thay đổi class để chuyển icon
                 heartIcon.classList.remove('fa-regular', 'fa-heart');
                 heartIcon.classList.add('fa-solid', 'fa-heart');
                 heartIcon.setAttribute('onclick', `removeProductFromWishList(${$productID})`);
-            }   
-            console.log('Product added to wish list!');
+            }
+
+            if (heartIconDetail) {
+                heartIconDetail.classList.remove('fa-regular', 'fa-heart');
+                heartIconDetail.classList.add('fa-solid', 'fa-heart');
+                heartIconDetail.setAttribute('onclick', `removeProductFromWishList(${$productID})`);
+            }  
+            
         }
     } catch (error) {
         console.log("Failed to add to wish list");
@@ -42,9 +48,17 @@ async function removeProductFromWishList(productID) {
         console.log('removeProduct', result);
         if (result.success) {
             const heartIcon = document.querySelector(`.wrapp_heart i[onclick='addToWishList(${productID})']`);
+            const heartIconDetail = document.querySelector(`.wrapp_heart-detail i[onclick='addToWishList(${productID})']`)
             if (heartIcon) {
                 heartIcon.classList.remove('fa-solid', 'fa-heart');
                 heartIcon.classList.add('fa-regular', 'fa-heart');
+                heartIcon.setAttribute('onclick', `addToWishList(${productID})`);
+            }
+
+            if (heartIconDetail) {
+                heartIconDetail.classList.remove('fa-solid', 'fa-heart');
+                heartIconDetail.classList.add('fa-regular', 'fa-heart');
+                heartIconDetail.setAttribute('onclick', `addToWishList(${productID})`);
             }
             console.log('Product removed from wish list!');
             document.querySelector(`[data-id="${productID}"]`).remove();
