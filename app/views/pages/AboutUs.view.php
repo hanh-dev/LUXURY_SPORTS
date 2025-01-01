@@ -25,20 +25,20 @@
                 <img src="https://thanhnien.mediacdn.vn/Uploaded/camlt/2022_03_30/chay-bo-kyfk-3330.jpg" alt="">
             </div>
             <div class="box-content">
-                <div class="title">Lorem ipsum dolor, sit amet consectetur adipisicing.</div>
-                <div class="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut molestias corrupti voluptates architecto. Quia sint est quaerat laborum autem at nostrum, expedita quo. Eius non aperiam id deleniti corporis nihil reprehenderit eum voluptatibus, praesentium, enim temporibus quas?</div>
+                <div class="title">Running shoes: The durability of the shoe creates strength in each step</div>
+                <div class="content">Sports shoes (running) are 3D designed with outstanding toughness and durability, designed with many tiny air holes to create a cool, comfortable feeling while running and prevent odors when stored, the shoe sole is designed with steps to prevent slipping when in use.</div>
                 <div class="content-line">
                     <div class="line">
                         <div class="icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="text-line">Lorem ipsum dolor sit amet consectetur adipisicing.</div>
+                        <div class="text-line">High elasticity</div>
                     </div>
                     <div class="line">
                         <div class="icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="text-line">Lorem ipsum dolor sit amet. Minima, cumque.</div>
+                        <div class="text-line">Effective anti-slip</div>
                     </div>
                     <div class="line">
                         <div class="icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="text-line">Lorem ipsum dolor sit amet.</div>
+                        <div class="text-line">Outstanding breathability</div>
                     </div>
                 </div>
             </div>
