@@ -101,6 +101,8 @@ $(document).ready(function () {
             if (!res.ok) {
                 throw new Error(`HTTP error! Status: ${res.status}`);
             }
+
+            // Đang chỉnh sửa ở đây thay vì tự động thì phải dựa vào admin đông ý mà không phải là tự động
     
             const data = await res.json();
     
@@ -108,7 +110,7 @@ $(document).ready(function () {
                 console.error('Error at payment:', data.message);
                 alert('Payment failed: ' + data.message);
             } else if (data.success) {
-                console.log('ProductID', productIds);
+                window.location.href = data.url;
                 try {
                     const res = await fetch('/LUXURY_SPORTS/Cart/updateStatus', {
                         method: 'POST',
@@ -121,8 +123,6 @@ $(document).ready(function () {
                     if(!res.ok) {
                         throw new Error('HTTP error ! Status: ' + res.status);
                     }
-                    //
-                    window.location.href = data.url;
                 } catch (error) {
                     console.log('Error at updating status');
                 }

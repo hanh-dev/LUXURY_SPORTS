@@ -98,12 +98,23 @@
             }
 
             // update status of orders
-            public function updateOrderStatus($productID) {
+            public function updateOrderStatus($productID, $action = null) {
                 // get orderID
                 $userID = $_SESSION['user_id'];
                 $orderID = $this->getOrderID($userID);
+
+                $status = 'Pending Confirmation';
+
+                if($action != null && $action == 'cancel') {
+                    $status = 'Cancelled';
+                }elseif($action = ! null && $action == 'confirm') {
+                    $status = 'Paid';
+                }
+
+                // get status id based on status name
+                $statusID = $this->getStatusID($status);
                 foreach($productID as $id) {
-                    $sql = "UPDATE Order_Item SET Status = 2 WHERE Order_ID = '$orderID' AND Product_Item_ID = '$id'";
+                    $sql = "UPDATE Order_Item SET Status = '$statusID' WHERE Order_ID = '$orderID' AND Product_Item_ID = '$id'";
                     $result = mysqli_query($this->conn, $sql);
                     if (!$result) {
                         return false;
@@ -112,5 +123,49 @@
 
                 return true;
             }
+            public function getStatusID($statusName) {
+                $sql = 'select ID from Order_Status where StatusName = "'.$statusName.'"';
+                $result = mysqli_query($this->conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                return $row['ID'];
+            }
+
+            public function getPendingQuantity() {
+                $total = 0;
+                $rows = [];
+            
+                $sql = "SELECT createdAt, Status FROM Order_Item";
+                $result = mysqli_query($this->conn, $sql);
+            
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $row['createdAt'] = substr($row['createdAt'], 0, 16);
+                    $rows[] = $row;
+                }
+            
+                $processed = [];
+            
+                for ($i = 0; $i < count($rows); $i++) {
+                    if (in_array($i, $processed)) {
+                        continue;
+                    }
+            
+                    $groupHasPending = false;
+            
+                    for ($j = 0; $j < count($rows); $j++) {
+                        if ($rows[$i]['createdAt'] === $rows[$j]['createdAt']) {
+                            if ($rows[$j]['Status'] == 5) {
+                                $groupHasPending = true;
+                            }
+                            $processed[] = $j;
+                        }
+                    }
+            
+                    if ($groupHasPending) {
+                        $total++;
+                    }
+                }
+            
+                return $total;
+            }
+                    
         }
-    ?>

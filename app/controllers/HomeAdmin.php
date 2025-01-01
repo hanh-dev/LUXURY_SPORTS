@@ -282,7 +282,8 @@ class HomeAdmin extends Controller
     }
     // get all oder
     public function getAllOrder() {
-        $products = $this->ProductModel->getOrder();
+        $status = 'admin';
+        $products = $this->ProductModel->getOrder($status);
         if (isset($_POST['datasend'])) {
             $table = '
             <table class="table table-hover">
@@ -371,6 +372,100 @@ class HomeAdmin extends Controller
         } else {
             echo json_encode(['success' => true, 'message' => 'Updated Successfully']);
         }
+    }
+
+    public function getPendingConfirmationOrder() {
+        $data = file_get_contents('php://input');
+        if (!$data) {
+            echo json_encode(['success' => false, 'message' => 'No data received']);
+            return;
+        }
+    
+        $status = 'Pending Confirmation';
+        $products = $this->ProductModel->getOrder($status);
+        $container = '<div class="container"></div>';
+    
+        if (!empty($products)) {
+            $container = '';
+            $userOrders = [];
+    
+            foreach ($products as $row) {
+                $userName = $row['UserName'];
+                $createdAtFull = $row['createdAt'];
+                $createdAt = substr($createdAtFull, 0, 16); 
+                $id = $row['ID'];
+                $image = $row['Image'];
+                $name = htmlspecialchars($row['Name']);
+                $quantity = $row['Qty'];
+                $price = $row['Price'];
+    
+                if (!isset($userOrders[$userName][$createdAt])) {
+                    $userOrders[$userName][$createdAt] = [
+                        'amount' => 0,
+                        'products' => []
+                    ];
+                }
+    
+                $userOrders[$userName][$createdAt]['amount'] += $price * $quantity;
+                $userOrders[$userName][$createdAt]['products'][] = [
+                    'id' => $id,
+                    'image' => $image,
+                    'name' => $name,
+                    'quantity' => $quantity,
+                    'price' => $price
+                ];
+            }
+            foreach ($userOrders as $userName => $ordersByDate) {
+                foreach ($ordersByDate as $createdAt => $order) {
+                    $collapseId = 'collapse' . md5($userName . $createdAt);
+                    $table = '
+                    <table class="table table-hover collapse" id="' . $collapseId . '" style="margin-top: 20px;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+    
+                    foreach ($order['products'] as $product) {
+                        $image = $product['image'];
+                        if (strpos($image, 'public/images/') === false) {
+                            $image = 'public/images/' . $image . '.png';
+                        }
+    
+                        $table .= '<tr data-id="' . $product['id'] . '">
+                                    <td><img src="' . $image . '" alt="Product Image" style="max-width: 50px;"></td>
+                                    <td>' . $product['name'] . '</td>
+                                    <td>' . $product['quantity'] . '</td>
+                                    <td>$' . $product['price'] . '</td>
+                                </tr>';
+                    }
+    
+                    $table .= '<tfoot>
+                    <tr>
+                        <td colspan="4" style="width: 100%;">
+                            <div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+                                <button class="btn btn-dark" onclick="handleAction(\'confirm\', \'' . $collapseId . '\')">Confirm</button>
+                                <button class="btn btn-danger" onclick="handleAction(\'cancel\', \'' . $collapseId . '\')">Cancel</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>';
+    
+                    $table .= '</tbody></table>';
+                    $container .= '<div class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#' . $collapseId . '" aria-expanded="false" aria-controls="' . $collapseId . '">
+                        <strong>' . $userName . '</strong> has made an online transaction of <strong>$' . $order['amount'] . '</strong> on <strong>' . $createdAt . '</strong></div>';
+                    $container .= $table;
+                }
+            }
+        } else {
+            $container = '<div class="no-orders">No pending confirmation order found.</div>';
+        }
+    
+        echo $container;
     }
     
     // logout
