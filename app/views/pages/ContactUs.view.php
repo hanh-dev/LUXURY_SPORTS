@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="box-img">
-            <img src="https://www.hipotels.com/content/thumbs/640/content/imgsxml/panel_menufotos/bahiagrande-tenis220.jpg" alt="">
+            <img src="https://plantillasdeportivas.es/wp-content/uploads/2018/11/tenis-1600x982.jpg" alt="">
         </div>
         <div class="box-contact"> 
             <div class="card">

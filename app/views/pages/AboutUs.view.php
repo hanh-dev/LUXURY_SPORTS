@@ -56,7 +56,7 @@
             </div>
             <div class="card-team">
                 <div class="box-img-team">
-                    <img src="" alt="">
+                    <img src="public/images/imgcoorchang.jpg" alt="">
                 </div>
                 <div class="box-name">
                     <p class="name"><b>Coor Chang</b></p>

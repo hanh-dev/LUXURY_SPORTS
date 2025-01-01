@@ -108,10 +108,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: green;
+    background-color: rgb(9, 153, 9);
     font-size: 20px;
+    color: white;
 }
 .send:hover{
-    background-color: yellow;
+    background-color: rgb(8, 251, 32);
     cursor: pointer;
+    color: black;
 }
