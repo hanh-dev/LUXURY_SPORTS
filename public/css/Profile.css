@@ -216,11 +216,6 @@ img {
 .scroll-wishList::-webkit-scrollbar, .scroll-cart::-webkit-scrollbar {
     width: 7px;
 }
-
-    max-height: 300px;
-    overflow-y: auto;
-}
-
 .cart-hidden::-webkit-scrollbar {
     width: 7px;
-} */
+} 
