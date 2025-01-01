@@ -10,14 +10,22 @@ class Details extends Controller
 
     public function show($productID = null) {
         {
+             // Kiểm tra xem người dùng đã đăng nhập chưa
+            if (!isset($_SESSION['user_id'])) {
+                // Xử lý khi người dùng chưa đăng nhập, ví dụ: chuyển hướng đến trang đăng nhập
+                header("Location: /login");
+                exit();
+            }
+
+            $userID = $_SESSION['user_id']; // Lấy ID người dùng từ session
             // Lấy dữ liệu sản phẩm hiện tại
-            $result = $this->ProductModel->getProductDetail($productID);
+            $result = $this->ProductModel->getProductDetail($userID, $productID);
             $product = mysqli_fetch_assoc($result);
 
             // Lấy danh sách sản phẩm liên quan
             $relatedProducts = [];
             if ($product && isset($product['Category_ID'])) {
-                $relatedResult = $this->ProductModel->getRelatedProducts($productID, $product['Category_ID']);
+                $relatedResult = $this->ProductModel->getRelatedProducts($productID, $product['Category_ID'], $userID);
                 while ($row = mysqli_fetch_assoc($relatedResult)) {
                     $relatedProducts[] = $row;
                 }

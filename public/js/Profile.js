@@ -147,6 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
         handlePage();
     });
 
+    document.getElementById('wishlisttrack').addEventListener('click', () => {
+        page = 'wishListPage';
+        handlePage();
+    });
+
     // Logout
     document.getElementById('logout').addEventListener('click', async () => {
         try {

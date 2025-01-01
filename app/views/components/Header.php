@@ -101,5 +101,6 @@
     <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
     <script src="public/js/Cart.js"></script>
     <script src="public/js/LoadPage.js"></script>
+    <script src="public/js/WishList.js"></script>
 </body>
 </html>
