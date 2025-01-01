@@ -68,7 +68,6 @@
 						</div>
 						<div class="wrapp_heart-detail">
 							<i class="<?= $isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart' ?>" 
-								data-id="<?= $relatedProduct['ID'] ?>"
 								onclick="<?= $isFavorite ? "removeProductFromWishList({$product['ID']})" : "addToWishList({$product['ID']})" ?>">
 							</i>
 							<p class=text-wishist>Add to wishist</p>

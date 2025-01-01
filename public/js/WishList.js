@@ -3,6 +3,12 @@ async function addToWishList($productID) {
     const toastElement = document.getElementById('toastWishList');
     const toast = new bootstrap.Toast(toastElement);
 
+    // Disable the heart icon temporarily to prevent multiple clicks
+    const heartIcon = document.querySelector(`.wrapp_heart i[onclick='addToWishList(${$productID})']`);
+    if (heartIcon) {
+        heartIcon.classList.add('disabled');
+    }
+
     try {
         const res = await fetch('/LUXURY_SPORTS/Profile/addToWishList', {
             method : 'POST',
@@ -13,9 +19,8 @@ async function addToWishList($productID) {
         });
         const data = await res.json();
         if(data.success){
-            // Tìm icon trái tim liên quan đến sản phẩm
-            const heartIcon = document.querySelector(`.wrapp_heart i[onclick='addToWishList(${$productID})']`);
-            const heartIconDetail = document.querySelector(`.wrapp_heart-detail i[onclick='addToWishList(${$productID})']`)
+            // Update heart icon to show as added
+            const heartIconDetail = document.querySelector(`.wrapp_heart-detail i[onclick='addToWishList(${$productID})']`);
             if (heartIcon) {
                 heartIcon.classList.remove('fa-regular', 'fa-heart');
                 heartIcon.classList.add('fa-solid', 'fa-heart');
@@ -32,17 +37,21 @@ async function addToWishList($productID) {
             setTimeout(function () {
                 toast.hide();
             }, 2500);
-            
         }
     } catch (error) {
         console.log("Failed to add to wish list");
+    } finally {
+        // Re-enable the heart icon after the operation completes
+        if (heartIcon) {
+            heartIcon.classList.remove('disabled');
+        }
     }
-
 }
 
-async function removeProductFromWishList(productID) {
-    console.log('removeProductFromWishList',productID);
 
+async function removeProductFromWishList(productID) {
+    console.log('removeProductFromWishList', productID);
+    const productElement = document.querySelector(`[data-id="${productID}"]`);
     try {
         const res = await fetch('/LUXURY_SPORTS/Profile/deleteItem', {
             method : 'POST',
@@ -52,10 +61,14 @@ async function removeProductFromWishList(productID) {
             body : JSON.stringify({id: productID})
         });
         const result = await res.json();
-        console.log('removeProduct', result);
+
+        if (productElement) {
+            productElement.remove();
+        };
         if (result.success) {
-            const heartIcon = document.querySelector(`.wrapp_heart i[onclick='addToWishList(${productID})']`);
-            const heartIconDetail = document.querySelector(`.wrapp_heart-detail i[onclick='addToWishList(${productID})']`)
+            // Update heart icon to show as removed
+            const heartIcon = document.querySelector(`.wrapp_heart i[onclick='removeProductFromWishList(${productID})']`);
+            const heartIconDetail = document.querySelector(`.wrapp_heart-detail i[onclick='removeProductFromWishList(${productID})']`);
             if (heartIcon) {
                 heartIcon.classList.remove('fa-solid', 'fa-heart');
                 heartIcon.classList.add('fa-regular', 'fa-heart');
@@ -67,12 +80,13 @@ async function removeProductFromWishList(productID) {
                 heartIconDetail.classList.add('fa-regular', 'fa-heart');
                 heartIconDetail.setAttribute('onclick', `addToWishList(${productID})`);
             }
+
             console.log('Product removed from wish list!');
-            document.querySelector(`[data-id="${productID}"]`).remove();
+            
         } else {
             console.error('Failed to remove item:', result.message);
         }
     } catch (error) {
-        console.error("Failed to remove product to wish list");
+        console.error("Failed to remove product from wish list", error);
     }
 }

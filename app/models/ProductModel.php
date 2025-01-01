@@ -157,14 +157,27 @@ class ProductModel extends DB
     
 
     public function getAll($userID) {
-        $sql ="SELECT p.Name, p.Image, pi.Price, pi.ID, pi.Qty_in_stock,
-                (case when exists (SELECT 1 FROM WishList wl WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID) 
-                 THEN 1 ELSE 0 END) AS isFavorite 
-                 FROM Product_Item pi
-                join product p on p.ID = pi.Product_ID";  //1: true, 0: false
-        $result = mysqli_query($this->conn, $sql);
+        $sql = "SELECT p.Name, p.Image, pi.Price, pi.ID, pi.Qty_in_stock,
+                (CASE 
+                    WHEN EXISTS (
+                        SELECT 1 
+                        FROM WishList wl 
+                        WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = ?
+                    ) 
+                    THEN 1 
+                    ELSE 0 
+                END) AS isFavorite
+            FROM Product_Item pi
+            JOIN Product p ON p.ID = pi.Product_ID";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
         return $result;
     }
+    
 
     
     
@@ -336,9 +349,8 @@ class ProductModel extends DB
     }
 
     // Delete a product of Wishlist table
-    public function removeItem($userID,$productID) {
-        $sql = "DELETE FROM Wishlist WHERE User_ID = '$userID' AND Product_Item_ID = '$productID'";
-
+    public function removeFromWishList($userID, $productID) {
+        $sql = "DELETE FROM WishList WHERE User_ID = '$userID' AND Product_Item_ID = '$productID'";
         return mysqli_query($this->conn, $sql);
     }
 }
