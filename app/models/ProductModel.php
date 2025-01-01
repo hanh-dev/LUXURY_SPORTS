@@ -146,7 +146,7 @@ class ProductModel extends DB
     }
 
     public function getQuantityCart($user_id) {
-        $sql = "select sum(Qty) as total from Order_Item oi
+        $sql = "select Count(*) as total from Order_Item oi
         join Orders o on o.ID = oi.Order_ID
         where o.User_ID = '$user_id'";
         $result = mysqli_query($this->conn, $sql);
