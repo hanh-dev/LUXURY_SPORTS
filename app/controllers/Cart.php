@@ -197,8 +197,7 @@
                         'price_data' => [
                             'currency' => 'usd',
                             'product_data' => [
-                                'name' => 'Your Product Name',
-                            ],
+                                'name' => 'Total'],
                             'unit_amount' => $total * 100,
                         ],
                         'quantity' => 1,
@@ -223,15 +222,27 @@
                     exit();
                 }
 
+                $action = $data['action'] ?? null;
+
                 $productID = $data['productIds'];
 
-                $result = $this->CartModel->updateOrderStatus($productID);
+                $result = $this->CartModel->updateOrderStatus($productID, $action);
 
                 if(!$result) {
                     echo json_encode(['success' => false,'message' => 'Failed to update order status']);
+                }else {
+                    echo json_encode(['success' => true,'message' => 'Order status updated successfully']);
                 }
             } catch (Error) {
                 echo json_encode(['success' => false, 'message' => 'Error']);
+            }
+        }
+
+        // quantity pending confirmation
+        public function pendingQuantity() {
+            if(isset($_SESSION['admin_id'])) {
+                $result = $this->CartModel->getPendingQuantity();
+                echo '<div>'.$result.'</div>';
             }
         }
     }

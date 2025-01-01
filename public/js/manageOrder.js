@@ -1,15 +1,101 @@
+const notifyQuantity = document.getElementById('notifyQuantity');
 $(document).ready(function () {
     displayData();
+    loadQuantity();
 });
+
+function loadQuantity() {
+    $.ajax({
+        type: 'GET',
+        url: '/LUXURY_SPORTS/Cart/pendingQuantity',
+        success: function (data) {
+            notifyQuantity.innerHTML = data;
+        },
+        error: function (status, error) {
+            console.log(error.responseText);
+        }
+    })
+}
+
 let currentID = null;
 let userName = null;
 var myModal = new bootstrap.Modal(document.getElementById('update'));
+
+// Notification
+async function notify() {
+    const modalElement = document.getElementById('notificationModal');
+    const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+
+    try {
+        if (modalElement.classList.contains('show')) {
+            modal.hide();
+        }
+
+        const response = await $.ajax({
+            method: 'POST',
+            url: '/LUXURY_SPORTS/HomeAdmin/getPendingConfirmationOrder',
+            data: { datasend: true }
+        });
+
+        $("#displayNotify").html(response);
+        // Hiển thị lại modal
+        modal.show();
+    } catch (error) {
+        console.log('Error while fetching notification data:', error);
+    }
+}
+
+async function handleAction(action, collapseId) {
+    const table = document.getElementById(collapseId);
+
+    if (table) {
+        const rows = table.querySelectorAll('tbody tr');
+        const productIds = [];
+
+        rows.forEach(row => {
+            const id = row.getAttribute('data-id');
+            if (id) {
+                productIds.push(id);
+            }
+        });
+
+        console.log(`Action: ${action}, Product IDs:`, productIds);
+
+        try {
+            const req = await fetch('/LUXURY_SPORTS/Cart/updateStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: action,
+                    productIds: productIds
+                })
+            });
+
+            const res = await req.json();
+            console.log('Check response:', res);
+            
+            if (res.success) {
+                await notify();
+                displayData();
+
+                loadQuantity();
+            }
+        } catch (error) {
+            console.log('Error at updating status for products:', error);
+        }
+    }
+}
+
+
 // Display order information
 function displayData() {
+    // loadQuantity();
     $.ajax({
         method: 'POST',
         url: '/LUXURY_SPORTS/HomeAdmin/getAllOrder',
-        data: { datasend: 'true' },
+        data: { datasend: 'true',  },
         success: function (data, status) {
             $("#display_data").html(data);
         },

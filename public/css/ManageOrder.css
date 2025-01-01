@@ -40,3 +40,26 @@ th, td {
     font-style: italic;
     color: red;
 }
+
+.notification-container {
+    position: relative;
+}
+
+.notification-container:hover {
+    cursor: pointer;
+}
+
+.notification-badge {
+    position: absolute;
+    right: -8px;
+    background-color: red; 
+    color: white;   
+    font-size: 12px; 
+    border-radius: 50%; 
+    width: 18px;    
+    height: 18px;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -5px;
+}
