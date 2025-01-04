@@ -174,8 +174,6 @@ class ProductModel extends DB
         return $result;
     }
     
-
-    
     
     public function searchProduct($key, $userID) {
         $sql = " SELECT p.Name, p.Image, pi.Price, pi.ID,
@@ -195,6 +193,15 @@ class ProductModel extends DB
         return $result;
     }
 
+    public function searchManagerProduct($key) {
+        $sql = " SELECT p.Name, p.Image, pi.Price, pi.ID, p.Description, pi.Qty_in_stock
+            FROM product_item pi
+            JOIN product p ON p.ID = pi.Product_ID
+            WHERE p.Name LIKE '%$key%' ";
+
+        $result = mysqli_query($this->conn, $sql);
+        return $result;
+    }
 
     // get category id
     public function getCategoryID($category) {

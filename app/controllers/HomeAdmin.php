@@ -189,7 +189,7 @@ class HomeAdmin extends Controller
     // Search products 
     public function searchProduct() {
         $key = $_POST['searchProduct'];
-        $products = $this->ProductModel->searchProduct($key);
+        $products = $this->ProductModel->searchManagerProduct($key);
         if (isset($_POST['datasend'])) {
             $table = '<table class="table table-hover">
             <thead class="thead-dark">

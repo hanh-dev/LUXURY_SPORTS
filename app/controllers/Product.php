@@ -47,7 +47,6 @@ class Product extends Controller
         }
     }
 
-
     public function searchProduct() {
             $key = $_POST['searchProduct'];
             $userID = $_SESSION['user_id'] ?? null;
