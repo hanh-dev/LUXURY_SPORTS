@@ -182,7 +182,7 @@ class ProductModel extends DB
     
     
     public function searchProduct($key) {
-        $sql = "select p.Name, p.Image, pi.Price, pi.ID from product_item pi
+        $sql = "select p.Name, p.Image, p.Description, pi.Price, pi.ID, pi.Qty_in_stock from product_item pi
         join product p on p.ID = pi.Product_ID
         where p.Name LIKE '%$key%'";
         $result = mysqli_query($this->conn, $sql);

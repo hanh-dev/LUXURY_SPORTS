@@ -186,7 +186,61 @@ class HomeAdmin extends Controller
             echo $table;
         }
     }
-
+    // Search products 
+    public function searchProduct() {
+        $key = $_POST['searchProduct'];
+        $products = $this->ProductModel->searchProduct($key);
+        if (isset($_POST['datasend'])) {
+            $table = '<table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>';
+            
+            $number = 1;
+    
+            if (!empty($products)) {
+                foreach ($products as $row) {
+                    $id = $row['ID'];
+                    $image = $row['Image'];
+                    if (strpos($image, 'public/images/') === false) {
+                        $image = 'public/images/' . $image . '.png';
+                    }                
+                    $name = htmlspecialchars($row['Name']);
+                    $description = htmlspecialchars($row['Description']);
+                    $quantity = $row['Qty_in_stock'];
+                    $price = $row['Price'];
+                    
+                    $table .= '<tr>
+                                <td>' . $number . '</td>
+                                <td><img src="' . $image . '" alt="Product Image" style="max-width: 50px;"></td>
+                                <td>' . $name . '</td>
+                                <td class="description">' . $description . '</td>
+                                <td>' . $quantity . '</td>
+                                <td>' . $price . '</td>
+                                <td>
+                                    <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#update" onclick="updateProduct(' . $id . ')">Update</button>
+                                    <button class="btn btn-danger" onclick="deleteProduct(' . $id . ')">Delete</button>
+                                </td>
+                            </tr>';
+                    $number++;
+                }
+            } else {
+                $table .= '<tr><td colspan="7" class="text-center">No data available</td></tr>';
+            }
+    
+            $table .= '</tbody></table>';
+            echo $table;
+        }
+    }
     // create product
     public function createProduct() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {

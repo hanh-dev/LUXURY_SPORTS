@@ -113,9 +113,14 @@
 </div>
 
     <div class="container my-3">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#completeModal" id="open">
-            Add New Product
-        </button>
+        <div class="small-container">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#completeModal" id="open">
+                Add New Product
+            </button>
+            <div class="searchProduct">
+                <input type="text" class="search-Product-Name" placeholder="Search here..." id="searchProduct" name="searchProduct">
+            </div>
+        </div>
         <div id="display_data">
 
         </div>
