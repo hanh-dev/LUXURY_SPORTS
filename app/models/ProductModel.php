@@ -162,7 +162,7 @@ class ProductModel extends DB
                     WHEN EXISTS (
                         SELECT 1 
                         FROM WishList wl 
-                        WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = ?
+                        WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID
                     ) 
                     THEN 1 
                     ELSE 0 
@@ -170,24 +170,31 @@ class ProductModel extends DB
             FROM Product_Item pi
             JOIN Product p ON p.ID = pi.Product_ID";
     
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('i', $userID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
+        $result = mysqli_query($this->conn, $sql);
         return $result;
     }
     
 
     
     
-    public function searchProduct($key) {
-        $sql = "select p.Name, p.Image, p.Description, pi.Price, pi.ID, pi.Qty_in_stock from product_item pi
-        join product p on p.ID = pi.Product_ID
-        where p.Name LIKE '%$key%'";
+    public function searchProduct($key, $userID) {
+        $sql = " SELECT p.Name, p.Image, pi.Price, pi.ID,
+            CASE
+                WHEN EXISTS (
+                    SELECT 1
+                    FROM WishList wl
+                    WHERE wl.Product_Item_ID = pi.ID AND wl.User_ID = $userID
+                ) THEN 1
+                ELSE 0
+            END AS isFavorite
+            FROM product_item pi
+            JOIN product p ON p.ID = pi.Product_ID
+            WHERE p.Name LIKE '%$key%' ";
+
         $result = mysqli_query($this->conn, $sql);
         return $result;
     }
+
 
     // get category id
     public function getCategoryID($category) {

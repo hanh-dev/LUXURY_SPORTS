@@ -50,12 +50,14 @@ class Product extends Controller
 
     public function searchProduct() {
             $key = $_POST['searchProduct'];
-            $product = $this->ProductModel->searchProduct($key);
+            $userID = $_SESSION['user_id'] ?? null;
+            $product = $this->ProductModel->searchProduct($key, $userID);
             if ($product && $product->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($product)) {
                     if (strpos($row['Image'], 'public/images/') === false) {
                         $row['Image'] = 'public/images/' . $row['Image'] . '.png';
                     }
+                    $isFavorite = $row['isFavorite'];
                     echo "<div class='product_item'>
                             <a href='Details/show/{$row['ID']}'>
                                 <div class='product_image'>
@@ -83,10 +85,4 @@ class Product extends Controller
             }
     }
 
-    public function checkout() {
-        echo '<div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>
-        <div> Check out Page</div>';
-    }
 }
