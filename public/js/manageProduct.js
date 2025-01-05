@@ -136,3 +136,25 @@ function updateProduct($id) {
         });
     });
 }
+// Search Product
+$(document).ready(function(){
+    displayData();
+    $('#searchProduct').on('keyup', function(){
+        var searchProduct = $(this).val(); // Lấy giá trị hiện tại từ ô tìm kiếm
+        console.log("searchProduct: ",searchProduct);
+        if (searchProduct.length > 0){
+            $.ajax({
+                type: 'POST',
+                url: '/LUXURY_SPORTS/HomeAdmin/searchProduct',
+                data: {searchProduct: searchProduct, datasend: true},
+                success: function(response){
+                    console.log("Response from server:", response);
+                    $('#display_data').html(response);
+                }
+            });
+        } else{
+            displayData();
+        }
+    });
+
+})
