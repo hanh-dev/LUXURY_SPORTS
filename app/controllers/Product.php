@@ -49,6 +49,7 @@ class Product extends Controller
 
 
     public function searchProduct() {
+            $isFavorite = '';
             $key = $_POST['searchProduct'];
             $product = $this->ProductModel->searchProduct($key);
             if ($product && $product->num_rows > 0) {

@@ -187,9 +187,9 @@ async function checkout() {
         const row = checkbox.closest('tr.item');
         const ID = row.dataset.id;
         const Qty = row.querySelector('.item-quantity').value;
-        const Price = row.querySelector('.price').textContent.replace('$', ''); // Loại bỏ ký tự '$'
-        const Image = row.querySelector('img').src.split('/').pop().replace('.png', ''); // Lấy tên ảnh
-        const Name = row.querySelector('.product-Name .text-hover').textContent; // Lấy tên sản phẩm
+        const Price = row.querySelector('.price').textContent.replace('$', '');
+        const Image = row.querySelector('img').src.split('/').pop().replace('.png', '');
+        const Name = row.querySelector('.product-Name .text-hover').textContent;
 
         // Thêm thông tin sản phẩm vào mảng selectedProducts
         selectedProducts.push({
@@ -201,7 +201,12 @@ async function checkout() {
         });
     });
 
-    console.log("Sản phẩm đã chọn: ", JSON.stringify(selectedProducts));
+    console.log("Sản phẩm đã chọn: ", selectedProducts);
+    const products = selectedProducts.map(product=> product.ID);
+    localStorage.setItem('products', JSON.stringify(products));
+    const saveIDs = JSON.parse(localStorage.getItem('products'));
+    console.log("ID sản phẩm đã lưu: ", saveIDs);
+
     try {
         const res = await fetch('/LUXURY_SPORTS/Cart/checkout', {
             method: 'POST',

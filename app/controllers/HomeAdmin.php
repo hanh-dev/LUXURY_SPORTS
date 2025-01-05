@@ -448,8 +448,10 @@ class HomeAdmin extends Controller
                     <tr>
                         <td colspan="4" style="width: 100%;">
                             <div class="d-flex justify-content-between align-items-center" style="width: 100%;">
-                                <button class="btn btn-dark" onclick="handleAction(\'confirm\', \'' . $collapseId . '\')">Confirm</button>
-                                <button class="btn btn-danger" onclick="handleAction(\'cancel\', \'' . $collapseId . '\')">Cancel</button>
+                            <button class="btn btn-dark" 
+                                onclick="handleAction(\'confirm\', \'' . $collapseId . '\', \'' . $userName . '\')">Confirm</button>
+                            <button class="btn btn-danger" 
+                                onclick="handleAction(\'cancel\', \'' . $collapseId . '\', \'' . $userName . '\')">Cancel</button>
                             </div>
                         </td>
                     </tr>

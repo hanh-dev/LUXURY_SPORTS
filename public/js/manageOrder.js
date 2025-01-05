@@ -1,4 +1,5 @@
 const notifyQuantity = document.getElementById('notifyQuantity');
+let responeMessage = '';
 $(document).ready(function () {
     displayData();
     loadQuantity();
@@ -45,7 +46,9 @@ async function notify() {
     }
 }
 
-async function handleAction(action, collapseId) {
+async function handleAction(action, collapseId, userName) {
+    responeMessage = action;
+    console.log('checkuserName:',userName);
     const table = document.getElementById(collapseId);
 
     if (table) {
@@ -62,7 +65,7 @@ async function handleAction(action, collapseId) {
         console.log(`Action: ${action}, Product IDs:`, productIds);
 
         try {
-            const req = await fetch('/LUXURY_SPORTS/Cart/updateStatus', {
+            const req = await fetch(`/LUXURY_SPORTS/Cart/updateStatus/${userName}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,10 +80,13 @@ async function handleAction(action, collapseId) {
             console.log('Check response:', res);
             
             if (res.success) {
+                const userID = res.userID;
                 await notify();
                 displayData();
-
                 loadQuantity();
+                // websocket admin send message to client
+                sendMessageToClient(userID);
+
             }
         } catch (error) {
             console.log('Error at updating status for products:', error);

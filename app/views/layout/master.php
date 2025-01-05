@@ -20,5 +20,6 @@
     ?>
     <script src="/LUXURY_SPORTS/public/js/LoadPage.js"></script>
     <script src="/LUXURY_SPORTS/public/js/Search.js"></script>
+    <script src="/LUXURY_SPORTS/public/js/WebSocketClient.js"></script>
 </body>
 </html>
