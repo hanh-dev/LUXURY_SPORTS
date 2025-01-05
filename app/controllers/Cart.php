@@ -5,10 +5,12 @@
     {
         public $CartModel;
         public $productModel;
+        public $userModel;
 
         public function __construct() {
             $this->CartModel = $this->model('CartModel');
             $this->productModel = $this->model('ProductModel');
+            $this->userModel = $this->model('UserModel');
         }
 
         public function show() {
@@ -211,32 +213,51 @@
                 echo json_encode(['success' => false, 'message' => $e->getMessage()]);
             }
         }
-        // update status of orders when payment successfully!
-        public function updateStatus() {
+        public function updateStatus($userName = null) {
             try {
-                $data = file_get_contents('php://input');
-                $data = json_decode($data, true);
-                // Check productItem ID exist
-                if(!$data) {
-                    echo json_encode(['success' => false,'message' => 'Product ID is required']);
+                // Lấy và kiểm tra dữ liệu đầu vào
+                $data = json_decode(file_get_contents('php://input'), true);
+                if (!$data || !isset($data['productIds'])) {
+                    http_response_code(400);
+                    echo json_encode(['success' => false, 'message' => 'Invalid data']);
                     exit();
                 }
-
+        
                 $action = $data['action'] ?? null;
-
-                $productID = $data['productIds'];
-
-                $result = $this->CartModel->updateOrderStatus($productID, $action);
-
-                if(!$result) {
-                    echo json_encode(['success' => false,'message' => 'Failed to update order status']);
+                $productIDs = $data['productIds'];
+                if($action!= null) {
+                    $result = $this->CartModel->updateOrderStatus($productIDs, $action);
                 }else {
-                    echo json_encode(['success' => true,'message' => 'Order status updated successfully']);
+                    $result = $this->CartModel->updateOrderStatus($productIDs);
                 }
-            } catch (Error) {
-                echo json_encode(['success' => false, 'message' => 'Error']);
+        
+                // Lấy thông tin user ID nếu username tồn tại
+                $userID = null;
+                if ($userName !== null) {
+                    $userName = htmlspecialchars($userName, ENT_QUOTES, 'UTF-8');
+                    $userID = $this->userModel->getUserID($userName);
+                }
+        
+                // Trả kết quả
+                if ($result) {
+                    http_response_code(200);
+                    echo json_encode([
+                        'success' => true,
+                        'message' => 'Order status updated successfully',
+                        'userID' => $userID
+                    ]);
+                } else {
+                    http_response_code(500);
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Failed to update order status'
+                    ]);
+                }
+            } catch (Exception $e) {
+                http_response_code(500);
+                echo json_encode(['success' => false, 'message' => $e->getMessage()]);
             }
-        }
+        }        
 
         // quantity pending confirmation
         public function pendingQuantity() {

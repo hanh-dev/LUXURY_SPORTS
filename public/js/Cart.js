@@ -101,14 +101,11 @@ $(document).ready(function () {
             if (!res.ok) {
                 throw new Error(`HTTP error! Status: ${res.status}`);
             }
-
-            // Đang chỉnh sửa ở đây thay vì tự động thì phải dựa vào admin đông ý mà không phải là tự động
     
             const data = await res.json();
     
             if (data.success === false) {
                 console.error('Error at payment:', data.message);
-                alert('Payment failed: ' + data.message);
             } else if (data.success) {
                 window.location.href = data.url;
                 try {
@@ -123,6 +120,8 @@ $(document).ready(function () {
                     if(!res.ok) {
                         throw new Error('HTTP error ! Status: ' + res.status);
                     }
+
+                    paymentSuccess();
                 } catch (error) {
                     console.log('Error at updating status');
                 }
@@ -148,3 +147,29 @@ $(document).ready(function () {
         }
     }
 });
+
+async function getUserID() {
+    try {
+        const res = await fetch('/LUXURY_SPORTS/Home/getUserID', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        if (data.success) {
+            return data.id;
+        } else {
+            console.error('Error:', data.message);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching user ID:', error);
+        return null;
+    }
+}

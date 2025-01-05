@@ -48,6 +48,7 @@ class Product extends Controller
     }
 
     public function searchProduct() {
+            $isFavorite = '';
             $key = $_POST['searchProduct'];
             $userID = $_SESSION['user_id'] ?? null;
             $product = $this->ProductModel->searchProduct($key, $userID);
